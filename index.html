@@ -76,39 +76,51 @@
         
         <div class="hero-content container">
             <h1>Modern Records Management for Fire Departments</h1>
-            <p class="lead">Streamline operations, improve response times, and manage resources efficiently with the next-generation RMS built specifically for fire services.</p>
+            <p class="lead">Fire-RMS is a comprehensive, cloud-based records management system designed specifically for fire departments. Streamline operations, enhance accountability, and ensure compliance while reducing administrative burden.</p>
             <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
         </div>
     </header>
     
     <section id="features" class="features">
         <div class="container">
-            <h2>Designed for Fire Departments</h2>
-            <p class="section-description">Fire-RMS provides the tools you need to manage your department effectively.</p>
+            <h2>Comprehensive Fire Department Management</h2>
+            <p class="section-description">Fire-RMS combines essential tools into one integrated platform, eliminating the need for multiple disconnected systems.</p>
             
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📋</div>
                     <h3>Incident Reporting</h3>
-                    <p>Quickly document incidents with customizable forms that meet NFIRS standards.</p>
+                    <p>NFIRS-compliant incident reporting with customizable templates, automatic validation, and comprehensive analytics.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">🚒</div>
-                    <h3>Equipment Management</h3>
-                    <p>Track maintenance, inspections, and inventory with automated reminders.</p>
+                    <h3>Equipment & Asset Management</h3>
+                    <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">👨‍🚒</div>
                     <h3>Personnel Management</h3>
-                    <p>Manage schedules, certifications, and training records in one place.</p>
+                    <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Occupancy Management</h3>
+                    <p>Track buildings, businesses, and inspections. Schedule and manage pre-plans, fire safety inspections, and code enforcement.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Access</h3>
+                    <p>Complete field operations from any device. Access pre-plans, submit reports, and update records on the go.</p>
                 </div>
                 
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Analytics Dashboard</h3>
-                    <p>Gain insights with real-time data visualization and custom reports.</p>
+                    <h3>Advanced Analytics</h3>
+                    <p>Transform data into actionable insights with customizable dashboards, automated reporting, and data visualization tools.</p>
                 </div>
             </div>
         </div>
@@ -117,7 +129,24 @@
     <section id="how-it-works" class="how-it-works">
         <div class="container">
             <h2>How Fire-RMS Works</h2>
-            <p class="section-description">A modern, cloud-based solution that grows with your department.</p>
+            <p class="section-description">A modern, cloud-based solution built with cutting-edge technology.</p>
+            
+            <div class="tech-overview">
+                <div class="tech-card">
+                    <h3>Cloud-Native Architecture</h3>
+                    <p>Built on a modern tech stack with Python, FastAPI, React, and PostgreSQL, ensuring reliability, scalability, and security.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with role-based access control, data encryption, and regular backups to protect your department's data.</p>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>API-First Design</h3>
+                    <p>Seamlessly integrate with existing systems and extend functionality through our comprehensive API.</p>
+                </div>
+            </div>
             
             <div class="steps">
                 <div class="step">
@@ -140,15 +169,47 @@
             </div>
             
             <div class="mockup">
-                <img src="images/mockup.png" alt="Fire-RMS Dashboard" class="mockup-image">
+                <div class="coming-soon-placeholder">
+                    <h3>Modern User Interface</h3>
+                    <p>Intuitive, responsive design built for efficiency and ease of use.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose" class="why-choose">
+        <div class="container">
+            <h2>Why Choose Fire-RMS</h2>
+            <p class="section-description">Built by firefighters, for firefighters - with modern technology and a user-first approach.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Reduce Administrative Burden</h3>
+                    <p>Streamline workflows and eliminate redundant data entry with automated processes and intuitive interfaces.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Enhance Accountability</h3>
+                    <p>Comprehensive audit trails, role-based permissions, and detailed logging ensure accountability at all levels.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Ensure Compliance</h3>
+                    <p>Stay up-to-date with changing regulations with built-in compliance checks and automatic updates.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Improve Decision-Making</h3>
+                    <p>Make data-driven decisions with powerful analytics, customizable reports, and real-time dashboards.</p>
+                </div>
             </div>
         </div>
     </section>
     
     <section id="waitlist" class="waitlist">
         <div class="container">
-            <h2>Join the Waitlist</h2>
-            <p class="section-description">Be among the first to experience Fire-RMS when we launch.</p>
+            <h2>Join the Fire-RMS Early Access Program</h2>
+            <p class="section-description">Be among the first to experience the next generation of fire department records management.</p>
             
             <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
                 <div class="form-group">
@@ -162,8 +223,21 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="department">Department Name (Optional)</label>
+                    <label for="department">Department Name</label>
                     <input type="text" id="department" name="department">
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Your Role</label>
+                    <select id="role" name="role">
+                        <option value="">Select your role</option>
+                        <option value="chief">Chief Officer</option>
+                        <option value="officer">Company Officer</option>
+                        <option value="firefighter">Firefighter</option>
+                        <option value="admin">Administrative Staff</option>
+                        <option value="it">IT Personnel</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
                 
                 <div class="form-group">
@@ -174,6 +248,18 @@
                         <option value="medium">Medium (26-100 personnel)</option>
                         <option value="large">Large (100+ personnel)</option>
                     </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="interests">Interested Features (Optional)</label>
+                    <select id="interests" name="interests" multiple>
+                        <option value="incident">Incident Reporting</option>
+                        <option value="equipment">Equipment Management</option>
+                        <option value="personnel">Personnel Management</option>
+                        <option value="occupancy">Occupancy Management</option>
+                        <option value="analytics">Analytics & Reporting</option>
+                    </select>
+                    <small>Hold Ctrl/Cmd to select multiple</small>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">Join Waitlist</button>
