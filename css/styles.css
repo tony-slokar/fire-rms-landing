@@ -93,6 +93,17 @@ h3 {
     background-color: rgba(255, 69, 0, 0.1);
 }
 
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.125rem;
+}
+
 /* Navigation */
 .navbar {
     padding: 1.5rem 0;
@@ -282,6 +293,9 @@ h3 {
     text-align: center;
     padding: 2rem;
     border: 2px dashed var(--gray);
+    background-image: url('https://placehold.co/800x400/e5e7eb/1E3A8A?text=Fire-RMS+Interface');
+    background-size: cover;
+    background-position: center;
 }
 
 .coming-soon-placeholder h3 {
@@ -376,6 +390,262 @@ input:focus, select:focus {
     text-decoration: underline;
 }
 
+/* ===== NEW STYLES ADDED ===== */
+
+/* Floating CTA */
+.floating-cta {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    background-color: white;
+    padding: 0.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0);
+    }
+}
+
+/* Waitlist Content Layout */
+.waitlist-content {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.waitlist-benefits {
+    flex: 1;
+    min-width: 300px;
+    background-color: rgba(30, 58, 138, 0.05);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary);
+}
+
+.waitlist-benefits h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.waitlist-benefits ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.waitlist-benefits li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.waitlist-benefits li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.waitlist-form-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.trust-badge {
+    background-color: rgba(30, 58, 138, 0.05);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.lock-icon {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.privacy-note {
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--gray);
+    margin-top: 1rem;
+}
+
+.form-note {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 5rem 0;
+    background-color: var(--light);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.faq-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h3 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* Pricing Section */
+.pricing {
+    padding: 5rem 0;
+    background-color: var(--light);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-header {
+    padding: 2rem;
+    background-color: var(--secondary);
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.featured-badge, .early-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.early-badge {
+    background-color: #f59e0b;
+}
+
+.pricing-header h3 {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.period {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.discount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fef08a;
+}
+
+.pricing-features {
+    padding: 2rem;
+    flex: 1;
+}
+
+.pricing-features ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pricing-features li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.pricing-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+.pricing-card.featured {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.pricing-card.featured:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.pricing-card.early-adopter .pricing-header {
+    background-color: #0f172a;
+}
+
+.pricing-card.early-adopter .btn {
+    display: block;
+    margin: 0 2rem 2rem;
+}
+
+.pricing-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--gray);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     h1 {
@@ -392,5 +662,19 @@ input:focus, select:focus {
     
     .steps {
         flex-direction: column;
+    }
+    
+    .floating-cta {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .waitlist-content {
+        flex-direction: column;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
+        order: -1;
     }
 }
