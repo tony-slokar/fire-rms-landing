@@ -521,13 +521,17 @@ input:focus, select:focus {
 .pricing {
     padding: 5rem 0;
     background-color: var(--light);
+    overflow: hidden;
 }
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pricing-card {
@@ -538,6 +542,7 @@ input:focus, select:focus {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .pricing-card:hover {
@@ -599,12 +604,18 @@ input:focus, select:focus {
 .pricing-features {
     padding: 2rem;
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-features ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 auto 0;
     padding: 0;
+}
+
+.pricing-features .btn {
+    margin-top: 1.5rem;
 }
 
 .pricing-features li {
@@ -626,17 +637,19 @@ input:focus, select:focus {
     z-index: 1;
 }
 
+@media (min-width: 993px) {
+    .pricing-card.featured {
+        margin-top: -10px;
+        margin-bottom: -10px;
+    }
+}
+
 .pricing-card.featured:hover {
     transform: translateY(-5px) scale(1.05);
 }
 
 .pricing-card.early-adopter .pricing-header {
     background-color: #0f172a;
-}
-
-.pricing-card.early-adopter .btn {
-    display: block;
-    margin: 0 2rem 2rem;
 }
 
 .pricing-note {
@@ -647,6 +660,19 @@ input:focus, select:focus {
 }
 
 /* Responsive Styles */
+@media (max-width: 992px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .pricing-card.early-adopter {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2.25rem;
@@ -671,6 +697,10 @@ input:focus, select:focus {
     
     .waitlist-content {
         flex-direction: column;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
     }
     
     .pricing-card.featured {
