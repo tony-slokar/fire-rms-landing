@@ -40,7 +40,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-RG18CYZCM6'); // Replace with your actual Google Analytics ID
+        gtag('config', 'G-RG18CYZCM6');
     </script>
     
     <!-- Structured Data for SEO -->
@@ -60,15 +60,188 @@
         "description": "Modern Records Management System for Fire Departments"
     }
     </script>
+    
+    <style>
+        /* Additional styles for new elements */
+        /* Floating CTA */
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background-color: white;
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 69, 0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 69, 0, 0);
+            }
+        }
+
+        /* Waitlist Content */
+        .waitlist-content {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .waitlist-benefits {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(30, 58, 138, 0.05);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .waitlist-benefits h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .waitlist-benefits ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .waitlist-benefits li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .waitlist-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .waitlist-form-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .trust-badge {
+            background-color: rgba(30, 58, 138, 0.05);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .lock-icon {
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        .privacy-note {
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 1rem;
+        }
+
+        .form-note {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        /* Button large */
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+        }
+
+        /* Lead magnet banner */
+        .lead-magnet-banner {
+            background-color: rgba(255, 69, 0, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: 1px dashed var(--primary);
+        }
+
+        .lead-magnet-banner h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .floating-cta {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .waitlist-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Floating CTA Button -->
+    <div class="floating-cta">
+        <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+    </div>
+
     <header class="hero">
         <nav class="navbar">
             <div class="container">
-            <div class="logo">Fire-RMS</div>
+                <div class="logo">Fire-RMS</div>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#why-choose">Why Choose</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#waitlist" class="btn btn-primary">Join Waitlist</a></li>
                 </ul>
             </div>
@@ -90,7 +263,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">📋</div>
                     <h3>Incident Reporting</h3>
-                    <p>NFIRS and NERIS compliant incident reporting with customizable templates, automatic validation, and comprehensive analytics.</p>
+                    <p>NFIRS and NEMSIS compliant incident reporting with customizable templates, automatic validation, and comprehensive analytics.</p>
                 </div>
                 
                 <div class="feature-card">
@@ -180,7 +353,7 @@
     <section id="why-choose" class="why-choose">
         <div class="container">
             <h2>Why Choose Fire-RMS</h2>
-            <p class="section-description">Built by firefighters, for firefighters - with modern technology and a user-first approach.</p>
+            <p class="section-description">Designed with extensive fire service research and built with modern technology for today's fire departments.</p>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
@@ -206,64 +379,81 @@
         </div>
     </section>
     
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>When will Fire-RMS be available?</h3>
+                    <p>Our early access program is launching in Q3 2025, with full public release planned for Q4 2025.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>How much will it cost?</h3>
+                    <p>Pricing will be based on department size. Early access members will receive preferential pricing. Contact us for details.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I migrate data from my current system?</h3>
+                    <p>Yes! Fire-RMS includes data migration tools to smoothly transition from your existing RMS.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Is Fire-RMS NFIRS compliant?</h3>
+                    <p>Absolutely. Fire-RMS fully supports NFIRS reporting requirements and can submit reports directly to the national database.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section id="waitlist" class="waitlist">
         <div class="container">
             <h2>Join the Fire-RMS Early Access Program</h2>
             <p class="section-description">Be among the first to experience the next generation of fire department records management.</p>
             
-            <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+            <div class="waitlist-content">
+                <div class="waitlist-benefits">
+                    <h3>Early Access Benefits:</h3>
+                    <ul>
+                        <li>Priority access when we launch</li>
+                        <li>Discounted pricing for early adopters</li>
+                        <li>Input on feature development</li>
+                        <li>Dedicated support during onboarding</li>
+                    </ul>
+                    <div class="trust-badge">
+                        <span class="lock-icon">🔒</span> Your information is secure and will never be shared.
+                    </div>
+                    <div class="lead-magnet-banner">
+                        <h4>FREE DOWNLOAD</h4>
+                        <p>Join our waitlist and get our exclusive "Fire Department RMS Evaluation Guide" PDF</p>
+                    </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="waitlist-form-container">
+                    <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
+                        <div class="form-group">
+                            <label for="email">Work Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="department">Department Name (Optional)</label>
+                            <input type="text" id="department" name="department">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Join the Waitlist</button>
+                        
+                        <p class="privacy-note">We respect your privacy and will never share your information.</p>
+                    </form>
+                    <p class="form-note">Limited spots available for our early access program. Reserve yours today.</p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="department">Department Name</label>
-                    <input type="text" id="department" name="department">
-                </div>
-                
-                <div class="form-group">
-                    <label for="role">Your Role</label>
-                    <select id="role" name="role">
-                        <option value="">Select your role</option>
-                        <option value="chief">Chief Officer</option>
-                        <option value="officer">Company Officer</option>
-                        <option value="firefighter">Firefighter</option>
-                        <option value="admin">Administrative Staff</option>
-                        <option value="it">IT Personnel</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="size">Department Size</label>
-                    <select id="size" name="size">
-                        <option value="">Select size</option>
-                        <option value="small">Small (1-25 personnel)</option>
-                        <option value="medium">Medium (26-100 personnel)</option>
-                        <option value="large">Large (100+ personnel)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="interests">Interested Features (Optional)</label>
-                    <select id="interests" name="interests" multiple>
-                        <option value="incident">Incident Reporting</option>
-                        <option value="equipment">Equipment Management</option>
-                        <option value="personnel">Personnel Management</option>
-                        <option value="occupancy">Occupancy Management</option>
-                        <option value="analytics">Analytics & Reporting</option>
-                    </select>
-                    <small>Hold Ctrl/Cmd to select multiple</small>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Join Waitlist</button>
-            </form>
+            </div>
         </div>
     </section>
     
@@ -283,6 +473,73 @@
         </div>
     </footer>
     
-    <script src="js/main.js"></script>
+    <script>
+        // Form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const waitlistForm = document.getElementById('waitlist-form');
+            
+            if (waitlistForm) {
+                waitlistForm.addEventListener('submit', function(e) {
+                    // This is for UI feedback
+                    const submitButton = waitlistForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    
+                    submitButton.textContent = 'Submitting...';
+                    submitButton.disabled = true;
+                    
+                    // Track form submission event in Google Analytics
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'waitlist_submission', {
+                            'event_category': 'engagement',
+                            'event_label': 'waitlist form'
+                        });
+                    }
+                    
+                    // Reset button after submission (Formspree will handle the redirect)
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    }, 3000);
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100, // Offset for fixed header
+                            behavior: 'smooth'
+                        });
+                        
+                        // Track navigation clicks in Google Analytics
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'navigation_click', {
+                                'event_category': 'engagement',
+                                'event_label': targetId
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Track CTA button clicks
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (typeof gtag === 'function' && this.textContent.trim() !== 'Submitting...') {
+                        gtag('event', 'cta_click', {
+                            'event_category': 'engagement',
+                            'event_label': this.textContent.trim()
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
