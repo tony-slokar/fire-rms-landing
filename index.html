@@ -134,10 +134,13 @@
             <h2>Interactive Demo</h2>
             <p class="section-description">This is a fully-functional preview of the Fire-RMS interface. Click through the modules to experience the intuitive design and powerful features.</p>
             
-            <!-- This is where the React App will be rendered -->
-            <div id="react-app-container">
-                <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray);">
-                    Loading Fire-RMS Demo...
+            <!-- Tablet Bezel Wrapper -->
+            <div class="tablet-bezel">
+                <!-- This is where the React App will be rendered -->
+                <div id="react-app-container">
+                    <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                        Loading Fire-RMS Demo...
+                    </div>
                 </div>
             </div>
         </div>
@@ -277,9 +280,12 @@
             </div>
         );
 
-        const PageHeader = ({ title, buttonLabel, onButtonClick }) => (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px', flexWrap: 'wrap', gap: '10px' }}>
-                <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, margin: 0 }}>{title}</h2>
+        const PageHeader = ({ title, children, buttonLabel, onButtonClick }) => (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
+                <div>
+                    <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, margin: 0, marginBottom: '5px' }}>{title}</h2>
+                    {children}
+                </div>
                 {buttonLabel && (
                     <button onClick={onButtonClick} style={{ background: colors.primary, border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: colors.white, fontWeight: '600' }}>
                         {buttonLabel}
@@ -319,7 +325,7 @@
         const Sidebar = ({ activeTab, setActiveTab }) => {
           const [hoveredTab, setHoveredTab] = React.useState(null);
           const navItems = ['dashboard', 'incidents', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
-          const navIcons = {'dashboard': '📊', 'incidents': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
+          const navIcons = {'dashboard': '📊', 'incidents': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍�', 'equipment': '🚒', 'settings': '⚙️'};
           
           const navItemStyle = (tabName) => ({
             padding: '12px 20px', marginBottom: '4px', display: 'flex', alignItems: 'center',
@@ -404,28 +410,29 @@
         };
 
         // --- Incident Report Sections ---
-        const NerisWorkflowDiagram = ({ completedTabs }) => {
+        const NerisWorkflowDiagram = ({ completedTabs, activeTab }) => {
             const allTabs = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Hazards', 'Units', 'Narrative'];
             return (
                 <div style={{ background: colors.white, padding: '15px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '25px' }}>
                     <h4 style={{ marginTop: 0, marginBottom: '15px', color: colors.dark }}>Required Modules Workflow</h4>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap' }}>
                         {allTabs.map((tab, index) => {
                             const isComplete = completedTabs.includes(tab);
+                            const isActive = tab === activeTab;
                             return (
                                 <React.Fragment key={tab}>
                                     <div style={{
                                         padding: '8px 12px',
-                                        borderRadius: '6px',
-                                        background: isComplete ? colors.success : colors.lightGray,
-                                        color: isComplete ? colors.white : colors.gray,
+                                        borderRadius: '20px',
+                                        background: isActive ? colors.primary : (isComplete ? colors.success : colors.lightGray),
+                                        color: isActive || isComplete ? colors.white : colors.gray,
                                         fontWeight: '600',
                                         fontSize: '12px',
-                                        border: `1px solid ${isComplete ? colors.success : colors.lightGray}`
+                                        border: `1px solid ${isActive ? colors.primary : (isComplete ? colors.success : colors.lightGray)}`
                                     }}>
-                                        {isComplete ? '✓ ' : ''}{tab}
+                                        {isComplete && !isActive ? '✓ ' : ''}{tab}
                                     </div>
-                                    {index < allTabs.length - 1 && <div style={{ color: colors.lightGray, fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>→</div>}
+                                    {index < allTabs.length - 1 && <div style={{ color: colors.lightGray, fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>-</div>}
                                 </React.Fragment>
                             );
                         })}
@@ -433,6 +440,12 @@
                 </div>
             );
         };
+
+        const NerisStatementBox = () => (
+            <div style={{marginTop: '25px', padding: '15px', background: 'rgba(30, 58, 138, 0.05)', border: `1px solid ${colors.lightGray}`, borderRadius: '8px', textAlign: 'center'}}>
+                <p style={{margin: 0, color: colors.secondary, fontWeight: 500}}>This report is structured for NERIS 2026 compliance.</p>
+            </div>
+        );
 
         const CoreSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}> <FormField label="Incident Number" value="2025-00123" /> <FormField label="Incident Date" value="2025-07-11" type="date" /> <SelectField label="Incident Type"><option>111 - Building Fire</option><option>322 - Vehicle Fire</option><option>611 - EMS Call</option></SelectField> <FormField label="Alarm Date/Time" value="2025-07-11T14:02" type="datetime-local" /> <FormField label="Arrival Date/Time" value="2025-07-11T14:06" type="datetime-local" /> <FormField label="Last Unit Cleared" value="2025-07-11T15:30" type="datetime-local" /> <SelectField label="Incident Source"><option>CAD</option><option>Manual Entry</option></SelectField> </div>);
         const LocationSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}><FormField label="Street Address" value="455 Main St" /><FormField label="Apartment/Suite" value="" /><FormField label="City" value="Anytown" /><FormField label="State" value="MA" /><FormField label="Zip Code" value="01234" /><SelectField label="Property Use"><option>419 - Single-Family Dwelling</option><option>500 - Mercantile Business</option></SelectField></div>);
@@ -524,10 +537,16 @@
 
             return (
                 <div style={{padding: '25px'}}>
-                    <PageHeader title="Incidents" buttonLabel="+ New Incident Report"/>
-                    <NerisWorkflowDiagram completedTabs={completedSections} />
+                    <PageHeader title="Incident #2025-00123" buttonLabel="Save Report">
+                        <div style={{display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'wrap'}}>
+                            <span style={{background: colors.danger, color: 'white', padding: '4px 10px', borderRadius: '15px', fontSize: '12px', fontWeight: 'bold'}}>Structure Fire</span>
+                            <span style={{color: colors.gray, fontSize: '12px'}}>Modules Used: Core, Location, Fire, Actions, Rescue, Hazards, Units, Narrative</span>
+                        </div>
+                    </PageHeader>
+                    <NerisWorkflowDiagram completedTabs={completedSections} activeTab={activeSection} />
                     <SubNav tabs={sections} activeTab={activeSection} setActiveTab={setActiveSection} />
                     {renderSection()}
+                    <NerisStatementBox />
                 </div>
             );
         };
