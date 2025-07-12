@@ -14,17 +14,17 @@
     <meta property="og:url" content="https://fire-rms.tech/">
     <meta property="og:title" content="Fire-RMS: Modern Records Management for Fire Departments">
     <meta property="og:description" content="Streamline operations, improve response times, and manage resources efficiently with Fire-RMS.">
-    <meta property="og:image" content="https://fire-rms.tech/images/og-image.jpg">
+    <meta property="og:image" content="https://placehold.co/1200x630/1E3A8A/FFFFFF?text=Fire-RMS">
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://fire-rms.tech/">
     <meta name="twitter:title" content="Fire-RMS: Modern Records Management for Fire Departments">
     <meta name="twitter:description" content="Streamline operations, improve response times, and manage resources efficiently.">
-    <meta name="twitter:image" content="https://fire-rms.tech/images/og-image.jpg">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/1E3A8A/FFFFFF?text=Fire-RMS">
     
     <!-- Favicon -->
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="https://placehold.co/32x32/FF4500/FFFFFF?text=🔥">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
@@ -32,9 +32,16 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Google Analytics -->
+    <!-- React Libraries -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    
+    <!-- Babel for in-browser JSX transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Google Analytics (Placeholder) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RG18CYZCM6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -46,35 +53,29 @@
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Fire-RMS",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/ComingSoon"
-        },
-        "description": "Modern Records Management System for Fire Departments"
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Fire-RMS",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/ComingSoon"
+      },
+      "description": "Modern Records Management System for Fire Departments"
     }
     </script>
 </head>
 <body>
-    <!-- Floating CTA Button -->
-    <div class="floating-cta">
-        <a href="#waitlist" class="btn btn-primary">Early Adopter Discount</a>
-    </div>
-
     <header class="hero">
         <nav class="navbar">
             <div class="container">
                 <div class="logo">Fire-RMS</div>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#why-choose">Why Choose</a></li>
+                    <li><a href="#how-it-works">Demo</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#waitlist" class="btn btn-primary">Join Waitlist</a></li>
                 </ul>
@@ -99,31 +100,26 @@
                     <h3>NERIS-First Reporting</h3>
                     <p>Built from the ground up as a NERIS-compliant system, ready for the 2026 standards transition while maintaining legacy NFIRS compatibility.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🚒</div>
                     <h3>Equipment & Asset Management</h3>
                     <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">👨‍🚒</div>
                     <h3>Personnel Management</h3>
                     <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🏢</div>
                     <h3>Occupancy Management</h3>
                     <p>Track buildings, businesses, and inspections. Schedule and manage pre-plans, fire safety inspections, and code enforcement.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Mobile Access</h3>
                     <p>Complete field operations from any device. Access pre-plans, submit reports, and update records on the go.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <h3>Advanced Analytics</h3>
@@ -135,84 +131,18 @@
     
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2>How Fire-RMS Works</h2>
-            <p class="section-description">A modern, cloud-based solution built with cutting-edge technology.</p>
+            <h2>Interactive Demo</h2>
+            <p class="section-description">This is a fully-functional preview of the Fire-RMS interface. Click through the modules to experience the intuitive design and powerful features.</p>
             
-            <div class="tech-overview">
-                <div class="tech-card">
-                    <h3>Mobile-First Design</h3>
-                    <p>Built for field use with responsive interfaces that work seamlessly on phones, tablets, and computers.</p>
-                </div>
-                
-                <div class="tech-card">
-                    <h3>Secure & Easy to Use</h3>
-                    <p>Enterprise-grade security with intuitive interfaces that require minimal training and onboarding.</p>
-                </div>
-                
-                <div class="tech-card">
-                    <h3>Extensive Integrations</h3>
-                    <p>Connect with CAD systems, EMS platforms, and other public safety software through our comprehensive API.</p>
-                </div>
-            </div>
-            
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Centralized Data</h3>
-                    <p>All your department's information in one secure, accessible location.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Mobile Access</h3>
-                    <p>Access records from anywhere using phones, tablets, or computers.</p>
-                </div>
-                
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Future-Ready</h3>
-                    <p>Built for NERIS compliance, not retrofitted from legacy NFIRS systems.</p>
-                </div>
-            </div>
-            
-            <div class="mockup">
-                <div class="coming-soon-placeholder">
-                    <h3>Modern User Interface</h3>
-                    <p>Intuitive, responsive design built for efficiency and ease of use.</p>
+            <!-- This is where the React App will be rendered -->
+            <div id="react-app-container">
+                <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray);">
+                    Loading Fire-RMS Demo...
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="why-choose" class="why-choose">
-        <div class="container">
-            <h2>Why Choose Fire-RMS</h2>
-            <p class="section-description">Designed with years of experience in public safety software development and built with modern technology for today's fire departments.</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3>Reduce Administrative Burden</h3>
-                    <p>Streamline workflows and eliminate redundant data entry with automated processes and intuitive interfaces built by experienced public safety developers.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Enhance Accountability</h3>
-                    <p>Comprehensive audit trails, role-based permissions, and detailed logging ensure accountability at all levels.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Future-Proof Your Department</h3>
-                    <p>Avoid costly transitions in 2026 with a system built from the ground up for NERIS compliance, not hastily retrofitted from outdated NFIRS architecture.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h3>Improve Decision-Making</h3>
-                    <p>Make data-driven decisions with powerful analytics, customizable reports, and real-time dashboards.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
     <section id="pricing" class="pricing">
         <div class="container">
             <h2>Simple, Transparent Pricing</h2>
@@ -222,30 +152,7 @@
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Volunteer Departments</h3>
-                        <div class="price">
-                            <span class="amount">$25</span>
-                            <span class="period">per member/year</span>
-                        </div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>All core modules included</li>
-                            <li>Unlimited incidents</li>
-                            <li>Mobile access</li>
-                            <li>Standard support</li>
-                            <li>NERIS compliance</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="pricing-header">
-                        <div class="featured-badge">Most Popular</div>
-                        <h3>Career Departments</h3>
-                        <div class="price">
-                            <span class="amount">$100</span>
-                            <span class="period">per member/year</span>
-                        </div>
+                        <div class="price"><span class="amount">$25</span><span class="period">per member/year</span></div>
                     </div>
                     <div class="pricing-features">
                         <ul>
@@ -259,57 +166,33 @@
                         </ul>
                     </div>
                 </div>
-                
-                <div class="pricing-card early-adopter">
+                <div class="pricing-card">
                     <div class="pricing-header">
-                        <div class="early-badge">Limited Time</div>
-                        <h3>Early Adopter Program</h3>
-                        <div class="price">
-                            <span class="discount">Up to 50% off</span>
-                            <span class="period">for first 25 departments</span>
-                        </div>
+                        <h3>Career Departments</h3>
+                        <div class="price"><span class="amount">$100</span><span class="period">per member/year</span></div>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li>Free trial period</li>
-                            <li>50% off Year 1</li>
-                            <li>25% off Year 2</li>
-                            <li>All features included</li>
-                            <li>Priority development input</li>
-                            <li>Direct developer access</li>
+                            <li>All core modules included</li>
+                            <li>Unlimited incidents</li>
+                            <li>Mobile access</li>
+                            <li>Priority support</li>
+                            <li>NERIS compliance</li>
+                            <li>Advanced analytics</li>
+                            <li>API access</li>
                         </ul>
-                        <a href="#waitlist" class="btn btn-primary">Reserve Your Spot</a>
                     </div>
                 </div>
-            </div>
-            
-            <p class="pricing-note">All plans include free updates and no hidden fees. Enterprise pricing available for larger departments.</p>
-        </div>
-    </section>
-    
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>How much does Fire-RMS cost?</h3>
-                    <p>We offer simple, transparent pricing: $25 per member per year for volunteer fire departments, and $100 per member per year for career departments. Early adopters receive special benefits including free trials and significant discounts.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Does it work on mobile devices?</h3>
-                    <p>Absolutely! Fire-RMS is built with a mobile-first approach, providing a seamless experience on smartphones, tablets, and computers.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Can it integrate with our current systems?</h3>
-                    <p>Yes! Drawing on years of experience with public safety integrations, Fire-RMS is designed to connect with CAD systems, EMS platforms, and other department software.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>Is Fire-RMS ready for the 2026 standards?</h3>
-                    <p>Absolutely. Fire-RMS is built from the ground up as a NERIS-compliant system, ready for the 2026 transition while maintaining backward compatibility with legacy NFIRS where needed.</p>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="early-badge">Early Adopter</div>
+                        <h3>Limited Time Offer</h3>
+                        <div class="price"><span class="discount">Up to 50% off</span><span class="period">for first 25 departments</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul><li>Free trial period</li><li>50% off Year 1</li><li>25% off Year 2</li><li>All features included</li><li>Priority development input</li></ul>
+                        <a href="#waitlist" class="btn btn-primary">Reserve Your Spot</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -317,135 +200,610 @@
     
     <section id="waitlist" class="waitlist">
         <div class="container">
-            <h2>Reserve Your Spot</h2>
+            <h2>Join the Waitlist & Secure Your Discount</h2>
             <p class="section-description">Be among the first 25 departments to secure special early adopter pricing and benefits.</p>
             
-            <div class="waitlist-content">
-                <div class="waitlist-benefits">
-                    <h3>Early Access Benefits:</h3>
-                    <ul>
-                        <li>Free trial period for early adopters</li>
-                        <li>Up to 50% discount for years 1 and 2</li>
-                        <li>Shape product development priorities</li>
-                        <li>Direct communication with the development team</li>
-                    </ul>
-                    <div class="trust-badge">
-                        <span class="lock-icon">🔒</span> Your information is secure and will never be shared.
+            <div class="waitlist-form-container">
+                <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
+                    <div class="form-group">
+                        <label for="email">Work Email</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                </div>
-                
-                <div class="waitlist-form-container">
-                    <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
-                        <div class="form-group">
-                            <label for="email">Work Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="department">Department Name (Optional)</label>
-                            <input type="text" id="department" name="department" placeholder="Help us understand your needs">
-                        </div>
-                        
-                        <input type="hidden" name="source" value="landing_page">
-                        
-                        <button type="submit" class="btn btn-primary btn-block">Reserve Your Spot</button>
-                        
-                        <p class="privacy-note">We respect your privacy and will never share your information.</p>
-                    </form>
-                    <p class="form-note">Only 25 departments will qualify for our premium early adopter benefits including free trials and up to 50% discount for the first two years.</p>
-                </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department Name (Optional)</label>
+                        <input type="text" id="department" name="department" placeholder="Help us understand your needs">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Reserve Your Spot</button>
+                    <p class="privacy-note">We respect your privacy and will never share your information.</p>
+                </form>
             </div>
         </div>
     </section>
     
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Fire-RMS</div>
-                <p>Modern Records Management for Fire Departments</p>
-            </div>
-            
+            <div class="footer-logo">Fire-RMS</div>
+            <p>Modern Records Management for Fire Departments</p>
             <div class="footer-links">
-                <div>
-                    <a href="mailto:info@fire-rms.tech">info@fire-rms.tech</a>
-                </div>
-                <p>&copy; 2025 Fire-RMS. All rights reserved.</p>
+                <a href="mailto:info@fire-rms.tech">info@fire-rms.tech</a>
             </div>
+            <p>&copy; 2025 Fire-RMS. All rights reserved.</p>
         </div>
     </footer>
     
-    <script>
-        // Form submission handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const waitlistForm = document.getElementById('waitlist-form');
+    <!-- The entire React application code goes inside this script tag -->
+    <script type="text/babel">
+        // Color Palette
+        const colors = {
+          primary: '#FF4500',  // Orange-Red
+          secondary: '#1E3A8A', // Dark Blue
+          light: '#F9FAFB',
+          dark: '#111827',
+          gray: '#6B7280',
+          lightGray: '#E5E7EB',
+          white: '#FFFFFF',
+          success: '#10B981',
+          danger: '#EF4444',
+          warning: '#F59E0B',
+          info: '#3B82F6'
+        };
+
+        // --- Reusable UI & Form Components ---
+
+        const FormField = ({ label, value, type = 'text', readOnly = false }) => (
+            <div>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+                <input type={type} defaultValue={value} readOnly={readOnly} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', background: readOnly ? colors.lightGray : colors.white }} />
+            </div>
+        );
+
+        const SelectField = ({ label, children, value, onChange }) => (
+            <div>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+                <select value={value} onChange={onChange} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', background: `url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right .75rem center / 1.2em 1.2em`, WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', backgroundColor: colors.white, paddingRight: '2.5rem' }}>
+                    {children}
+                </select>
+            </div>
+        );
+
+        const TextArea = ({ label, value, rows = 4 }) => (
+            <div>
+                <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+                <textarea defaultValue={value} rows={rows} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', resize: 'vertical' }}></textarea>
+            </div>
+        );
+
+        const PageHeader = ({ title, buttonLabel, onButtonClick }) => (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px', flexWrap: 'wrap', gap: '10px' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, margin: 0 }}>{title}</h2>
+                {buttonLabel && (
+                    <button onClick={onButtonClick} style={{ background: colors.primary, border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: colors.white, fontWeight: '600' }}>
+                        {buttonLabel}
+                    </button>
+                )}
+            </div>
+        );
+
+        const SubNav = ({ tabs, activeTab, setActiveTab }) => (
+            <div style={{ display: 'flex', borderBottom: `1px solid ${colors.lightGray}`, marginBottom: '25px', overflowX: 'auto' }}>
+                {tabs.map(tab => (
+                    <div key={tab} onClick={() => setActiveTab(tab)} style={{ padding: '10px 15px', borderBottom: activeTab === tab ? `3px solid ${colors.primary}` : '3px solid transparent', fontWeight: activeTab === tab ? 'bold' : 'normal', color: activeTab === tab ? colors.primary : colors.gray, cursor: 'pointer', fontSize: '14px', transform: 'translateY(1px)', whiteSpace: 'nowrap' }}>
+                        {tab}
+                    </div>
+                ))}
+            </div>
+        );
+
+        const Modal = ({ children, onClose }) => (
+            <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
+                <div style={{ background: colors.light, padding: '25px', borderRadius: '8px', width: '90%', maxWidth: '500px', position: 'relative' }}>
+                    <button onClick={onClose} style={{ position: 'absolute', top: '10px', right: '10px', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer' }}>&times;</button>
+                    {children}
+                </div>
+            </div>
+        );
+
+        const CheckboxItem = ({ label, checked = false }) => (
+            <div style={{ display: 'flex', alignItems: 'center', background: colors.white, padding: '12px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px' }}>
+                <input type="checkbox" defaultChecked={checked} style={{ width: '20px', height: '20px', marginRight: '12px', accentColor: colors.primary }} />
+                <label>{label}</label>
+            </div>
+        );
+
+        // --- Main UI Components ---
+
+        const Sidebar = ({ activeTab, setActiveTab }) => {
+          const [hoveredTab, setHoveredTab] = React.useState(null);
+          const navItems = ['dashboard', 'incidents', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
+          const navIcons = {'dashboard': '📊', 'incidents': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
+          
+          const navItemStyle = (tabName) => ({
+            padding: '12px 20px', marginBottom: '4px', display: 'flex', alignItems: 'center',
+            background: activeTab === tabName ? 'rgba(255, 255, 255, 0.1)' : (hoveredTab === tabName ? 'rgba(255, 255, 255, 0.05)' : 'transparent'),
+            borderLeft: activeTab === tabName ? `4px solid ${colors.primary}` : '4px solid transparent',
+            cursor: 'pointer', transition: 'background 0.2s ease-in-out, border-left 0.2s ease-in-out',
+            fontWeight: activeTab === tabName ? '600' : 'normal'
+          });
+
+          return (
+            <div style={{ width: '220px', background: colors.secondary, color: colors.white, display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' }}>
+              <div style={{ padding: '20px 20px', marginBottom: '20px', fontSize: '20px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+                <div style={{ width: '30px', height: '30px', background: colors.primary, borderRadius: '6px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>🔥</div>
+                Fire-RMS
+              </div>
+              <nav style={{ flex: 1 }}>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                  {navItems.map(tab => (
+                    <li key={tab} style={navItemStyle(tab)} onClick={() => setActiveTab(tab)} onMouseEnter={() => setHoveredTab(tab)} onMouseLeave={() => setHoveredTab(null)} role="button" aria-current={activeTab === tab ? 'page' : undefined}>
+                      <span style={{ marginRight: '12px', fontSize: '18px', width: '24px', textAlign: 'center' }}>{navIcons[tab]}</span>
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                      {tab === 'incidents' && <span style={{ marginLeft: 'auto', background: colors.success, color: colors.white, fontSize: '10px', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>NERIS</span>}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', padding: '20px', display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: colors.primary, marginRight: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px' }}>JD</div>
+                <div>
+                  <div style={{ fontWeight: 'bold', fontSize: '14px' }}>John Davis</div>
+                  <div style={{ fontSize: '12px', opacity: 0.7 }}>Fire Captain</div>
+                </div>
+              </div>
+            </div>
+          );
+        };
+
+        const DashboardContent = () => {
+            const KpiCard = ({ title, value, icon, change }) => (
+                <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        <div style={{ fontSize: '24px', marginRight: '15px' }}>{icon}</div>
+                        <div>
+                            <div style={{ color: colors.gray, fontSize: '14px' }}>{title}</div>
+                            <div style={{ color: colors.dark, fontSize: '24px', fontWeight: 'bold' }}>{value}</div>
+                        </div>
+                    </div>
+                    {change && <div style={{ fontSize: '12px', color: change.startsWith('+') ? colors.success : colors.danger }}>{change} vs last month</div>}
+                </div>
+            );
+
+            const recentIncidents = [
+                { id: '2025-00123', type: '111 - Building Fire', status: 'Closed' },
+                { id: '2025-00122', type: '322 - Vehicle Fire', status: 'Closed' },
+                { id: '2025-00121', type: '554 - Person in Water', status: 'Open' },
+                { id: '2025-00120', type: '611 - EMS Call', status: 'Closed' },
+            ];
             
-            if (waitlistForm) {
-                waitlistForm.addEventListener('submit', function(e) {
-                    // This is for UI feedback
-                    const submitButton = waitlistForm.querySelector('button[type="submit"]');
-                    const originalText = submitButton.textContent;
-                    
-                    submitButton.textContent = 'Submitting...';
-                    submitButton.disabled = true;
-                    
-                    // Track form submission event in Google Analytics
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'waitlist_submission', {
-                            'event_category': 'engagement',
-                            'event_label': 'waitlist form'
-                        });
+            return (
+                <div style={{padding: '25px'}}>
+                    <PageHeader title="Dashboard"/>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '25px' }}>
+                        <KpiCard title="Incidents this Month" value="123" icon="🔥" change="+5.2%"/>
+                        <KpiCard title="Avg. Response Time" value="4:32" icon="⏱️" change="-0.8%"/>
+                        <KpiCard title="Inspections Due" value="18" icon="🏢" change="+12.5%"/>
+                        <KpiCard title="Upcoming Inspections" value="8" icon="🗓️" change="+10%"/>
+                    </div>
+                    <h3 style={{color: colors.dark, marginBottom: '15px'}}>Recent Incidents</h3>
+                    <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                        {recentIncidents.map((inc, index) => (
+                            <div key={inc.id} style={{display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === recentIncidents.length - 1 ? 'none' : `1px solid ${colors.lightGray}`}}>
+                                <div style={{fontWeight: '600'}}>{inc.id}</div>
+                                <div style={{color: colors.gray}}>{inc.type}</div>
+                                <div>
+                                    <span style={{padding: '4px 8px', borderRadius: '10px', fontSize: '12px', background: inc.status === 'Closed' ? colors.success : colors.warning, color: colors.white}}>{inc.status}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Incident Report Sections ---
+        const NerisWorkflowDiagram = ({ completedTabs }) => {
+            const allTabs = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Hazards', 'Units', 'Narrative'];
+            return (
+                <div style={{ background: colors.white, padding: '15px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '25px' }}>
+                    <h4 style={{ marginTop: 0, marginBottom: '15px', color: colors.dark }}>Required Modules Workflow</h4>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                        {allTabs.map((tab, index) => {
+                            const isComplete = completedTabs.includes(tab);
+                            return (
+                                <React.Fragment key={tab}>
+                                    <div style={{
+                                        padding: '8px 12px',
+                                        borderRadius: '6px',
+                                        background: isComplete ? colors.success : colors.lightGray,
+                                        color: isComplete ? colors.white : colors.gray,
+                                        fontWeight: '600',
+                                        fontSize: '12px',
+                                        border: `1px solid ${isComplete ? colors.success : colors.lightGray}`
+                                    }}>
+                                        {isComplete ? '✓ ' : ''}{tab}
+                                    </div>
+                                    {index < allTabs.length - 1 && <div style={{ color: colors.lightGray, fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>→</div>}
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        };
+
+        const CoreSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}> <FormField label="Incident Number" value="2025-00123" /> <FormField label="Incident Date" value="2025-07-11" type="date" /> <SelectField label="Incident Type"><option>111 - Building Fire</option><option>322 - Vehicle Fire</option><option>611 - EMS Call</option></SelectField> <FormField label="Alarm Date/Time" value="2025-07-11T14:02" type="datetime-local" /> <FormField label="Arrival Date/Time" value="2025-07-11T14:06" type="datetime-local" /> <FormField label="Last Unit Cleared" value="2025-07-11T15:30" type="datetime-local" /> <SelectField label="Incident Source"><option>CAD</option><option>Manual Entry</option></SelectField> </div>);
+        const LocationSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}><FormField label="Street Address" value="455 Main St" /><FormField label="Apartment/Suite" value="" /><FormField label="City" value="Anytown" /><FormField label="State" value="MA" /><FormField label="Zip Code" value="01234" /><SelectField label="Property Use"><option>419 - Single-Family Dwelling</option><option>500 - Mercantile Business</option></SelectField></div>);
+        const FireSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}><SelectField label="Area of Fire Origin"><option>75 - Kitchen</option><option>43 - Bedroom</option></SelectField><SelectField label="Heat Source"><option>11 - Cooking Equipment</option><option>53 - Electrical Wiring</option></SelectField><SelectField label="Item First Ignited"><option>13 - Cooking Oil/Grease</option><option>51 - Upholstered Furniture</option></SelectField></div>);
+        const ActionsTacticsSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}><CheckboxItem label="Forcible Entry" checked /><CheckboxItem label="Primary Search" checked /><CheckboxItem label="Secondary Search" checked /><CheckboxItem label="Ventilation (PPV)" /><CheckboxItem label="Ventilation (Vertical)" checked /><CheckboxItem label="Extinguishment" checked /><CheckboxItem label="Salvage & Overhaul" checked /><CheckboxItem label="Establish Water Supply" checked /></div>);
+
+        const RescueCasualtySection = () => {
+            const [isMasked, setIsMasked] = React.useState(true);
+            const nameFieldKey = isMasked ? 'masked-name' : 'unmasked-name';
+            return (
+                <div>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap', gap: '10px'}}>
+                        <h4 style={{borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', margin: 0}}>Patient 1</h4>
+                        <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                            <label htmlFor="pii-toggle" style={{fontWeight: 500}}>Mask PII</label>
+                            <label style={{position: 'relative', display: 'inline-block', width: '40px', height: '24px'}}>
+                                <input id="pii-toggle" type="checkbox" checked={isMasked} onChange={() => setIsMasked(!isMasked)} style={{opacity: 0, width: 0, height: 0}} />
+                                <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: isMasked ? colors.primary : colors.lightGray, transition: '.4s', borderRadius: '34px'}}>
+                                    <span style={{position: 'absolute', height: '18px', width: '18px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: isMasked ? 'translateX(16px)' : 'translateX(0)'}}></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+                        <FormField key={nameFieldKey} label="Patient Name" value={isMasked ? '**********' : 'John Smith'} readOnly={isMasked} />
+                        <FormField label="Age" value="68" />
+                        <SelectField label="Gender"><option>Male</option><option>Female</option></SelectField>
+                        <SelectField label="Injury Type"><option>Smoke Inhalation</option><option>Burns</option><option>None</option></SelectField>
+                        <SelectField label="Care Provided"><option>BLS Assessment</option><option>Oxygen Administered</option></SelectField>
+                        <SelectField label="Outcome"><option>Transported to Hospital</option><option>Refused Treatment</option></SelectField>
+                    </div>
+                </div>
+            );
+        };
+
+        const HazardsSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}><CheckboxItem label="Flammable Liquids/Gases" /><CheckboxItem label="Explosives/Blasting Agents" /><CheckboxItem label="Radioactive Materials" /><CheckboxItem label="Chemical Hazards (Corrosives, etc.)" checked /><CheckboxItem label="Biohazards" /><CheckboxItem label="Electrical Hazard" checked /></div>);
+
+        const UnitsSection = () => {
+            const units = [
+                { unit: 'E-1', dispatched: '14:02:10', enroute: '14:02:50', arrived: '14:06:32', cleared: '15:30:00' },
+                { unit: 'L-1', dispatched: '14:02:10', enroute: '14:03:15', arrived: '14:07:01', cleared: '15:28:00' },
+                { unit: 'C-1', dispatched: '14:02:10', enroute: '14:02:45', arrived: '14:06:50', cleared: '15:31:00' },
+                { unit: 'A-1', dispatched: '14:05:00', enroute: '14:05:45', arrived: '14:10:20', cleared: '15:05:00' },
+            ];
+            const header = ['Unit', 'Dispatched', 'En Route', 'Arrived', 'Cleared'];
+            return (
+                <div style={{overflowX: 'auto'}}>
+                    <table style={{width: '100%', borderCollapse: 'collapse', minWidth: '600px'}}>
+                        <thead>
+                            <tr>{header.map(h => <th key={h} style={{borderBottom: `2px solid ${colors.lightGray}`, padding: '10px', textAlign: 'left', color: colors.gray}}>{h}</th>)}</tr>
+                        </thead>
+                        <tbody>
+                            {units.map(u => (
+                                <tr key={u.unit}>
+                                    <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px', fontWeight: 600}}>{u.unit}</td>
+                                    <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.dispatched}</td>
+                                    <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.enroute}</td>
+                                    <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.arrived}</td>
+                                    <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.cleared}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+
+        const NarrativeSection = () => (<TextArea label="Incident Narrative (Use plain language)" value="E-1 arrived on scene at 14:06 to find a two-and-a-half story wood-frame single-family dwelling with light smoke showing from the kitchen window on Side A. Captain Davis established command. E-1 crew forced entry through the front door and advanced a 1.75-inch attack line to the kitchen, where they found a small fire on the stovetop extending to the adjacent cabinets. The fire was quickly knocked down. L-1 arrived and performed a primary search of the first and second floors, which was negative. L-1 crew then performed vertical ventilation over the kitchen area. One civilian occupant, John Smith, had evacuated prior to arrival and was assessed by EMS for minor smoke inhalation before being transported to Anytown General Hospital. The fire was determined to be accidental, caused by unattended cooking. Overhaul was completed, and the scene was turned over to the homeowner. All units cleared at 15:30." rows={12}/>);
+
+        const IncidentReportContent = () => {
+            const [activeSection, setActiveSection] = React.useState('Core');
+            const sections = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Hazards', 'Units', 'Narrative'];
+            const completedSections = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Narrative', 'Units', 'Hazards'];
+            
+            const renderSection = () => {
+                const containerStyle = { background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' };
+                switch (activeSection) {
+                    case 'Core': return <div style={containerStyle}><CoreSection /></div>;
+                    case 'Location': return <div style={containerStyle}><LocationSection /></div>;
+                    case 'Fire': return <div style={containerStyle}><FireSection /></div>;
+                    case 'Actions/Tactics': return <div style={containerStyle}><ActionsTacticsSection /></div>;
+                    case 'Rescue/Casualty': return <div style={containerStyle}><RescueCasualtySection /></div>;
+                    case 'Hazards': return <div style={containerStyle}><HazardsSection /></div>;
+                    case 'Units': return <div style={containerStyle}><UnitsSection /></div>;
+                    case 'Narrative': return <div style={containerStyle}><NarrativeSection /></div>;
+                    default: return <div style={containerStyle}><p>Content for Incident Section: <strong>{activeSection}</strong></p></div>;
+                }
+            };
+
+            return (
+                <div style={{padding: '25px'}}>
+                    <PageHeader title="Incidents" buttonLabel="+ New Incident Report"/>
+                    <NerisWorkflowDiagram completedTabs={completedSections} />
+                    <SubNav tabs={sections} activeTab={activeSection} setActiveTab={setActiveSection} />
+                    {renderSection()}
+                </div>
+            );
+        };
+
+        // --- Occupancies Module (RESTORED) ---
+        const OccupanciesContent = () => {
+            const [view, setView] = React.useState('list'); // 'list', 'details', 'inspection'
+            const [selectedOccupancy, setSelectedOccupancy] = React.useState(null);
+            const [activeSubTab, setActiveSubTab] = React.useState('Inspections');
+
+            const occupancies = [
+                { address: '1234 Maple St', type: 'Residential', lastInspected: '2024-05-10', hazards: false, owner: 'Jane Doe', phone: '555-1234' },
+                { address: '455 Main St', type: 'Mercantile', lastInspected: '2025-06-22', hazards: true, owner: 'John Smith', phone: '555-5678' },
+                { address: '789 Oak Ave', type: 'Residential', lastInspected: '2023-11-01', hazards: false, owner: 'Peter Jones', phone: '555-9012' },
+                { address: '800 Elm St', type: 'Restaurant', lastInspected: '2025-01-15', hazards: true, owner: 'Sue Richards', phone: '555-3456' },
+                { address: '1 Industrial Dr', type: 'Industrial', lastInspected: '2024-09-30', hazards: true, owner: 'MegaCorp Inc.', phone: '555-7890' },
+            ];
+            
+            const handleSelectOccupancy = (occ) => {
+                setSelectedOccupancy(occ);
+                setView('details');
+            };
+
+            const handleStartInspection = () => {
+                setView('inspection');
+            };
+
+            const InspectionForm = ({ occupancy, onBack }) => {
+                const [inspectionType, setInspectionType] = React.useState('Annual Fire Prevention');
+                const MonthlyExtinguisherChecklist = () => ( <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}> <CheckboxItem label="Is the extinguisher in its designated place?" checked /> <CheckboxItem label="Is it visible and accessible (no obstructions)?" checked /> <CheckboxItem label="Is the pressure gauge in the operable range (green)?" checked /> <CheckboxItem label="Is the pin and tamper seal intact?" /> <CheckboxItem label="Any obvious physical damage, corrosion, or leakage?" /> <CheckboxItem label="Is the inspection tag up to date?" checked /> </div> );
+                const FirePreventionChecklist = () => ( <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}> <CheckboxItem label="Egress & Exits Clear" checked /> <CheckboxItem label="Fire Alarm System Functional" checked /> <CheckboxItem label="Sprinkler System Visual Check OK" /> <CheckboxItem label="Emergency Lighting Functional" checked /> <button style={{ background: colors.lightGray, border: '1px dashed #A0AEC0', padding: '8px', borderRadius: '6px', cursor: 'pointer', color: colors.dark }}>+ Add Custom Check</button> </div> );
+                const renderChecklist = () => {
+                    switch(inspectionType) {
+                        case 'Monthly Extinguisher': return <MonthlyExtinguisherChecklist />;
+                        default: return <FirePreventionChecklist />;
                     }
-                    
-                    // Reset button after submission (Formspree will handle the redirect)
-                    setTimeout(() => {
-                        submitButton.textContent = originalText;
-                        submitButton.disabled = false;
-                    }, 3000);
-                });
+                };
+
+                return (
+                    <div>
+                        <button onClick={onBack} style={{ marginBottom: '15px', background: 'none', border: 'none', color: colors.primary, cursor: 'pointer', fontWeight: '600' }}>← Back to Occupancy</button>
+                        <PageHeader title={`New Inspection: ${occupancy.address}`} buttonLabel="Save Inspection" />
+                        <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
+                             <SelectField label="Inspection Type" value={inspectionType} onChange={e => setInspectionType(e.target.value)}> <option>Annual Fire Prevention</option> <option>Monthly Extinguisher</option> </SelectField>
+                        </div>
+                        <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
+                            <h3 style={{marginTop: 0, marginBottom: '15px'}}>Checklist</h3>
+                            {renderChecklist()}
+                        </div>
+                    </div>
+                );
+            };
+
+            if (view === 'inspection') {
+                return <div style={{ padding: '25px' }}><InspectionForm occupancy={selectedOccupancy} onBack={() => setView('details')} /></div>
             }
+
+            if (view === 'details') {
+                const InfoCard = ({title, children}) => ( <div style={{background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)'}}><h4 style={{marginTop: 0, borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px'}}>{title}</h4>{children}</div>);
+                return <div style={{ padding: '25px' }}>
+                    <button onClick={() => setView('list')} style={{ marginBottom: '15px', background: 'none', border: 'none', color: colors.primary, cursor: 'pointer', fontWeight: '600' }}>← Back to List</button>
+                    <PageHeader title={selectedOccupancy.address} buttonLabel="+ Start New Inspection" onButtonClick={handleStartInspection} />
+                    <SubNav tabs={['Pre-Plans', 'Inspections', 'Contacts', 'History']} activeTab={activeSubTab} setActiveTab={setActiveSubTab} />
+                    {activeSubTab === 'Inspections' && <InfoCard title="Inspection Log"><p>2025-06-22: Annual Inspection - Pass</p><p>2024-05-10: Annual Inspection - Pass w/ Violations (Corrected)</p></InfoCard>}
+                    {activeSubTab === 'Contacts' && <InfoCard title="Emergency Contacts"><p>Owner: {selectedOccupancy.owner}<br/>Phone: {selectedOccupancy.phone}</p></InfoCard>}
+                </div>
+            }
+
+            return (
+                <div style={{ padding: '25px' }}>
+                    <PageHeader title="Occupancy Records" buttonLabel="+ New Occupancy" />
+                    <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', overflowX: 'auto' }}>
+                        <table style={{width: '100%', minWidth: '600px', borderCollapse: 'collapse'}}>
+                           <thead>
+                               <tr>
+                                   <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Address</th>
+                                   <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Property Use</th>
+                                   <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Last Inspected</th>
+                                   <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'center'}}>Actions</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                                {occupancies.map((occ, index) => (
+                                    <tr key={occ.address}>
+                                        <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, fontWeight: '600'}}>{occ.address} {occ.hazards && '⚠️'}</td>
+                                        <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, color: colors.gray}}>{occ.type}</td>
+                                        <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, color: colors.gray}}>{occ.lastInspected}</td>
+                                        <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, textAlign: 'center'}}><button onClick={() => handleSelectOccupancy(occ)} style={{background: 'none', border: `1px solid ${colors.primary}`, color: colors.primary, borderRadius: '4px', padding: '4px 8px', cursor: 'pointer'}}>View</button></td>
+                                    </tr>
+                                ))}
+                           </tbody>
+                        </table>
+                    </div>
+                </div>
+            );
+        };
+
+
+        // --- Personnel Management ---
+        const PersonnelContent = () => {
+            const [activeTab, setActiveTab] = React.useState('Scheduling');
+            const [showModal, setShowModal] = React.useState(false);
             
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100, // Offset for fixed header
-                            behavior: 'smooth'
-                        });
-                        
-                        // Track navigation clicks in Google Analytics
-                        if (typeof gtag === 'function') {
-                            gtag('event', 'navigation_click', {
-                                'event_category': 'engagement',
-                                'event_label': targetId
-                            });
-                        }
-                    }
-                });
-            });
+            const RosterView = () => {
+                const [hoveredCert, setHoveredCert] = React.useState({personId: null, cert: null});
+                const personnel = [ { id: '007', name: 'John Davis', rank: 'Captain', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-P', 'Hazmat Ops'] }, { id: '003', name: 'Emily Williams', rank: 'Lieutenant', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-P', 'Officer I'] }, { id: '022', name: 'Chris Lee', rank: 'Firefighter', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-B', 'Driver'] }, { id: '015', name: 'Sarah Smith', rank: 'Firefighter', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-B'] }, { id: '008', name: 'Robert Miller', rank: 'Captain', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-P'] }, { id: '004', name: 'Jessica Garcia', rank: 'Lieutenant', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B', 'Officer I'] }, { id: '028', name: 'Linda Martinez', rank: 'Firefighter', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B', 'Driver'] }, { id: '025', name: 'David Brown', rank: 'Firefighter', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B'] }, { id: '009', name: 'Charles Taylor', rank: 'Captain', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B'] }, { id: '005', name: 'Thomas Moore', rank: 'Lieutenant', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B', 'Officer I', 'Driver'] }, { id: '035', name: 'Susan Jackson', rank: 'Firefighter', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-P'] }, { id: '038', name: 'Daniel White', rank: 'Firefighter', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B'] }, ];
+                const certStyles = { 'FFI/II': { icon: '🔥', color: colors.gray }, 'EMT-B': { icon: '⚕️', color: colors.success }, 'EMT-P': { icon: '⚕️', color: colors.danger }, 'Officer I': { icon: '⭐', color: colors.secondary }, 'Driver': { icon: '🚒', color: colors.primary }, 'Hazmat Ops': { icon: '☣️', color: colors.warning } };
+                return (<div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', overflowX: 'auto' }}> <table style={{width: '100%', minWidth: '700px', borderCollapse: 'collapse'}}><thead><tr><th style={{textAlign: 'left', padding: '10px'}}>Name</th><th style={{textAlign: 'left', padding: '10px'}}>Assignment</th><th style={{textAlign: 'left', padding: '10px'}}>Certifications</th></tr></thead><tbody>{personnel.map((p, index) => (<tr key={p.id}><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><div><div style={{fontWeight: '600', fontSize: '16px'}}>{p.name}</div><div style={{fontSize: '14px', color: colors.gray}}>{p.rank}</div></div></td><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><span style={{background: colors.lightGray, color: colors.dark, padding: '4px 8px', borderRadius: '6px', fontSize: '12px', fontWeight: '600'}}>{p.station} / Group {p.group}</span></td><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center'}}>{p.certs.map(cert => { const style = certStyles[cert] || {icon: '✔️', color: colors.gray}; const isHovered = hoveredCert.personId === p.id && hoveredCert.cert === cert; return <div key={cert} onMouseEnter={() => setHoveredCert({personId: p.id, cert: cert})} onMouseLeave={() => setHoveredCert({personId: null, cert: null})} style={{position: 'relative'}}><span style={{background: style.color, color: 'white', padding: '4px 10px', borderRadius: '12px', fontSize: '12px', display: 'flex', alignItems: 'center'}}>{style.icon} <span style={{marginLeft: '4px'}}>{cert}</span></span>{isHovered && <div style={{position: 'absolute', top: '-8px', right: '-8px', background: colors.danger, color: 'white', width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', cursor: 'pointer', fontWeight: 'bold'}}>&ndash;</div>}</div> })}<div style={{border: `1px dashed ${colors.gray}`, color: colors.gray, width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', cursor: 'pointer'}}>+</div></div></td></tr>))}</tbody></table></div>);
+            };
+
+            const ScheduleView = () => {
+                const days = ['Mon, Jul 14', 'Tue, Jul 15', 'Wed, Jul 16', 'Thu, Jul 17', 'Fri, Jul 18', 'Sat, Jul 19', 'Sun, Jul 20'];
+                const schedule = {
+                    'Mon, Jul 14': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+                    'Tue, Jul 15': { day: { group: 'B', time: '07:00-19:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'], notes: { 'Miller': { type: 'Sick', color: colors.danger } } }, night: { group: 'C', time: '19:00-07:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] } },
+                    'Wed, Jul 16': { day: { group: 'C', time: '07:00-19:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] }, night: { group: 'A', time: '19:00-07:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] } },
+                    'Thu, Jul 17': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'], notes: { 'Lee': { type: 'Vacation', color: colors.info } } }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+                    'Fri, Jul 18': { day: { group: 'B', time: '07:00-19:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'], open_shift: { apparatus: 'L-1', position: 'Firefighter' } }, night: { group: 'C', time: '19:00-07:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] } },
+                    'Sat, Jul 19': { day: { group: 'C', time: '07:00-19:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] }, night: { group: 'A', time: '19:00-07:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] } },
+                    'Sun, Jul 20': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'], notes: { 'Davis': { type: 'Kelly Day', color: colors.warning } } }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+                };
+
+                const Staffing = ({ staff, notes = {} }) => ( <div style={{ fontSize: '12px', color: colors.gray }}> {staff.map(name => { const note = notes[name]; if (note) { return <div key={name} style={{ textDecoration: 'line-through', color: note.color }}>{name} ({note.type})</div>; } return <div key={name}>{name}</div>; })} </div> );
+                const ShiftCard = ({ shift }) => (
+                    <div style={{border: `1px solid ${colors.lightGray}`, borderRadius: '6px', padding: '8px', marginBottom: '10px'}}>
+                        <div style={{ fontWeight: 'bold', color: colors.dark, marginBottom: '5px', textAlign: 'center', background: colors.lightGray, padding: '4px', borderRadius: '4px', fontSize: '13px' }}>Group {shift.group}</div>
+                        <div style={{fontSize: '11px', color: colors.gray, textAlign: 'center', marginBottom: '10px'}}>{shift.time}</div>
+                        <div style={{ marginBottom: '8px' }}><div style={{ fontWeight: '600', fontSize: '13px' }}>Engine 1</div><Staffing staff={shift.E1} notes={shift.notes} /></div>
+                        <div><div style={{ fontWeight: '600', fontSize: '13px' }}>Ladder 1</div><Staffing staff={shift.L1} notes={shift.notes} /></div>
+                        {shift.open_shift && ( <button onClick={() => setShowModal(true)} style={{ width: '100%', background: colors.success, border: 'none', padding: '6px', borderRadius: '6px', cursor: 'pointer', color: colors.white, fontWeight: '600', marginTop: '10px', fontSize: '12px' }}>Fill Open Shift</button> )}
+                    </div>
+                );
+
+                return (
+                    <div style={{overflowX: 'auto'}}>
+                        {showModal && <Modal onClose={() => setShowModal(false)}><h3 style={{marginTop: 0}}>Fill Open Shift: L-1</h3><p style={{color: colors.gray}}>The following personnel are available and qualified...</p></Modal>}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '10px', minWidth: '900px' }}>
+                            {days.map(day => <div key={day} style={{ textAlign: 'center', fontWeight: 'bold', paddingBottom: '10px', fontSize: '14px' }}>{day.split(',')[0]}<br/><span style={{fontSize: '12px', fontWeight: 'normal'}}>{day.split(',')[1]}</span></div>)}
+                            {days.map(day => {
+                                const daySchedule = schedule[day];
+                                if (!daySchedule) return <div key={day}></div>;
+                                return ( <div key={day} style={{ background: colors.white, borderRadius: '8px', padding: '5px' }}> <ShiftCard shift={daySchedule.day} /> <ShiftCard shift={daySchedule.night} /> </div> );
+                            })}
+                        </div>
+                    </div>
+                );
+            };
+
+            return (
+                <div style={{ padding: '25px' }}>
+                    <PageHeader title="Personnel Management" buttonLabel="+ Add Personnel" />
+                    <SubNav tabs={['Roster', 'Scheduling', 'Payroll']} activeTab={activeTab} setActiveTab={setActiveTab} />
+                    {activeTab === 'Roster' && <RosterView />}
+                    {activeTab === 'Scheduling' && <ScheduleView />}
+                    {activeTab === 'Payroll' && (<div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}><h3 style={{marginTop: 0}}>Payroll Reporting</h3><p style={{color: colors.gray, marginTop: 0}}>Generate payroll reports...</p><button style={{background: colors.secondary, border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: colors.white, fontWeight: '600' }}>Export for MUNIS</button></div>)}
+                </div>
+            );
+        };
+
+        // --- Equipment ---
+        const EquipmentContent = () => {
+            const [selectedApparatus, setSelectedApparatus] = React.useState(null);
+            const apparatusData = [
+                { name: 'Engine 1', make: 'Pierce Enforcer™', type: 'Pumper', status: 'In Service', lastCheck: '2025-07-11', year: 2022 },
+                { name: 'Ladder 1', make: 'Pierce Ascendant® 107\'', type: 'Aerial', status: 'In Service', lastCheck: '2025-07-11', year: 2020 },
+                { name: 'Engine 2', make: 'E-One Typhoon', type: 'Pumper', status: 'In Service', lastCheck: '2025-07-10', year: 2018 },
+                { name: 'Rescue 1', make: 'Sutphen', type: 'Heavy Rescue', status: 'Out of Service', lastCheck: '2025-07-09', year: 2015 },
+                { name: 'Tanker 1', make: 'Freightliner', type: 'Tanker/Tender', status: 'In Service', lastCheck: '2025-07-11', year: 2019 },
+                { name: 'Brush 1', make: 'Ford F-550', type: 'Wildland', status: 'In Service', lastCheck: '2025-07-11', year: 2021 },
+            ];
+
+            // Set default selected apparatus using useEffect to avoid re-renders
+            React.useEffect(() => {
+                if (!selectedApparatus && apparatusData.length > 0) {
+                    setSelectedApparatus(apparatusData[0]);
+                }
+            }, [selectedApparatus, apparatusData]);
             
-            // Track CTA button clicks
-            document.querySelectorAll('.btn-primary').forEach(button => {
-                button.addEventListener('click', function() {
-                    if (typeof gtag === 'function' && this.textContent.trim() !== 'Submitting...') {
-                        gtag('event', 'cta_click', {
-                            'event_category': 'engagement',
-                            'event_label': this.textContent.trim()
-                        });
-                    }
-                });
-            });
-        });
+            const ApparatusRosterList = ({ onSelect }) => (
+                <div style={{ background: colors.white, borderRadius: '8px', border: `1px solid ${colors.lightGray}`, overflow: 'hidden' }}>
+                    {apparatusData.map((a, index) => (
+                        <div key={a.name} onClick={() => onSelect(a)} style={{ padding: '15px', cursor: 'pointer', borderBottom: index === apparatusData.length - 1 ? 'none' : `1px solid ${colors.lightGray}`, background: selectedApparatus && selectedApparatus.name === a.name ? colors.lightGray : colors.white }}>
+                            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px'}}>
+                                <h5 style={{margin: 0, fontSize: '16px', color: colors.dark}}>{a.name}</h5>
+                                <span style={{color: a.status === 'In Service' ? colors.success : colors.danger, fontWeight: '600', fontSize: '12px'}}>{a.status}</span>
+                            </div>
+                            <div style={{fontSize: '13px', color: colors.gray}}>{a.type}</div>
+                        </div>
+                    ))}
+                </div>
+            );
+
+            const ApparatusDetailView = ({ apparatus }) => {
+                const [activeSubTab, setActiveSubTab] = React.useState('Checks');
+                const inventory = {
+                    'Engine 1': [ {name: 'MSA G1 SCBA', qty: 4, status: 'Ready'}, {name: 'FLIR K2', qty: 1, status: 'Ready'}, {name: '1.75" Hose', qty: 800, status: 'Ready'} ],
+                    'Ladder 1': [ {name: 'Stihl MS 461 Chainsaw', qty: 1, status: 'Ready'}, {name: 'Ground Ladders', qty: 6, status: 'Ready'}, {name: 'MSA G1 SCBA', qty: 4, status: 'Ready'} ],
+                    'Rescue 1': [ {name: 'Holmatro Combi-Tool', qty: 1, status: 'Needs Service'}, {name: 'Air Bags', qty: 8, status: 'Ready'}, {name: 'Cribbing', qty: 2, status: 'Ready'} ],
+                };
+                const EngineChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Fluid Levels (Oil, Coolant, Fuel)" checked /><CheckboxItem label="Emergency Lighting & Sirens" checked /><CheckboxItem label="Pump & Gauges" checked /><CheckboxItem label="SCBA Checks (All seats)" /><CheckboxItem label="Hose Bed & Nozzles" checked /></div>;
+                const LadderChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Aerial Device Visual Inspection" checked /><CheckboxItem label="Hydraulic Fluid Level" checked /><CheckboxItem label="Outriggers & Stabilizers" checked /><CheckboxItem label="Ground Ladders Secure" checked /></div>;
+                const RescueChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Generator & Power Tools" checked /><CheckboxItem label="Hydraulic Tools Fluid & Function" /><CheckboxItem label="Air Bag System Pressure" checked /></div>;
+
+                const renderChecklist = () => {
+                    if (apparatus.name.includes('Engine')) return <EngineChecklist />;
+                    if (apparatus.name.includes('Ladder')) return <LadderChecklist />;
+                    if (apparatus.name.includes('Rescue')) return <RescueChecklist />;
+                    return <p>No specific checklist for this apparatus type.</p>;
+                };
+                
+                const currentInventory = inventory[apparatus.name] || [];
+
+                return (
+                    <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', border: `1px solid ${colors.lightGray}` }}>
+                        <div style={{borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '15px', marginBottom: '15px'}}>
+                            <h3 style={{margin: 0, color: colors.dark}}>{apparatus.name}</h3>
+                            <p style={{margin: '5px 0 0 0', color: colors.gray}}>{apparatus.year} {apparatus.make}</p>
+                        </div>
+                        <SubNav tabs={['Checks', 'Inventory', 'History']} activeTab={activeSubTab} setActiveTab={setActiveSubTab} />
+                        {activeSubTab === 'Checks' && <div><h4 style={{marginTop: 0}}>Daily Checklist</h4>{renderChecklist()}</div>}
+                        {activeSubTab === 'Inventory' && <div>{currentInventory.map((item, index) => <div key={index} style={{ display: 'grid', gridTemplateColumns: '3fr 1fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === currentInventory.length - 1 ? 'none' : `1px solid ${colors.lightGray}`}}><div style={{fontWeight: '600'}}>{item.name}</div><div style={{color: colors.gray}}>Qty: {item.qty}</div><div style={{color: item.status === 'Ready' ? colors.success : colors.warning, fontWeight: '600'}}>{item.status}</div></div>)}</div>}
+                        {activeSubTab === 'History' && <p>Maintenance and check history would be shown here.</p>}
+                    </div>
+                );
+            };
+
+            return (
+                <div style={{ padding: '25px', height: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
+                    <PageHeader title="Apparatus Roster" buttonLabel="+ Add Apparatus" />
+                    <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '25px', flex: 1, overflow: 'hidden' }}>
+                        <div style={{ overflowY: 'auto' }}>
+                            <ApparatusRosterList onSelect={setSelectedApparatus} />
+                        </div>
+                        <div style={{ overflowY: 'auto' }}>
+                            {selectedApparatus && <ApparatusDetailView apparatus={selectedApparatus} />}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Placeholder for empty modules ---
+        const PlaceholderContent = ({ tabName }) => ( <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', color: colors.gray, textAlign: 'center' }}><div style={{ fontSize: '64px', marginBottom: '20px' }}>{ {reports: '📄', settings: '⚙️'}[tabName] }</div><div style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, marginBottom: '10px' }}>{tabName.charAt(0).toUpperCase() + tabName.slice(1)}</div><div style={{maxWidth: '300px'}}>This section is a placeholder for the {tabName} module.</div></div>);
+
+
+        // --- Main Parent Component ---
+        const App = () => {
+          const [activeTab, setActiveTab] = React.useState('dashboard');
+
+          const renderContent = () => {
+            switch (activeTab) {
+              case 'dashboard': return <DashboardContent />;
+              case 'incidents': return <IncidentReportContent />;
+              case 'personnel': return <PersonnelContent />;
+              case 'equipment': return <EquipmentContent />;
+              case 'occupancies': return <OccupanciesContent />;
+              case 'reports': return <PlaceholderContent tabName="reports" />;
+              case 'settings': return <PlaceholderContent tabName="settings" />;
+              default: return <DashboardContent />;
+            }
+          };
+
+          return (
+            <div style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Inter, sans-serif' }}>
+                 <div style={{ background: colors.light, display: 'flex', height: '100%', width: '100%' }}>
+                    <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+                    <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
+                        {renderContent()}
+                    </div>
+                </div>
+            </div>
+          );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('react-app-container'));
+
     </script>
 </body>
 </html>
