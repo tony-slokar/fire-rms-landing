@@ -1,5 +1,3 @@
-// js/demo.js
-
 // Color Palette
 const colors = {
   primary: '#FF4500',  // Orange-Red
