@@ -397,13 +397,535 @@ const IncidentReportContent = () => {
     );
 };
 
-// --- Placeholder Content for Other Modules ---
+// --- Occupancies Module ---
+const OccupanciesContent = () => {
+    const [activeTab, setActiveTab] = React.useState('Buildings');
+    const [showModal, setShowModal] = React.useState(false);
+    const tabs = ['Buildings', 'Inspections', 'Pre-Plans'];
+
+    const buildings = [
+        { id: 'B-001', name: 'Main Street Plaza', address: '123 Main St', type: 'Mercantile', lastInspection: '2024-11-15', nextDue: '2025-11-15', status: 'Compliant' },
+        { id: 'B-002', name: 'Riverside Apartments', address: '456 River Rd', type: 'Residential', lastInspection: '2024-09-20', nextDue: '2025-09-20', status: 'Pending' },
+        { id: 'B-003', name: 'Tech Manufacturing', address: '789 Industrial Way', type: 'Industrial', lastInspection: '2024-12-01', nextDue: '2025-06-01', status: 'Compliant' },
+        { id: 'B-004', name: 'Downtown Hotel', address: '321 Center St', type: 'Assembly', lastInspection: '2024-08-10', nextDue: '2025-02-10', status: 'Overdue' }
+    ];
+
+    const inspections = [
+        { id: 'I-045', building: 'Main Street Plaza', type: 'Annual', date: '2025-07-20', inspector: 'Inspector Smith', status: 'Scheduled' },
+        { id: 'I-044', building: 'Riverside Apartments', type: 'Complaint', date: '2025-07-18', inspector: 'Inspector Jones', status: 'In Progress' },
+        { id: 'I-043', building: 'Tech Manufacturing', type: 'Follow-up', date: '2025-07-15', inspector: 'Inspector Brown', status: 'Completed' },
+        { id: 'I-042', building: 'Downtown Hotel', type: 'Annual', date: '2025-07-12', inspector: 'Inspector Davis', status: 'Completed' }
+    ];
+
+    const prePlans = [
+        { id: 'PP-012', building: 'Main Street Plaza', updated: '2024-11-15', hazards: 'Propane storage', access: 'Front/Rear', hydrants: '2 within 300ft' },
+        { id: 'PP-013', building: 'Tech Manufacturing', updated: '2024-12-01', hazards: 'Chemical storage, high voltage', access: 'Multiple dock doors', hydrants: '1 within 150ft' },
+        { id: 'PP-014', building: 'Downtown Hotel', updated: '2024-08-10', hazards: 'High occupancy, elderly residents', access: 'Front lobby only', hydrants: '3 within 200ft' }
+    ];
+
+    const BuildingsTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                    <thead>
+                        <tr>
+                            {['ID', 'Building Name', 'Address', 'Type', 'Last Inspection', 'Next Due', 'Status'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {buildings.map(building => (
+                            <tr key={building.id} style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{building.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{building.name}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{building.address}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{building.type}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{building.lastInspection}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{building.nextDue}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{
+                                        padding: '4px 8px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        background: building.status === 'Compliant' ? colors.success : building.status === 'Pending' ? colors.warning : colors.danger,
+                                        color: colors.white
+                                    }}>
+                                        {building.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const InspectionsTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                    <thead>
+                        <tr>
+                            {['ID', 'Building', 'Type', 'Date', 'Inspector', 'Status'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {inspections.map(inspection => (
+                            <tr key={inspection.id} style={{ cursor: 'pointer' }}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{inspection.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{inspection.building}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{inspection.type}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{inspection.date}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{inspection.inspector}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{
+                                        padding: '4px 8px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        background: inspection.status === 'Completed' ? colors.success : inspection.status === 'In Progress' ? colors.warning : colors.info,
+                                        color: colors.white
+                                    }}>
+                                        {inspection.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const PrePlansTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                    <thead>
+                        <tr>
+                            {['ID', 'Building', 'Last Updated', 'Known Hazards', 'Access Points', 'Hydrant Info'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {prePlans.map(plan => (
+                            <tr key={plan.id} style={{ cursor: 'pointer' }}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{plan.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{plan.building}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{plan.updated}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{plan.hazards}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{plan.access}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{plan.hydrants}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const BuildingDetailModal = () => (
+        <Modal onClose={() => setShowModal(false)}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Main Street Plaza</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+                <FormField label="Building ID" value="B-001" readOnly />
+                <FormField label="Property Type" value="Mercantile" />
+                <FormField label="Occupancy Load" value="150" />
+                <FormField label="Construction Type" value="Type V" />
+                <FormField label="Square Footage" value="8,500" />
+                <FormField label="Number of Stories" value="2" />
+            </div>
+            <div style={{ marginTop: '20px' }}>
+                <TextArea label="Special Hazards/Notes" value="Propane storage in rear area. Kitchen with commercial equipment on second floor. Multiple tenant spaces." rows={3} />
+            </div>
+        </Modal>
+    );
+
+    const renderTabContent = () => {
+        switch (activeTab) {
+            case 'Buildings': return <BuildingsTab />;
+            case 'Inspections': return <InspectionsTab />;
+            case 'Pre-Plans': return <PrePlansTab />;
+            default: return <BuildingsTab />;
+        }
+    };
+
+    return (
+        <div style={{ padding: '25px' }}>
+            <PageHeader title="Occupancy Management" buttonLabel="Add Building" />
+            <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+            {renderTabContent()}
+            {showModal && <BuildingDetailModal />}
+        </div>
+    );
+};
+
+// --- Personnel Module ---
+const PersonnelContent = () => {
+    const [activeTab, setActiveTab] = React.useState('Roster');
+    const [showModal, setShowModal] = React.useState(false);
+    const tabs = ['Roster', 'Certifications', 'Scheduling'];
+
+    const personnel = [
+        { id: 'P-001', name: 'John Davis', rank: 'Captain', station: 'Station 1', shift: 'A', status: 'Active', certExpirations: 2 },
+        { id: 'P-002', name: 'Sarah Miller', rank: 'Lieutenant', station: 'Station 1', shift: 'A', status: 'Active', certExpirations: 0 },
+        { id: 'P-003', name: 'Mike Johnson', rank: 'Firefighter', station: 'Station 2', shift: 'B', status: 'Active', certExpirations: 1 },
+        { id: 'P-004', name: 'Lisa Chen', rank: 'Paramedic', station: 'Station 1', shift: 'A', status: 'Active', certExpirations: 3 },
+        { id: 'P-005', name: 'Robert Wilson', rank: 'Engineer', station: 'Station 2', shift: 'C', status: 'Active', certExpirations: 0 }
+    ];
+
+    const certifications = [
+        { member: 'John Davis', cert: 'Firefighter I/II', issueDate: '2020-03-15', expiration: '2025-03-15', status: 'Expiring Soon' },
+        { member: 'John Davis', cert: 'Hazmat Operations', issueDate: '2023-06-10', expiration: '2025-06-10', status: 'Current' },
+        { member: 'Sarah Miller', cert: 'Fire Officer I', issueDate: '2022-09-20', expiration: '2027-09-20', status: 'Current' },
+        { member: 'Mike Johnson', cert: 'EMT-Basic', issueDate: '2023-01-12', expiration: '2025-01-12', status: 'Expiring Soon' },
+        { member: 'Lisa Chen', cert: 'Paramedic', issueDate: '2021-11-05', expiration: '2025-11-05', status: 'Current' },
+        { member: 'Lisa Chen', cert: 'ACLS', issueDate: '2024-02-15', expiration: '2025-02-15', status: 'Expiring Soon' },
+        { member: 'Lisa Chen', cert: 'PALS', issueDate: '2024-02-15', expiration: '2025-02-15', status: 'Expiring Soon' }
+    ];
+
+    const schedule = [
+        { date: '2025-07-14', shift: 'A Shift', captain: 'John Davis', lieutenant: 'Sarah Miller', members: 'Johnson, Wilson, Chen' },
+        { date: '2025-07-15', shift: 'B Shift', captain: 'Mike Thompson', lieutenant: 'Dave Brown', members: 'Smith, Garcia, Lee' },
+        { date: '2025-07-16', shift: 'C Shift', captain: 'Robert Wilson', lieutenant: 'Amy Rodriguez', members: 'Taylor, Anderson, Kim' }
+    ];
+
+    const RosterTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                    <thead>
+                        <tr>
+                            {['ID', 'Name', 'Rank', 'Station', 'Shift', 'Status', 'Cert Alerts'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {personnel.map(person => (
+                            <tr key={person.id} style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{person.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.name}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.rank}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{person.station}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.shift}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.success, color: colors.white }}>
+                                        {person.status}
+                                    </span>
+                                </td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    {person.certExpirations > 0 && (
+                                        <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.warning, color: colors.white }}>
+                                            {person.certExpirations} Expiring
+                                        </span>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const CertificationsTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                    <thead>
+                        <tr>
+                            {['Member', 'Certification', 'Issue Date', 'Expiration', 'Status'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {certifications.map((cert, index) => (
+                            <tr key={index}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{cert.member}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cert.cert}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{cert.issueDate}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cert.expiration}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{
+                                        padding: '4px 8px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        background: cert.status === 'Current' ? colors.success : colors.warning,
+                                        color: colors.white
+                                    }}>
+                                        {cert.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const SchedulingTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+                    <thead>
+                        <tr>
+                            {['Date', 'Shift', 'Captain', 'Lieutenant', 'Additional Members'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {schedule.map((shift, index) => (
+                            <tr key={index}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{shift.date}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.shift}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.captain}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.lieutenant}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{shift.members}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const PersonnelDetailModal = () => (
+        <Modal onClose={() => setShowModal(false)}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>John Davis - Personnel Record</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+                <FormField label="Employee ID" value="P-001" readOnly />
+                <FormField label="Badge Number" value="101" />
+                <FormField label="Hire Date" value="2018-03-15" type="date" />
+                <FormField label="Department" value="Suppression" />
+                <FormField label="Emergency Contact" value="Jane Davis - (555) 123-4567" />
+                <FormField label="Phone" value="(555) 987-6543" />
+            </div>
+            <div style={{ marginTop: '20px' }}>
+                <h4 style={{ marginBottom: '10px' }}>Current Certifications</h4>
+                <div style={{ color: colors.gray, fontSize: '14px' }}>
+                    Firefighter I/II (Exp: 2025-03-15) • Hazmat Operations (Exp: 2025-06-10) • CPR (Exp: 2025-12-01)
+                </div>
+            </div>
+        </Modal>
+    );
+
+    const renderTabContent = () => {
+        switch (activeTab) {
+            case 'Roster': return <RosterTab />;
+            case 'Certifications': return <CertificationsTab />;
+            case 'Scheduling': return <SchedulingTab />;
+            default: return <RosterTab />;
+        }
+    };
+
+    return (
+        <div style={{ padding: '25px' }}>
+            <PageHeader title="Personnel Management" buttonLabel="Add Member" />
+            <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+            {renderTabContent()}
+            {showModal && <PersonnelDetailModal />}
+        </div>
+    );
+};
+
+// --- Equipment Module ---
+const EquipmentContent = () => {
+    const [activeTab, setActiveTab] = React.useState('Apparatus');
+    const [showModal, setShowModal] = React.useState(false);
+    const tabs = ['Apparatus', 'Equipment', 'Maintenance'];
+
+    const apparatus = [
+        { id: 'E-1', name: 'Engine 1', type: 'Pumper', year: '2019', mileage: '45,230', status: 'In Service', lastPM: '2025-06-15', nextPM: '2025-09-15' },
+        { id: 'L-1', name: 'Ladder 1', type: 'Aerial Ladder', year: '2021', mileage: '23,180', status: 'In Service', lastPM: '2025-07-01', nextPM: '2025-10-01' },
+        { id: 'A-1', name: 'Ambulance 1', type: 'Type I Ambulance', year: '2020', mileage: '67,892', status: 'In Service', lastPM: '2025-07-10', nextPM: '2025-08-10' },
+        { id: 'C-1', name: 'Chief 1', type: 'Command Vehicle', year: '2022', mileage: '18,450', status: 'In Service', lastPM: '2025-05-20', nextPM: '2025-08-20' }
+    ];
+
+    const equipment = [
+        { id: 'EQ-001', name: 'SCBA Pack #1', type: 'Breathing Apparatus', location: 'Engine 1', lastInspection: '2025-07-01', nextDue: '2025-08-01', status: 'Ready' },
+        { id: 'EQ-002', name: 'Thermal Camera', type: 'Detection Equipment', location: 'Ladder 1', lastInspection: '2025-06-15', nextDue: '2025-12-15', status: 'Ready' },
+        { id: 'EQ-003', name: 'Hydraulic Rescue Tools', type: 'Extrication Equipment', location: 'Engine 1', lastInspection: '2025-07-05', nextDue: '2025-10-05', status: 'Ready' },
+        { id: 'EQ-004', name: 'Defibrillator', type: 'Medical Equipment', location: 'Ambulance 1', lastInspection: '2025-07-12', nextDue: '2025-08-12', status: 'Needs Service' }
+    ];
+
+    const maintenance = [
+        { id: 'M-089', apparatus: 'Engine 1', type: 'Preventive Maintenance', date: '2025-07-20', technician: 'Smith Repairs', status: 'Scheduled', cost: '$850' },
+        { id: 'M-088', apparatus: 'Ambulance 1', type: 'Repair - Electrical', date: '2025-07-15', technician: 'Johnson Fleet', status: 'In Progress', cost: '$320' },
+        { id: 'M-087', apparatus: 'Ladder 1', type: 'Annual Inspection', date: '2025-07-10', technician: 'Fire Equipment Co', status: 'Completed', cost: '$1,200' },
+        { id: 'M-086', apparatus: 'Chief 1', type: 'Oil Change', date: '2025-07-08', technician: 'Quick Lube', status: 'Completed', cost: '$75' }
+    ];
+
+    const ApparatusTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                    <thead>
+                        <tr>
+                            {['Unit ID', 'Name', 'Type', 'Year', 'Mileage', 'Status', 'Last PM', 'Next PM'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {apparatus.map(unit => (
+                            <tr key={unit.id} style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{unit.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.name}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.type}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{unit.year}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.mileage}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.success, color: colors.white }}>
+                                        {unit.status}
+                                    </span>
+                                </td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.lastPM}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{unit.nextPM}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const EquipmentTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                    <thead>
+                        <tr>
+                            {['Equipment ID', 'Name', 'Type', 'Location', 'Last Inspection', 'Next Due', 'Status'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {equipment.map(item => (
+                            <tr key={item.id} style={{ cursor: 'pointer' }}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{item.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.name}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.type}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{item.location}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.lastInspection}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.nextDue}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{
+                                        padding: '4px 8px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        background: item.status === 'Ready' ? colors.success : colors.warning,
+                                        color: colors.white
+                                    }}>
+                                        {item.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const MaintenanceTab = () => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                    <thead>
+                        <tr>
+                            {['Work Order', 'Apparatus', 'Type', 'Date', 'Technician', 'Status', 'Cost'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {maintenance.map(work => (
+                            <tr key={work.id} style={{ cursor: 'pointer' }}>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{work.id}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.apparatus}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.type}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.date}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{work.technician}</td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                    <span style={{
+                                        padding: '4px 8px',
+                                        borderRadius: '12px',
+                                        fontSize: '12px',
+                                        fontWeight: '600',
+                                        background: work.status === 'Completed' ? colors.success : work.status === 'In Progress' ? colors.warning : colors.info,
+                                        color: colors.white
+                                    }}>
+                                        {work.status}
+                                    </span>
+                                </td>
+                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{work.cost}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+
+    const ApparatusDetailModal = () => (
+        <Modal onClose={() => setShowModal(false)}>
+            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Engine 1 - Vehicle Details</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
+                <FormField label="Unit ID" value="E-1" readOnly />
+                <FormField label="VIN" value="1FDWE35L98HA12345" />
+                <FormField label="Make/Model" value="Pierce Enforcer" />
+                <FormField label="Tank Capacity" value="750 gallons" />
+                <FormField label="Pump Rating" value="1,500 GPM" />
+                <FormField label="Ladder Length" value="35 feet" />
+            </div>
+            <div style={{ marginTop: '20px' }}>
+                <h4 style={{ marginBottom: '10px' }}>Recent Maintenance</h4>
+                <div style={{ color: colors.gray, fontSize: '14px' }}>
+                    Oil Change (07/01/25) • Brake Inspection (06/15/25) • Pump Test (05/20/25)
+                </div>
+            </div>
+        </Modal>
+    );
+
+    const renderTabContent = () => {
+        switch (activeTab) {
+            case 'Apparatus': return <ApparatusTab />;
+            case 'Equipment': return <EquipmentTab />;
+            case 'Maintenance': return <MaintenanceTab />;
+            default: return <ApparatusTab />;
+        }
+    };
+
+    return (
+        <div style={{ padding: '25px' }}>
+            <PageHeader title="Equipment & Asset Management" buttonLabel="Add Asset" />
+            <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+            {renderTabContent()}
+            {showModal && <ApparatusDetailModal />}
+        </div>
+    );
+};
+
+// --- Reports and Settings (Placeholder) ---
 const PlaceholderContent = ({ tabName }) => ( 
     <div style={{ padding: '25px', textAlign: 'center' }}>
         <PageHeader title={`${tabName.charAt(0).toUpperCase() + tabName.slice(1)} Module`} />
         <div style={{ background: colors.white, padding: '40px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginTop: '20px' }}>
             <div style={{ fontSize: '48px', marginBottom: '20px' }}>
-                {{ occupancies: '🏢', personnel: '👨‍🚒', equipment: '🚒', reports: '📄', settings: '⚙️' }[tabName]}
+                {{ reports: '📄', settings: '⚙️' }[tabName]}
             </div>
             <h3 style={{ color: colors.dark, marginBottom: '15px' }}>
                 {tabName.charAt(0).toUpperCase() + tabName.slice(1)} Management
@@ -412,27 +934,6 @@ const PlaceholderContent = ({ tabName }) => (
                 This module demonstrates {tabName} management capabilities in LadderOps. 
                 Click through the other modules to see different features.
             </p>
-            {tabName === 'occupancies' && (
-                <div style={{ marginTop: '20px', padding: '15px', background: colors.light, borderRadius: '6px' }}>
-                    <p style={{ fontSize: '14px', color: colors.gray }}>
-                        ✅ Building inspections • Pre-plan management • Code enforcement tracking
-                    </p>
-                </div>
-            )}
-            {tabName === 'personnel' && (
-                <div style={{ marginTop: '20px', padding: '15px', background: colors.light, borderRadius: '6px' }}>
-                    <p style={{ fontSize: '14px', color: colors.gray }}>
-                        ✅ Certification tracking • Scheduling • Payroll integration
-                    </p>
-                </div>
-            )}
-            {tabName === 'equipment' && (
-                <div style={{ marginTop: '20px', padding: '15px', background: colors.light, borderRadius: '6px' }}>
-                    <p style={{ fontSize: '14px', color: colors.gray }}>
-                        ✅ Apparatus management • Maintenance schedules • Inventory tracking
-                    </p>
-                </div>
-            )}
             {tabName === 'reports' && (
                 <div style={{ marginTop: '20px', padding: '15px', background: colors.light, borderRadius: '6px' }}>
                     <p style={{ fontSize: '14px', color: colors.gray }}>
@@ -462,9 +963,9 @@ const App = () => {
     switch (activeTab) {
       case 'dashboard': return <DashboardContent />;
       case 'incidents': return <IncidentReportContent />;
-      case 'occupancies': return <PlaceholderContent tabName="occupancies" />;
-      case 'personnel': return <PlaceholderContent tabName="personnel" />;
-      case 'equipment': return <PlaceholderContent tabName="equipment" />;
+      case 'occupancies': return <OccupanciesContent />;
+      case 'personnel': return <PersonnelContent />;
+      case 'equipment': return <EquipmentContent />;
       case 'reports': return <PlaceholderContent tabName="reports" />;
       case 'settings': return <PlaceholderContent tabName="settings" />;
       default: return <DashboardContent />;
