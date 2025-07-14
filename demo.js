@@ -1,25 +1,281 @@
-const InspectionsTab = () => {
-        const [showInspectionModal, setShowInspectionModal] = React.useState(false);
-        const [selectedInspection, setSelectedInspection] = React.useState(null);
+// js/demo.js
 
-        const InspectionDetailModal = () => {
-            const [checklistItems, setChecklistItems] = React.useState([
-                { id: 1, item: 'Fire exits clearly marked and unobstructed', checked: true, required: true },
-                { id: 2, item: 'Emergency lighting functional', checked: true, required: true },
-                { id: 3, item: 'Fire extinguishers properly mounted and charged', checked: false, required: true },
-                { id: 4, item: 'Sprinkler system operational', checked: true, required: true },
-                { id: 5, item: 'Kitchen hood suppression system serviced', checked: true, required: false },
-                { id: 6, item: 'Storageconst OccupanciesContent = () => {
-    const [activeTab, setActiveTab] = React.useState('Buildings');
-    const [showModal, setShowModal] = React.useState(false);
-    const [showAddBuildingModal, setShowAddBuildingModal] = React.useState(false);
-    const [selectedBuilding, setSelectedBuilding] = React.useState(null);
-    const tabs = ['Buildings', 'Inspections', 'Pre-Plans'];
+// Color Palette
+const colors = {
+  primary: '#FF4500',  // Orange-Red
+  secondary: '#1E3A8A', // Dark Blue
+  light: '#F9FAFB',
+  dark: '#111827',
+  gray: '#6B7280',
+  lightGray: '#E5E7EB',
+  white: '#FFFFFF',
+  success: '#10B981',
+  danger: '#EF4444',
+  warning: '#F59E0B',
+  info: '#3B82F6'
+};
 
-    const buildings = [
-        { id: 'B-001', name: 'Main Street Plaza', address: '123 Main St', type: 'Mercantile', lastInspection: '2024-11-15', nextDue: '2025-11-15', status: 'Compliant', constructionType: 'Type V', occupancyLoad: 150, squareFootage: 8500, stories: 2, hazards: 'Propane storage in rear area. Kitchen with commercial equipment on second floor.' },
-        { id: 'B-002', name: 'Riverside Apartments', address: '456 River Rd', type: 'Residential', lastInspection: '2024-09-20', nextDue: '2025-09-20', status: 'Pending', constructionType: 'Type V', occupancyLoad: 48, squareFootage: 12000, stories: 3, hazards: 'Multiple tenant spaces, elderly residents on upper floors.' },
-        { id: 'B-003', name: 'Tech Manufacturing', address: '789 Industrial Way', type: 'Industrial', lastconst IncidentReportContent = () => {
+// --- Reusable UI & Form Components ---
+
+const FormField = ({ label, value, type = 'text', readOnly = false }) => (
+    <div>
+        <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+        <input type={type} defaultValue={value} readOnly={readOnly} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', background: readOnly ? colors.lightGray : colors.white }} />
+    </div>
+);
+
+const SelectField = ({ label, children, value, onChange }) => (
+    <div>
+        <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+        <select value={value} onChange={onChange} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', background: `url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right .75rem center / 1.2em 1.2em`, WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none', backgroundColor: colors.white, paddingRight: '2.5rem' }}>
+            {children}
+        </select>
+    </div>
+);
+
+const TextArea = ({ label, value, rows = 4 }) => (
+    <div>
+        <label style={{ display: 'block', marginBottom: '6px', fontSize: '14px', fontWeight: '500', color: colors.dark }}>{label}</label>
+        <textarea defaultValue={value} rows={rows} style={{ width: '100%', padding: '10px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px', fontSize: '14px', resize: 'vertical' }}></textarea>
+    </div>
+);
+
+const PageHeader = ({ title, children, buttonLabel, onButtonClick }) => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
+        <div>
+            <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, margin: 0, marginBottom: '5px' }}>{title}</h2>
+            {children}
+        </div>
+        {buttonLabel && (
+            <button onClick={onButtonClick} style={{ background: colors.primary, border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: colors.white, fontWeight: '600' }}>
+                {buttonLabel}
+            </button>
+        )}
+    </div>
+);
+
+const SubNav = ({ tabs, activeTab, setActiveTab }) => (
+    <div style={{ display: 'flex', borderBottom: `1px solid ${colors.lightGray}`, marginBottom: '25px', overflowX: 'auto' }}>
+        {tabs.map(tab => (
+            <div key={tab} onClick={() => setActiveTab(tab)} style={{ padding: '10px 15px', borderBottom: activeTab === tab ? `3px solid ${colors.primary}` : '3px solid transparent', fontWeight: activeTab === tab ? 'bold' : 'normal', color: activeTab === tab ? colors.primary : colors.gray, cursor: 'pointer', fontSize: '14px', transform: 'translateY(1px)', whiteSpace: 'nowrap' }}>
+                {tab}
+            </div>
+        ))}
+    </div>
+);
+
+const Modal = ({ children, onClose }) => (
+    <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
+        <div style={{ background: colors.light, padding: '25px', borderRadius: '8px', width: '90%', maxWidth: '500px', position: 'relative' }}>
+            <button onClick={onClose} style={{ position: 'absolute', top: '10px', right: '10px', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer' }}>&times;</button>
+            {children}
+        </div>
+    </div>
+);
+
+const CheckboxItem = ({ label, checked = false }) => (
+    <div style={{ display: 'flex', alignItems: 'center', background: colors.white, padding: '12px', border: `1px solid ${colors.lightGray}`, borderRadius: '6px' }}>
+        <input type="checkbox" defaultChecked={checked} style={{ width: '20px', height: '20px', marginRight: '12px', accentColor: colors.primary }} />
+        <label>{label}</label>
+    </div>
+);
+
+// --- Main UI Components ---
+
+const Sidebar = ({ activeTab, setActiveTab }) => {
+  const [hoveredTab, setHoveredTab] = React.useState(null);
+  const navItems = ['dashboard', 'incidents', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
+  const navIcons = {'dashboard': '📊', 'incidents': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
+  
+  const navItemStyle = (tabName) => ({
+    padding: '12px 20px', marginBottom: '4px', display: 'flex', alignItems: 'center',
+    background: activeTab === tabName ? 'rgba(255, 255, 255, 0.1)' : (hoveredTab === tabName ? 'rgba(255, 255, 255, 0.05)' : 'transparent'),
+    borderLeft: activeTab === tabName ? `4px solid ${colors.primary}` : '4px solid transparent',
+    cursor: 'pointer', transition: 'background 0.2s ease-in-out, border-left 0.2s ease-in-out',
+    fontWeight: activeTab === tabName ? '600' : 'normal'
+  });
+
+  return (
+    <div style={{ width: '220px', background: colors.secondary, color: colors.white, display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' }}>
+      <div style={{ padding: '20px 20px', marginBottom: '20px', fontSize: '20px', fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>
+        <div style={{ width: '30px', height: '30px', background: colors.primary, borderRadius: '6px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>🔥</div>
+        Fire-RMS
+      </div>
+      <nav style={{ flex: 1 }}>
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          {navItems.map(tab => (
+            <li key={tab} style={navItemStyle(tab)} onClick={() => setActiveTab(tab)} onMouseEnter={() => setHoveredTab(tab)} onMouseLeave={() => setHoveredTab(null)} role="button" aria-current={activeTab === tab ? 'page' : undefined}>
+              <span style={{ marginRight: '12px', fontSize: '18px', width: '24px', textAlign: 'center' }}>{navIcons[tab]}</span>
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              {tab === 'incidents' && <span style={{ marginLeft: 'auto', background: colors.success, color: colors.white, fontSize: '10px', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>NERIS</span>}
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', padding: '20px', display: 'flex', alignItems: 'center', marginTop: 'auto' }}>
+        <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: colors.primary, marginRight: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '14px' }}>JD</div>
+        <div>
+          <div style={{ fontWeight: 'bold', fontSize: '14px' }}>John Davis</div>
+          <div style={{ fontSize: '12px', opacity: 0.7 }}>Fire Captain</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DashboardContent = () => {
+    const KpiCard = ({ title, value, icon, change }) => (
+        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                <div style={{ fontSize: '24px', marginRight: '15px' }}>{icon}</div>
+                <div>
+                    <div style={{ color: colors.gray, fontSize: '14px' }}>{title}</div>
+                    <div style={{ color: colors.dark, fontSize: '24px', fontWeight: 'bold' }}>{value}</div>
+                </div>
+            </div>
+            {change && <div style={{ fontSize: '12px', color: change.startsWith('+') ? colors.success : colors.danger }}>{change} vs last month</div>}
+        </div>
+    );
+
+    const recentIncidents = [
+        { id: '2025-00123', type: '111 - Building Fire', status: 'Closed' },
+        { id: '2025-00122', type: '322 - Vehicle Fire', status: 'Closed' },
+        { id: '2025-00121', type: '554 - Person in Water', status: 'Open' },
+        { id: '2025-00120', type: '611 - EMS Call', status: 'Closed' },
+    ];
+    
+    return (
+        <div style={{padding: '25px'}}>
+            <PageHeader title="Dashboard"/>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '25px' }}>
+                <KpiCard title="Incidents this Month" value="123" icon="🔥" change="+5.2%"/>
+                <KpiCard title="Avg. Response Time" value="4:32" icon="⏱️" change="-0.8%"/>
+                <KpiCard title="Inspections Due" value="18" icon="🏢" change="+12.5%"/>
+                <KpiCard title="Upcoming Inspections" value="8" icon="🗓️" change="+10%"/>
+            </div>
+            <h3 style={{color: colors.dark, marginBottom: '15px'}}>Recent Incidents</h3>
+            <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                {recentIncidents.map((inc, index) => (
+                    <div key={inc.id} style={{display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === recentIncidents.length - 1 ? 'none' : `1px solid ${colors.lightGray}`}}>
+                        <div style={{fontWeight: '600'}}>{inc.id}</div>
+                        <div style={{color: colors.gray}}>{inc.type}</div>
+                        <div>
+                            <span style={{padding: '4px 8px', borderRadius: '10px', fontSize: '12px', background: inc.status === 'Closed' ? colors.success : colors.warning, color: colors.white}}>{inc.status}</span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+// --- Incident Report Sections ---
+const NerisWorkflowDiagram = ({ completedTabs, activeTab }) => {
+    const allTabs = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Hazards', 'Units', 'Narrative'];
+    return (
+        <div style={{ background: colors.white, padding: '15px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '25px' }}>
+            <h4 style={{ marginTop: 0, marginBottom: '15px', color: colors.dark }}>Required Modules Workflow</h4>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '5px', flexWrap: 'wrap' }}>
+                {allTabs.map((tab, index) => {
+                    const isComplete = completedTabs.includes(tab);
+                    const isActive = tab === activeTab;
+                    return (
+                        <React.Fragment key={tab}>
+                            <div style={{
+                                padding: '8px 12px',
+                                borderRadius: '20px',
+                                background: isActive ? colors.primary : (isComplete ? colors.success : colors.lightGray),
+                                color: isActive || isComplete ? colors.white : colors.gray,
+                                fontWeight: '600',
+                                fontSize: '12px',
+                                border: `1px solid ${isActive ? colors.primary : (isComplete ? colors.success : colors.lightGray)}`
+                            }}>
+                                {isComplete && !isActive ? '✓ ' : ''}{tab}
+                            </div>
+                            {index < allTabs.length - 1 && <div style={{ color: colors.lightGray, fontWeight: 'bold', display: 'flex', alignItems: 'center' }}>-</div>}
+                        </React.Fragment>
+                    );
+                })}
+            </div>
+        </div>
+    );
+};
+
+const NerisStatementBox = () => (
+    <div style={{marginTop: '25px', padding: '15px', background: 'rgba(30, 58, 138, 0.05)', border: `1px solid ${colors.lightGray}`, borderRadius: '8px', textAlign: 'center'}}>
+        <p style={{margin: 0, color: colors.secondary, fontWeight: 500}}>This report is structured for NERIS 2026 compliance.</p>
+    </div>
+);
+
+const CoreSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}> <FormField label="Incident Number" value="2025-00123" /> <FormField label="Incident Date" value="2025-07-11" type="date" /> <SelectField label="Incident Type"><option>111 - Building Fire</option><option>322 - Vehicle Fire</option><option>611 - EMS Call</option></SelectField> <FormField label="Alarm Date/Time" value="2025-07-11T14:02" type="datetime-local" /> <FormField label="Arrival Date/Time" value="2025-07-11T14:06" type="datetime-local" /> <FormField label="Last Unit Cleared" value="2025-07-11T15:30" type="datetime-local" /> <SelectField label="Incident Source"><option>CAD</option><option>Manual Entry</option></SelectField> </div>);
+const LocationSection = () => ( <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}><FormField label="Street Address" value="455 Main St" /><FormField label="Apartment/Suite" value="" /><FormField label="City" value="Anytown" /><FormField label="State" value="MA" /><FormField label="Zip Code" value="01234" /><SelectField label="Property Use"><option>419 - Single-Family Dwelling</option><option>500 - Mercantile Business</option></SelectField></div>);
+const FireSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}><SelectField label="Area of Fire Origin"><option>75 - Kitchen</option><option>43 - Bedroom</option></SelectField><SelectField label="Heat Source"><option>11 - Cooking Equipment</option><option>53 - Electrical Wiring</option></SelectField><SelectField label="Item First Ignited"><option>13 - Cooking Oil/Grease</option><option>51 - Upholstered Furniture</option></SelectField></div>);
+const ActionsTacticsSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}><CheckboxItem label="Forcible Entry" checked /><CheckboxItem label="Primary Search" checked /><CheckboxItem label="Secondary Search" checked /><CheckboxItem label="Ventilation (PPV)" /><CheckboxItem label="Ventilation (Vertical)" checked /><CheckboxItem label="Extinguishment" checked /><CheckboxItem label="Salvage & Overhaul" checked /><CheckboxItem label="Establish Water Supply" checked /></div>);
+
+const RescueCasualtySection = () => {
+    const [isMasked, setIsMasked] = React.useState(true);
+    const nameFieldKey = isMasked ? 'masked-name' : 'unmasked-name';
+    return (
+        <div>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px', flexWrap: 'wrap', gap: '10px'}}>
+                <h4 style={{borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', margin: 0}}>Patient 1</h4>
+                <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+                    <label htmlFor="pii-toggle" style={{fontWeight: 500}}>Mask PII</label>
+                    <label style={{position: 'relative', display: 'inline-block', width: '40px', height: '24px'}}>
+                        <input id="pii-toggle" type="checkbox" checked={isMasked} onChange={() => setIsMasked(!isMasked)} style={{opacity: 0, width: 0, height: 0}} />
+                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: isMasked ? colors.primary : colors.lightGray, transition: '.4s', borderRadius: '34px'}}>
+                            <span style={{position: 'absolute', height: '18px', width: '18px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: isMasked ? 'translateX(16px)' : 'translateX(0)'}}></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+                <FormField key={nameFieldKey} label="Patient Name" value={isMasked ? '**********' : 'John Smith'} readOnly={isMasked} />
+                <FormField label="Age" value="68" />
+                <SelectField label="Gender"><option>Male</option><option>Female</option></SelectField>
+                <SelectField label="Injury Type"><option>Smoke Inhalation</option><option>Burns</option><option>None</option></SelectField>
+                <SelectField label="Care Provided"><option>BLS Assessment</option><option>Oxygen Administered</option></SelectField>
+                <SelectField label="Outcome"><option>Transported to Hospital</option><option>Refused Treatment</option></SelectField>
+            </div>
+        </div>
+    );
+};
+
+const HazardsSection = () => (<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10px' }}><CheckboxItem label="Flammable Liquids/Gases" /><CheckboxItem label="Explosives/Blasting Agents" /><CheckboxItem label="Radioactive Materials" /><CheckboxItem label="Chemical Hazards (Corrosives, etc.)" checked /><CheckboxItem label="Biohazards" /><CheckboxItem label="Electrical Hazard" checked /></div>);
+
+const UnitsSection = () => {
+    const units = [
+        { unit: 'E-1', dispatched: '14:02:10', enroute: '14:02:50', arrived: '14:06:32', cleared: '15:30:00' },
+        { unit: 'L-1', dispatched: '14:02:10', enroute: '14:03:15', arrived: '14:07:01', cleared: '15:28:00' },
+        { unit: 'C-1', dispatched: '14:02:10', enroute: '14:02:45', arrived: '14:06:50', cleared: '15:31:00' },
+        { unit: 'A-1', dispatched: '14:05:00', enroute: '14:05:45', arrived: '14:10:20', cleared: '15:05:00' },
+    ];
+    const header = ['Unit', 'Dispatched', 'En Route', 'Arrived', 'Cleared'];
+    return (
+        <div style={{overflowX: 'auto'}}>
+            <table style={{width: '100%', borderCollapse: 'collapse', minWidth: '600px'}}>
+                <thead>
+                    <tr>{header.map(h => <th key={h} style={{borderBottom: `2px solid ${colors.lightGray}`, padding: '10px', textAlign: 'left', color: colors.gray}}>{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                    {units.map(u => (
+                        <tr key={u.unit}>
+                            <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px', fontWeight: 600}}>{u.unit}</td>
+                            <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.dispatched}</td>
+                            <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.enroute}</td>
+                            <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.arrived}</td>
+                            <td style={{borderBottom: `1px solid ${colors.lightGray}`, padding: '10px'}}>{u.cleared}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
+
+const NarrativeSection = () => (<TextArea label="Incident Narrative (Use plain language)" value="E-1 arrived on scene at 14:06 to find a two-and-a-half story wood-frame single-family dwelling with light smoke showing from the kitchen window on Side A. Captain Davis established command. E-1 crew forced entry through the front door and advanced a 1.75-inch attack line to the kitchen, where they found a small fire on the stovetop extending to the adjacent cabinets. The fire was quickly knocked down. L-1 arrived and performed a primary search of the first and second floors, which was negative. L-1 crew then performed vertical ventilation over the kitchen area. One civilian occupant, John Smith, had evacuated prior to arrival and was assessed by EMS for minor smoke inhalation before being transported to Anytown General Hospital. The fire was determined to be accidental, caused by unattended cooking. Overhaul was completed, and the scene was turned over to the homeowner. All units cleared at 15:30." rows={12}/>);
+
+const IncidentReportContent = () => {
     const [activeSection, setActiveSection] = React.useState('Core');
     const sections = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Hazards', 'Units', 'Narrative'];
     const completedSections = ['Core', 'Location', 'Fire', 'Actions/Tactics', 'Rescue/Casualty', 'Narrative', 'Units', 'Hazards'];
@@ -55,369 +311,258 @@ const InspectionsTab = () => {
     );
 };
 
-const IncidentsContent = () => {
-    const [activeTab, setActiveTab] = React.useState('Current Incidents');
-    const [showModal, setShowModal] = React.useState(false);
-    const [showNewIncidentModal, setShowNewIncidentModal] = React.useState(false);
-    const [selectedIncident, setSelectedIncident] = React.useState(null);
-    const [searchTerm, setSearchTerm] = React.useState('');
-    const tabs = ['Current Incidents', 'CAD Feed', 'All Incidents'];
+// --- Occupancies Module (RESTORED) ---
+const OccupanciesContent = () => {
+    const [view, setView] = React.useState('list'); // 'list', 'details', 'inspection'
+    const [selectedOccupancy, setSelectedOccupancy] = React.useState(null);
+    const [activeSubTab, setActiveSubTab] = React.useState('Inspections');
 
-    // Sample data for different incident views
-    const currentIncidents = [
-        { id: '2025-00123', type: '111 - Building Fire', address: '455 Main St', status: 'In Progress', units: 'E-1, L-1, C-1', time: '14:02', priority: 'High' },
-        { id: '2025-00124', type: '322 - Vehicle Fire', address: 'Highway 101 MM 15', status: 'En Route', units: 'E-2', time: '14:15', priority: 'Medium' },
-        { id: '2025-00125', type: '611 - EMS Call', address: '789 Oak Ave', status: 'On Scene', units: 'A-1', time: '14:20', priority: 'Low' }
+    const occupancies = [
+        { address: '1234 Maple St', type: 'Residential', lastInspected: '2024-05-10', hazards: false, owner: 'Jane Doe', phone: '555-1234' },
+        { address: '455 Main St', type: 'Mercantile', lastInspected: '2025-06-22', hazards: true, owner: 'John Smith', phone: '555-5678' },
+        { address: '789 Oak Ave', type: 'Residential', lastInspected: '2023-11-01', hazards: false, owner: 'Peter Jones', phone: '555-9012' },
+        { address: '800 Elm St', type: 'Restaurant', lastInspected: '2025-01-15', hazards: true, owner: 'Sue Richards', phone: '555-3456' },
+        { address: '1 Industrial Dr', type: 'Industrial', lastInspected: '2024-09-30', hazards: true, owner: 'MegaCorp Inc.', phone: '555-7890' },
     ];
+    
+    const handleSelectOccupancy = (occ) => {
+        setSelectedOccupancy(occ);
+        setView('details');
+    };
 
-    const cadFeed = [
-        { id: 'CAD-2025-789', type: '322 - Vehicle Accident with Injury', address: 'Main St & 2nd Ave', time: '14:25', units: 'Available for Assignment', relevantUnits: ['E-1', 'A-1'], priority: 'High' },
-        { id: 'CAD-2025-790', type: '554 - Water Rescue', address: 'Riverside Park', time: '14:30', units: 'Available for Assignment', relevantUnits: ['E-2', 'R-1'], priority: 'High' },
-        { id: 'CAD-2025-791', type: '745 - Alarm Activation', address: '123 Business Plaza', time: '14:32', units: 'Available for Assignment', relevantUnits: ['E-1'], priority: 'Low' }
-    ];
+    const handleStartInspection = () => {
+        setView('inspection');
+    };
 
-    const allIncidents = [
-        { id: '2025-00123', type: '111 - Building Fire', address: '455 Main St', date: '2025-07-11', status: 'Open', officer: 'Capt. Davis' },
-        { id: '2025-00122', type: '322 - Vehicle Fire', address: 'Highway 101', date: '2025-07-11', status: 'Closed', officer: 'Lt. Miller' },
-        { id: '2025-00121', type: '554 - Person in Water', address: 'City Marina', date: '2025-07-10', status: 'Closed', officer: 'Capt. Wilson' },
-        { id: '2025-00120', type: '611 - EMS Call', address: '567 Pine St', date: '2025-07-10', status: 'Closed', officer: 'Lt. Johnson' },
-        { id: '2025-00119', type: '111 - Building Fire', address: '890 Industrial Dr', date: '2025-07-09', status: 'Closed', officer: 'Capt. Davis' }
-    ];
-
-    const CurrentIncidentsTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ fontSize: '24px', color: colors.success }}>🔴</div>
-                <div>
-                    <h4 style={{ margin: 0, color: colors.dark }}>Active Incidents</h4>
-                    <p style={{ margin: 0, color: colors.gray, fontSize: '14px' }}>Incidents currently in progress</p>
-                </div>
-            </div>
-            <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
-                    <thead>
-                        <tr>
-                            {['Incident #', 'Type', 'Address', 'Status', 'Units', 'Time', 'Priority', 'Actions'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentIncidents.map(incident => (
-                            <tr key={incident.id} style={{ cursor: 'pointer' }}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{incident.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{incident.type}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{incident.address}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <span style={{
-                                        padding: '4px 8px',
-                                        borderRadius: '12px',
-                                        fontSize: '12px',
-                                        fontWeight: '600',
-                                        background: incident.status === 'In Progress' ? colors.warning : incident.status === 'En Route' ? colors.info : colors.success,
-                                        color: colors.white
-                                    }}>
-                                        {incident.status}
-                                    </span>
-                                </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{incident.units}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{incident.time}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <span style={{
-                                        padding: '4px 8px',
-                                        borderRadius: '12px',
-                                        fontSize: '12px',
-                                        fontWeight: '600',
-                                        background: incident.priority === 'High' ? colors.danger : incident.priority === 'Medium' ? colors.warning : colors.success,
-                                        color: colors.white
-                                    }}>
-                                        {incident.priority}
-                                    </span>
-                                </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <button 
-                                        onClick={() => {setSelectedIncident(incident); setShowModal(true);}}
-                                        style={{ background: colors.primary, border: 'none', padding: '6px 12px', borderRadius: '4px', color: colors.white, fontSize: '12px', cursor: 'pointer' }}
-                                    >
-                                        View Report
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
-
-    const CADFeedTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ fontSize: '24px', color: colors.info }}>📡</div>
-                <div>
-                    <h4 style={{ margin: 0, color: colors.dark }}>CAD Integration Feed</h4>
-                    <p style={{ margin: 0, color: colors.gray, fontSize: '14px' }}>Real-time incidents from dispatch - click to accept and begin reporting</p>
-                </div>
-                <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: colors.success }}></div>
-                    <span style={{ fontSize: '12px', color: colors.gray }}>Connected</span>
-                </div>
-            </div>
-            <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
-                    <thead>
-                        <tr>
-                            {['CAD ID', 'Type', 'Address', 'Time', 'Relevant Units', 'Priority', 'Actions'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cadFeed.map(cadItem => (
-                            <tr key={cadItem.id} style={{ cursor: 'pointer' }}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{cadItem.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cadItem.type}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{cadItem.address}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cadItem.time}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    {cadItem.relevantUnits.map(unit => (
-                                        <span key={unit} style={{ background: colors.lightGray, padding: '2px 6px', borderRadius: '10px', fontSize: '11px', marginRight: '4px' }}>
-                                            {unit}
-                                        </span>
-                                    ))}
-                                </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <span style={{
-                                        padding: '4px 8px',
-                                        borderRadius: '12px',
-                                        fontSize: '12px',
-                                        fontWeight: '600',
-                                        background: cadItem.priority === 'High' ? colors.danger : colors.success,
-                                        color: colors.white
-                                    }}>
-                                        {cadItem.priority}
-                                    </span>
-                                </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <button 
-                                        onClick={() => {setSelectedIncident({...cadItem, fromCAD: true}); setShowModal(true);}}
-                                        style={{ background: colors.success, border: 'none', padding: '6px 12px', borderRadius: '4px', color: colors.white, fontSize: '12px', cursor: 'pointer', marginRight: '5px' }}
-                                    >
-                                        Accept & Report
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
-
-    const AllIncidentsTab = () => {
-        const filteredIncidents = allIncidents.filter(incident => 
-            incident.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            incident.type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            incident.address.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+    const InspectionForm = ({ occupancy, onBack }) => {
+        const [inspectionType, setInspectionType] = React.useState('Annual Fire Prevention');
+        const MonthlyExtinguisherChecklist = () => ( <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}> <CheckboxItem label="Is the extinguisher in its designated place?" checked /> <CheckboxItem label="Is it visible and accessible (no obstructions)?" checked /> <CheckboxItem label="Is the pressure gauge in the operable range (green)?" checked /> <CheckboxItem label="Is the pin and tamper seal intact?" /> <CheckboxItem label="Any obvious physical damage, corrosion, or leakage?" /> <CheckboxItem label="Is the inspection tag up to date?" checked /> </div> );
+        const FirePreventionChecklist = () => ( <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}> <CheckboxItem label="Egress & Exits Clear" checked /> <CheckboxItem label="Fire Alarm System Functional" checked /> <CheckboxItem label="Sprinkler System Visual Check OK" /> <CheckboxItem label="Emergency Lighting Functional" checked /> <button style={{ background: colors.lightGray, border: '1px dashed #A0AEC0', padding: '8px', borderRadius: '6px', cursor: 'pointer', color: colors.dark }}>+ Add Custom Check</button> </div> );
+        const renderChecklist = () => {
+            switch(inspectionType) {
+                case 'Monthly Extinguisher': return <MonthlyExtinguisherChecklist />;
+                default: return <FirePreventionChecklist />;
+            }
+        };
 
         return (
-            <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
-                    <div>
-                        <h4 style={{ margin: 0, color: colors.dark }}>All Incidents</h4>
-                        <p style={{ margin: 0, color: colors.gray, fontSize: '14px' }}>Search and manage all incident reports</p>
-                    </div>
-                    <input 
-                        type="text" 
-                        placeholder="Search incidents..." 
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        style={{ 
-                            padding: '8px 12px', 
-                            border: `1px solid ${colors.lightGray}`, 
-                            borderRadius: '6px', 
-                            width: '250px',
-                            fontSize: '14px'
-                        }} 
-                    />
+            <div>
+                <button onClick={onBack} style={{ marginBottom: '15px', background: 'none', border: 'none', color: colors.primary, cursor: 'pointer', fontWeight: '600' }}>← Back to Occupancy</button>
+                <PageHeader title={`New Inspection: ${occupancy.address}`} buttonLabel="Save Inspection" />
+                <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
+                     <SelectField label="Inspection Type" value={inspectionType} onChange={e => setInspectionType(e.target.value)}> <option>Annual Fire Prevention</option> <option>Monthly Extinguisher</option> </SelectField>
                 </div>
-                <div style={{ overflowX: 'auto' }}>
-                    <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
-                        <thead>
-                            <tr>
-                                {['Incident #', 'Type', 'Address', 'Date', 'Status', 'Officer', 'Actions'].map(h => (
-                                    <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredIncidents.map(incident => (
-                                <tr key={incident.id} style={{ cursor: 'pointer' }}>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{incident.id}</td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{incident.type}</td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{incident.address}</td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{incident.date}</td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                        <span style={{
-                                            padding: '4px 8px',
-                                            borderRadius: '12px',
-                                            fontSize: '12px',
-                                            fontWeight: '600',
-                                            background: incident.status === 'Open' ? colors.warning : colors.success,
-                                            color: colors.white
-                                        }}>
-                                            {incident.status}
-                                        </span>
-                                    </td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{incident.officer}</td>
-                                    <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                        <button 
-                                            onClick={() => {setSelectedIncident(incident); setShowModal(true);}}
-                                            style={{ background: colors.primary, border: 'none', padding: '6px 12px', borderRadius: '4px', color: colors.white, fontSize: '12px', cursor: 'pointer' }}
-                                        >
-                                            View/Edit
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
+                    <h3 style={{marginTop: 0, marginBottom: '15px'}}>Checklist</h3>
+                    {renderChecklist()}
                 </div>
             </div>
         );
     };
 
-    const NewIncidentModal = () => (
-        <Modal onClose={() => setShowNewIncidentModal(false)}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Create New Incident Report</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
-                <SelectField label="Incident Type" value="">
-                    <option value="">Select Type...</option>
-                    <option>111 - Building Fire</option>
-                    <option>112 - Fires in structures other than buildings</option>
-                    <option>113 - Cooking fire, confined to container</option>
-                    <option>322 - Motor vehicle accident with injuries</option>
-                    <option>324 - Motor vehicle accident with no injuries</option>
-                    <option>554 - Water or ice rescue</option>
-                    <option>611 - Dispatched & cancelled en route</option>
-                    <option>650 - Steam, vapor, fog or dust thought to be smoke</option>
-                </SelectField>
-                <FormField label="Incident Date" type="date" value="2025-07-14" />
-                <FormField label="Incident Time" type="time" value="14:30" />
-                <FormField label="Street Address" value="" />
-                <FormField label="City" value="Anytown" />
-                <FormField label="Zip Code" value="01234" />
-                <SelectField label="Incident Source" value="Manual Entry">
-                    <option>Manual Entry</option>
-                    <option>CAD</option>
-                    <option>Walk-in Report</option>
-                </SelectField>
-                <SelectField label="Reporting Officer" value="">
-                    <option value="">Select Officer...</option>
-                    <option>Capt. John Davis</option>
-                    <option>Lt. Sarah Miller</option>
-                    <option>Lt. Mike Johnson</option>
-                </SelectField>
-            </div>
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-                <button 
-                    onClick={() => setShowNewIncidentModal(false)}
-                    style={{ background: colors.lightGray, border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer' }}
-                >
-                    Cancel
-                </button>
-                <button 
-                    onClick={() => {setShowNewIncidentModal(false); alert('Incident report created! You would now be taken to the full incident report form.');}}
-                    style={{ background: colors.primary, border: 'none', padding: '10px 20px', borderRadius: '6px', color: colors.white, cursor: 'pointer' }}
-                >
-                    Create Report
-                </button>
-            </div>
-        </Modal>
-    );
+    if (view === 'inspection') {
+        return <div style={{ padding: '25px' }}><InspectionForm occupancy={selectedOccupancy} onBack={() => setView('details')} /></div>
+    }
 
-    const IncidentDetailModal = () => (
-        <Modal onClose={() => setShowModal(false)}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>
-                {selectedIncident?.fromCAD ? 'Accept CAD Incident' : 'Incident Details'} - {selectedIncident?.id}
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
-                <FormField label="Type" value={selectedIncident?.type || ''} readOnly />
-                <FormField label="Address" value={selectedIncident?.address || ''} readOnly />
-                <FormField label="Time" value={selectedIncident?.time || ''} readOnly />
-                {selectedIncident?.fromCAD && (
-                    <FormField label="Relevant Units" value={selectedIncident?.relevantUnits?.join(', ') || ''} readOnly />
-                )}
-                {!selectedIncident?.fromCAD && (
-                    <>
-                        <FormField label="Status" value={selectedIncident?.status || ''} readOnly />
-                        <FormField label="Officer" value={selectedIncident?.officer || ''} readOnly />
-                    </>
-                )}
-            </div>
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-                <button 
-                    onClick={() => setShowModal(false)}
-                    style={{ background: colors.lightGray, border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer' }}
-                >
-                    {selectedIncident?.fromCAD ? 'Cancel' : 'Close'}
-                </button>
-                <button 
-                    onClick={() => {setShowModal(false); alert(selectedIncident?.fromCAD ? 'CAD incident accepted! Opening full incident report form.' : 'Opening full incident report form for editing.');}}
-                    style={{ background: colors.primary, border: 'none', padding: '10px 20px', borderRadius: '6px', color: colors.white, cursor: 'pointer' }}
-                >
-                    {selectedIncident?.fromCAD ? 'Accept & Start Report' : 'Open Full Report'}
-                </button>
-            </div>
-        </Modal>
-    );
-
-    const renderTabContent = () => {
-        switch (activeTab) {
-            case 'Current Incidents': return <CurrentIncidentsTab />;
-            case 'CAD Feed': return <CADFeedTab />;
-            case 'All Incidents': return <AllIncidentsTab />;
-            default: return <CurrentIncidentsTab />;
-        }
-    };
+    if (view === 'details') {
+        const InfoCard = ({title, children}) => ( <div style={{background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)'}}><h4 style={{marginTop: 0, borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px'}}>{title}</h4>{children}</div>);
+        return <div style={{ padding: '25px' }}>
+            <button onClick={() => setView('list')} style={{ marginBottom: '15px', background: 'none', border: 'none', color: colors.primary, cursor: 'pointer', fontWeight: '600' }}>← Back to List</button>
+            <PageHeader title={selectedOccupancy.address} buttonLabel="+ Start New Inspection" onButtonClick={handleStartInspection} />
+            <SubNav tabs={['Pre-Plans', 'Inspections', 'Contacts', 'History']} activeTab={activeSubTab} setActiveTab={setActiveSubTab} />
+            {activeSubTab === 'Inspections' && <InfoCard title="Inspection Log"><p>2025-06-22: Annual Inspection - Pass</p><p>2024-05-10: Annual Inspection - Pass w/ Violations (Corrected)</p></InfoCard>}
+            {activeSubTab === 'Contacts' && <InfoCard title="Emergency Contacts"><p>Owner: {selectedOccupancy.owner}<br/>Phone: {selectedOccupancy.phone}</p></InfoCard>}
+        </div>
+    }
 
     return (
         <div style={{ padding: '25px' }}>
-            <PageHeader 
-                title="Incident Management" 
-                buttonLabel="Create New Incident"
-                onButtonClick={() => setShowNewIncidentModal(true)}
-            />
-            <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-            {renderTabContent()}
-            {showModal && selectedIncident && <IncidentDetailModal />}
-            {showNewIncidentModal && <NewIncidentModal />}
+            <PageHeader title="Occupancy Records" buttonLabel="+ New Occupancy" />
+            <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', overflowX: 'auto' }}>
+                <table style={{width: '100%', minWidth: '600px', borderCollapse: 'collapse'}}>
+                   <thead>
+                       <tr>
+                           <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Address</th>
+                           <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Property Use</th>
+                           <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'left'}}>Last Inspected</th>
+                           <th style={{padding: '10px', borderBottom: `2px solid ${colors.lightGray}`, textAlign: 'center'}}>Actions</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                        {occupancies.map((occ, index) => (
+                            <tr key={occ.address}>
+                                <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, fontWeight: '600'}}>{occ.address} {occ.hazards && '⚠️'}</td>
+                                <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, color: colors.gray}}>{occ.type}</td>
+                                <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, color: colors.gray}}>{occ.lastInspected}</td>
+                                <td style={{ padding: '15px 10px', borderBottom: `1px solid ${colors.lightGray}`, textAlign: 'center'}}><button onClick={() => handleSelectOccupancy(occ)} style={{background: 'none', border: `1px solid ${colors.primary}`, color: colors.primary, borderRadius: '4px', padding: '4px 8px', cursor: 'pointer'}}>View</button></td>
+                            </tr>
+                        ))}
+                   </tbody>
+                </table>
+            </div>
         </div>
     );
 };
 
-// --- Main Application Component ---
+
+// --- Personnel Management ---
+const PersonnelContent = () => {
+    const [activeTab, setActiveTab] = React.useState('Scheduling');
+    const [showModal, setShowModal] = React.useState(false);
+    
+    const RosterView = () => {
+        const [hoveredCert, setHoveredCert] = React.useState({personId: null, cert: null});
+        const personnel = [ { id: '007', name: 'John Davis', rank: 'Captain', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-P', 'Hazmat Ops'] }, { id: '003', name: 'Emily Williams', rank: 'Lieutenant', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-P', 'Officer I'] }, { id: '022', name: 'Chris Lee', rank: 'Firefighter', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-B', 'Driver'] }, { id: '015', name: 'Sarah Smith', rank: 'Firefighter', station: 'Station 1', group: 'A', certs: ['FFI/II', 'EMT-B'] }, { id: '008', name: 'Robert Miller', rank: 'Captain', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-P'] }, { id: '004', name: 'Jessica Garcia', rank: 'Lieutenant', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B', 'Officer I'] }, { id: '028', name: 'Linda Martinez', rank: 'Firefighter', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B', 'Driver'] }, { id: '025', name: 'David Brown', rank: 'Firefighter', station: 'Station 2', group: 'B', certs: ['FFI/II', 'EMT-B'] }, { id: '009', name: 'Charles Taylor', rank: 'Captain', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B'] }, { id: '005', name: 'Thomas Moore', rank: 'Lieutenant', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B', 'Officer I', 'Driver'] }, { id: '035', name: 'Susan Jackson', rank: 'Firefighter', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-P'] }, { id: '038', name: 'Daniel White', rank: 'Firefighter', station: 'Station 1', group: 'C', certs: ['FFI/II', 'EMT-B'] }, ];
+        const certStyles = { 'FFI/II': { icon: '🔥', color: colors.gray }, 'EMT-B': { icon: '⚕️', color: colors.success }, 'EMT-P': { icon: '⚕️', color: colors.danger }, 'Officer I': { icon: '⭐', color: colors.secondary }, 'Driver': { icon: '🚒', color: colors.primary }, 'Hazmat Ops': { icon: '☣️', color: colors.warning } };
+        return (<div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', overflowX: 'auto' }}> <table style={{width: '100%', minWidth: '700px', borderCollapse: 'collapse'}}><thead><tr><th style={{textAlign: 'left', padding: '10px'}}>Name</th><th style={{textAlign: 'left', padding: '10px'}}>Assignment</th><th style={{textAlign: 'left', padding: '10px'}}>Certifications</th></tr></thead><tbody>{personnel.map((p, index) => (<tr key={p.id}><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><div><div style={{fontWeight: '600', fontSize: '16px'}}>{p.name}</div><div style={{fontSize: '14px', color: colors.gray}}>{p.rank}</div></div></td><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><span style={{background: colors.lightGray, color: colors.dark, padding: '4px 8px', borderRadius: '6px', fontSize: '12px', fontWeight: '600'}}>{p.station} / Group {p.group}</span></td><td style={{padding: '15px 10px', borderTop: `1px solid ${colors.lightGray}`}}><div style={{display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center'}}>{p.certs.map(cert => { const style = certStyles[cert] || {icon: '✔️', color: colors.gray}; const isHovered = hoveredCert.personId === p.id && hoveredCert.cert === cert; return <div key={cert} onMouseEnter={() => setHoveredCert({personId: p.id, cert: cert})} onMouseLeave={() => setHoveredCert({personId: null, cert: null})} style={{position: 'relative'}}><span style={{background: style.color, color: 'white', padding: '4px 10px', borderRadius: '12px', fontSize: '12px', display: 'flex', alignItems: 'center'}}>{style.icon} <span style={{marginLeft: '4px'}}>{cert}</span></span>{isHovered && <div style={{position: 'absolute', top: '-8px', right: '-8px', background: colors.danger, color: 'white', width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', cursor: 'pointer', fontWeight: 'bold'}}>&ndash;</div>}</div> })}<div style={{border: `1px dashed ${colors.gray}`, color: colors.gray, width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', cursor: 'pointer'}}>+</div></div></td></tr>))}</tbody></table></div>);
+    };
+
+    const ScheduleView = () => {
+        const days = ['Mon, Jul 14', 'Tue, Jul 15', 'Wed, Jul 16', 'Thu, Jul 17', 'Fri, Jul 18', 'Sat, Jul 19', 'Sun, Jul 20'];
+        const schedule = {
+            'Mon, Jul 14': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+            'Tue, Jul 15': { day: { group: 'B', time: '07:00-19:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'], notes: { 'Miller': { type: 'Sick', color: colors.danger } } }, night: { group: 'C', time: '19:00-07:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] } },
+            'Wed, Jul 16': { day: { group: 'C', time: '07:00-19:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] }, night: { group: 'A', time: '19:00-07:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] } },
+            'Thu, Jul 17': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'], notes: { 'Lee': { type: 'Vacation', color: colors.info } } }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+            'Fri, Jul 18': { day: { group: 'B', time: '07:00-19:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'], open_shift: { apparatus: 'L-1', position: 'Firefighter' } }, night: { group: 'C', time: '19:00-07:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] } },
+            'Sat, Jul 19': { day: { group: 'C', time: '07:00-19:00', E1: ['Moore', 'Jackson'], L1: ['Taylor', 'White'] }, night: { group: 'A', time: '19:00-07:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'] } },
+            'Sun, Jul 20': { day: { group: 'A', time: '07:00-19:00', E1: ['Williams', 'Smith'], L1: ['Davis', 'Lee'], notes: { 'Davis': { type: 'Kelly Day', color: colors.warning } } }, night: { group: 'B', time: '19:00-07:00', E1: ['Garcia', 'Brown'], L1: ['Miller', 'Martinez'] } },
+        };
+
+        const Staffing = ({ staff, notes = {} }) => ( <div style={{ fontSize: '12px', color: colors.gray }}> {staff.map(name => { const note = notes[name]; if (note) { return <div key={name} style={{ textDecoration: 'line-through', color: note.color }}>{name} ({note.type})</div>; } return <div key={name}>{name}</div>; })} </div> );
+        const ShiftCard = ({ shift }) => (
+            <div style={{border: `1px solid ${colors.lightGray}`, borderRadius: '6px', padding: '8px', marginBottom: '10px'}}>
+                <div style={{ fontWeight: 'bold', color: colors.dark, marginBottom: '5px', textAlign: 'center', background: colors.lightGray, padding: '4px', borderRadius: '4px', fontSize: '13px' }}>Group {shift.group}</div>
+                <div style={{fontSize: '11px', color: colors.gray, textAlign: 'center', marginBottom: '10px'}}>{shift.time}</div>
+                <div style={{ marginBottom: '8px' }}><div style={{ fontWeight: '600', fontSize: '13px' }}>Engine 1</div><Staffing staff={shift.E1} notes={shift.notes} /></div>
+                <div><div style={{ fontWeight: '600', fontSize: '13px' }}>Ladder 1</div><Staffing staff={shift.L1} notes={shift.notes} /></div>
+                {shift.open_shift && ( <button onClick={() => setShowModal(true)} style={{ width: '100%', background: colors.success, border: 'none', padding: '6px', borderRadius: '6px', cursor: 'pointer', color: colors.white, fontWeight: '600', marginTop: '10px', fontSize: '12px' }}>Fill Open Shift</button> )}
+            </div>
+        );
+
+        return (
+            <div style={{overflowX: 'auto'}}>
+                {showModal && <Modal onClose={() => setShowModal(false)}><h3 style={{marginTop: 0}}>Fill Open Shift: L-1</h3><p style={{color: colors.gray}}>The following personnel are available and qualified...</p></Modal>}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '10px', minWidth: '900px' }}>
+                    {days.map(day => <div key={day} style={{ textAlign: 'center', fontWeight: 'bold', paddingBottom: '10px', fontSize: '14px' }}>{day.split(',')[0]}<br/><span style={{fontSize: '12px', fontWeight: 'normal'}}>{day.split(',')[1]}</span></div>)}
+                    {days.map(day => {
+                        const daySchedule = schedule[day];
+                        if (!daySchedule) return <div key={day}></div>;
+                        return ( <div key={day} style={{ background: colors.white, borderRadius: '8px', padding: '5px' }}> <ShiftCard shift={daySchedule.day} /> <ShiftCard shift={daySchedule.night} /> </div> );
+                    })}
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <div style={{ padding: '25px' }}>
+            <PageHeader title="Personnel Management" buttonLabel="+ Add Personnel" />
+            <SubNav tabs={['Roster', 'Scheduling', 'Payroll']} activeTab={activeTab} setActiveTab={setActiveTab} />
+            {activeTab === 'Roster' && <RosterView />}
+            {activeTab === 'Scheduling' && <ScheduleView />}
+            {activeTab === 'Payroll' && (<div style={{ background: colors.white, borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}><h3 style={{marginTop: 0}}>Payroll Reporting</h3><p style={{color: colors.gray, marginTop: 0}}>Generate payroll reports...</p><button style={{background: colors.secondary, border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: colors.white, fontWeight: '600' }}>Export for MUNIS</button></div>)}
+        </div>
+    );
+};
+
+// --- Equipment ---
+const EquipmentContent = () => {
+    const [selectedApparatus, setSelectedApparatus] = React.useState(null);
+    const apparatusData = [
+        { name: 'Engine 1', make: 'Pierce Enforcer™', type: 'Pumper', status: 'In Service', lastCheck: '2025-07-11', year: 2022 },
+        { name: 'Ladder 1', make: 'Pierce Ascendant® 107\'', type: 'Aerial', status: 'In Service', lastCheck: '2025-07-11', year: 2020 },
+        { name: 'Engine 2', make: 'E-One Typhoon', type: 'Pumper', status: 'In Service', lastCheck: '2025-07-10', year: 2018 },
+        { name: 'Rescue 1', make: 'Sutphen', type: 'Heavy Rescue', status: 'Out of Service', lastCheck: '2025-07-09', year: 2015 },
+        { name: 'Tanker 1', make: 'Freightliner', type: 'Tanker/Tender', status: 'In Service', lastCheck: '2025-07-11', year: 2019 },
+        { name: 'Brush 1', make: 'Ford F-550', type: 'Wildland', status: 'In Service', lastCheck: '2025-07-11', year: 2021 },
+    ];
+
+    // Set default selected apparatus using useEffect to avoid re-renders
+    React.useEffect(() => {
+        if (!selectedApparatus && apparatusData.length > 0) {
+            setSelectedApparatus(apparatusData[0]);
+        }
+    }, [selectedApparatus, apparatusData]);
+    
+    const ApparatusRosterList = ({ onSelect }) => (
+        <div style={{ background: colors.white, borderRadius: '8px', border: `1px solid ${colors.lightGray}`, overflow: 'hidden' }}>
+            {apparatusData.map((a, index) => (
+                <div key={a.name} onClick={() => onSelect(a)} style={{ padding: '15px', cursor: 'pointer', borderBottom: index === apparatusData.length - 1 ? 'none' : `1px solid ${colors.lightGray}`, background: selectedApparatus && selectedApparatus.name === a.name ? colors.lightGray : colors.white }}>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '5px'}}>
+                        <h5 style={{margin: 0, fontSize: '16px', color: colors.dark}}>{a.name}</h5>
+                        <span style={{color: a.status === 'In Service' ? colors.success : colors.danger, fontWeight: '600', fontSize: '12px'}}>{a.status}</span>
+                    </div>
+                    <div style={{fontSize: '13px', color: colors.gray}}>{a.type}</div>
+                </div>
+            ))}
+        </div>
+    );
+
+    const ApparatusDetailView = ({ apparatus }) => {
+        const [activeSubTab, setActiveSubTab] = React.useState('Checks');
+        const inventory = {
+            'Engine 1': [ {name: 'MSA G1 SCBA', qty: 4, status: 'Ready'}, {name: 'FLIR K2', qty: 1, status: 'Ready'}, {name: '1.75" Hose', qty: 800, status: 'Ready'} ],
+            'Ladder 1': [ {name: 'Stihl MS 461 Chainsaw', qty: 1, status: 'Ready'}, {name: 'Ground Ladders', qty: 6, status: 'Ready'}, {name: 'MSA G1 SCBA', qty: 4, status: 'Ready'} ],
+            'Rescue 1': [ {name: 'Holmatro Combi-Tool', qty: 1, status: 'Needs Service'}, {name: 'Air Bags', qty: 8, status: 'Ready'}, {name: 'Cribbing', qty: 2, status: 'Ready'} ],
+        };
+        const EngineChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Fluid Levels (Oil, Coolant, Fuel)" checked /><CheckboxItem label="Emergency Lighting & Sirens" checked /><CheckboxItem label="Pump & Gauges" checked /><CheckboxItem label="SCBA Checks (All seats)" /><CheckboxItem label="Hose Bed & Nozzles" checked /></div>;
+        const LadderChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Aerial Device Visual Inspection" checked /><CheckboxItem label="Hydraulic Fluid Level" checked /><CheckboxItem label="Outriggers & Stabilizers" checked /><CheckboxItem label="Ground Ladders Secure" checked /></div>;
+        const RescueChecklist = () => <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}><CheckboxItem label="Generator & Power Tools" checked /><CheckboxItem label="Hydraulic Tools Fluid & Function" /><CheckboxItem label="Air Bag System Pressure" checked /></div>;
+
+        const renderChecklist = () => {
+            if (apparatus.name.includes('Engine')) return <EngineChecklist />;
+            if (apparatus.name.includes('Ladder')) return <LadderChecklist />;
+            if (apparatus.name.includes('Rescue')) return <RescueChecklist />;
+            return <p>No specific checklist for this apparatus type.</p>;
+        };
+        
+        const currentInventory = inventory[apparatus.name] || [];
+
+        return (
+            <div style={{ background: colors.white, borderRadius: '8px', padding: '20px', border: `1px solid ${colors.lightGray}` }}>
+                <div style={{borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '15px', marginBottom: '15px'}}>
+                    <h3 style={{margin: 0, color: colors.dark}}>{apparatus.name}</h3>
+                    <p style={{margin: '5px 0 0 0', color: colors.gray}}>{apparatus.year} {apparatus.make}</p>
+                </div>
+                <SubNav tabs={['Checks', 'Inventory', 'History']} activeTab={activeSubTab} setActiveTab={setActiveSubTab} />
+                {activeSubTab === 'Checks' && <div><h4 style={{marginTop: 0}}>Daily Checklist</h4>{renderChecklist()}</div>}
+                {activeSubTab === 'Inventory' && <div>{currentInventory.map((item, index) => <div key={index} style={{ display: 'grid', gridTemplateColumns: '3fr 1fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === currentInventory.length - 1 ? 'none' : `1px solid ${colors.lightGray}`}}><div style={{fontWeight: '600'}}>{item.name}</div><div style={{color: colors.gray}}>Qty: {item.qty}</div><div style={{color: item.status === 'Ready' ? colors.success : colors.warning, fontWeight: '600'}}>{item.status}</div></div>)}</div>}
+                {activeSubTab === 'History' && <p>Maintenance and check history would be shown here.</p>}
+            </div>
+        );
+    };
+
+    return (
+        <div style={{ padding: '25px', height: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
+            <PageHeader title="Apparatus Roster" buttonLabel="+ Add Apparatus" />
+            <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '25px', flex: 1, overflow: 'hidden' }}>
+                <div style={{ overflowY: 'auto' }}>
+                    <ApparatusRosterList onSelect={setSelectedApparatus} />
+                </div>
+                <div style={{ overflowY: 'auto' }}>
+                    {selectedApparatus && <ApparatusDetailView apparatus={selectedApparatus} />}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// --- Placeholder for empty modules ---
+const PlaceholderContent = ({ tabName }) => ( <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', color: colors.gray, textAlign: 'center' }}><div style={{ fontSize: '64px', marginBottom: '20px' }}>{ {reports: '📄', settings: '⚙️'}[tabName] }</div><div style={{ fontSize: '22px', fontWeight: 'bold', color: colors.dark, marginBottom: '10px' }}>{tabName.charAt(0).toUpperCase() + tabName.slice(1)}</div><div style={{maxWidth: '300px'}}>This section is a placeholder for the {tabName} module.</div></div>);
+
+
+// --- Main Parent Component ---
 const App = () => {
   const [activeTab, setActiveTab] = React.useState('dashboard');
-
-  // Track demo interactions for analytics
-  React.useEffect(() => {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'demo_module_view', {
-        event_category: 'demo_interaction',
-        event_label: activeTab
-      });
-    }
-  }, [activeTab]);
 
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard': return <DashboardContent />;
       case 'incidents': return <IncidentReportContent />;
-      case 'occupancies': return <OccupanciesContent />;
       case 'personnel': return <PersonnelContent />;
       case 'equipment': return <EquipmentContent />;
+      case 'occupancies': return <OccupanciesContent />;
       case 'reports': return <PlaceholderContent tabName="reports" />;
       case 'settings': return <PlaceholderContent tabName="settings" />;
       default: return <DashboardContent />;
@@ -426,7 +571,7 @@ const App = () => {
 
   return (
     <div style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Inter, sans-serif' }}>
-        <div style={{ background: colors.light, display: 'flex', height: '100%', width: '100%' }}>
+         <div style={{ background: colors.light, display: 'flex', height: '100%', width: '100%' }}>
             <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
             <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
                 {renderContent()}
@@ -436,5 +581,4 @@ const App = () => {
   );
 }
 
-// Render the application
 ReactDOM.render(<App />, document.getElementById('react-app-container'));
