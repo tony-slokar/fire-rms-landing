@@ -1,0 +1,22 @@
+# File: site.webmanifest
+{
+  "name": "Fire-RMS: NERIS 2026 Fire Department Records Management",
+  "short_name": "Fire-RMS",
+  "description": "NERIS 2026 compliant records management system for fire departments",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E3A8A",
+  "theme_color": "#FF4500",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
