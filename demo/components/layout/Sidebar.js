@@ -1,7 +1,7 @@
 const Sidebar = ({ activeTab, setActiveTab }) => {
   const [hoveredTab, setHoveredTab] = React.useState(null);
-  const navItems = ['dashboard', 'incidents', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
-  const navIcons = {'dashboard': '📊', 'incidents': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
+  const navItems = ['dashboard', 'events', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
+  const navIcons = {'dashboard': '📊', 'events': '📋', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
   
   const navItemStyle = (tabName) => ({
     padding: '12px 20px', marginBottom: '4px', display: 'flex', alignItems: 'center',
