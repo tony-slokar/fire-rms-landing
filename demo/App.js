@@ -14,7 +14,7 @@ const App = () => {
   const renderContent = () => {
     switch (activeTab) {
       case 'dashboard': return <DashboardContent />;
-      case 'incidents': return <IncidentReportContent />;
+      case 'events': return <EventRecordContent />;
       case 'occupancies': return <OccupanciesContent />;
       case 'personnel': return <PersonnelContent />;
       case 'equipment': return <EquipmentContent />;
