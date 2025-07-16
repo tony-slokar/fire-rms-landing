@@ -1,9 +1,21 @@
 {
-  "name": "Fire-RMS: NERIS 2026 Fire Department Records Management",
-  "short_name": "Fire-RMS",
-  "description": "NERIS 2026 compliant records management system for fire departments",
+  "name": "LadderOps: NERIS 2026 Compliant Fire Department Records Management",
+  "short_name": "LadderOps",
+  "description": "NERIS 2026 compliant records management system for fire departments.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1E3A8A",
-  "theme_color": "#FF4500"
+  "theme_color": "#FF4500",
+  "background_color": "#1E3A8A"
 }
