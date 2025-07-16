@@ -1,4 +1,3 @@
-// demo/App.js
 const App = () => {
   const [activeTab, setActiveTab] = React.useState('dashboard');
 
