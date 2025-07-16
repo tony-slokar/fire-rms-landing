@@ -1,16 +1,27 @@
-const FireSection = () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
-        <SelectField label="Area of Fire Origin">
-            <option>75 - Kitchen</option>
-            <option>43 - Bedroom</option>
-        </SelectField>
-        <SelectField label="Heat Source">
-            <option>11 - Cooking Equipment</option>
-            <option>53 - Electrical Wiring</option>
-        </SelectField>
-        <SelectField label="Item First Ignited">
-            <option>13 - Cooking Oil/Grease</option>
-            <option>51 - Upholstered Furniture</option>
-        </SelectField>
-    </div>
-);
+const FireSection = () => {
+    const [activeSubNav, setActiveSubNav] = React.useState('Cause of Ignition');
+    const subNavTabs = ['Cause of Ignition', 'Area of Origin', 'Fire Suppression'];
+
+    const renderFireContent = () => {
+        switch (activeSubNav) {
+            case 'Cause of Ignition':
+                return <FireCauseSection />;
+            case 'Area of Origin':
+                return <FireOriginSection />;
+            case 'Fire Suppression':
+                return <FireSuppressionSection />;
+            default:
+                return <FireCauseSection />;
+        }
+    };
+
+    return (
+        <div>
+            <h3 style={{ borderBottom: `2px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '20px' }}>Fire Module</h3>
+            <SubNav tabs={subNavTabs} activeTab={activeSubNav} setActiveTab={setActiveSubNav} />
+            <div style={{ marginTop: '20px' }}>
+                {renderFireContent()}
+            </div>
+        </div>
+    );
+};
