@@ -28,12 +28,12 @@ const DashboardContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                 onFullScreenToggle={onFullScreenToggle}
             />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '25px' }}>
-                <KpiCard title="Incidents this Month" value="123" icon="🔥" change="+5.2%"/>
+                <KpiCard title="Events this Month" value="123" icon="🚨" change="+5.2%"/>
                 <KpiCard title="Avg. Response Time" value="4:32" icon="⏱️" change="-0.8%"/>
                 <KpiCard title="Inspections Due" value="18" icon="🏢" change="+12.5%"/>
-                <KpiCard title="Upcoming Inspections" value="8" icon="🗓️" change="+10%"/>
+                <KpiCard title="Training Hours" value="82" icon="👨‍🎓" change="+10%"/>
             </div>
-            <h3 style={{color: 'var(--dark)', marginBottom: '15px'}}>Recent Incidents</h3>
+            <h3 style={{color: 'var(--dark)', marginBottom: '15px'}}>Recent Events</h3>
             <div style={{ background: 'var(--light)', borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: `1px solid var(--light-gray)` }}>
                 {recentIncidents.map((inc, index) => (
                     <div key={inc.id} style={{display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === recentIncidents.length - 1 ? 'none' : `1px solid var(--light-gray)`}}>
