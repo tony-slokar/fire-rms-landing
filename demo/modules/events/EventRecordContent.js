@@ -21,15 +21,17 @@ const EventRecordContent = () => {
 
             {/* --- The Timeline Starts Here --- */}
 
-            <TimelineBlock title="The Call & Location" icon="📞" timestamp="14:02 HRS">
-                <h4 style={{ borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '15px' }}>Initial Dispatch Details</h4>
+            {/* BLOCK 1: THE CALL (Now separate) */}
+            <TimelineBlock title="The Call" icon="📞" timestamp="14:02 HRS">
                 <CoreSection />
-                <div style={{marginTop: '25px'}}>
-                  <h4 style={{ borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '15px' }}>Civic Location</h4>
-                  <CivicLocationSection />
-                </div>
             </TimelineBlock>
 
+            {/* BLOCK 2: CIVIC LOCATION (Now its own block) */}
+            <TimelineBlock title="Civic Location" icon="📍">
+                <CivicLocationSection />
+            </TimelineBlock>
+
+            {/* BLOCK 3: SCENE VALIDATION */}
             <TimelineBlock title="Scene Validation" icon="✅" isAwaitingInput={true}>
                 <p style={{marginBottom: '15px', color: colors.gray}}>Select the validated incident type to unlock required NERIS modules.</p>
                 <SelectField label="Validated Incident Type" onChange={(e) => handleIncidentTypeValidation(e.target.value)}>
