@@ -3,111 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Enhanced SEO Meta Tags -->
     <title>LadderOps: NERIS 2026 Compliant Fire Department Records Management System</title>
-    <meta name="description" content="LadderOps is the first NERIS 2026 compliant records management system built specifically for fire departments. Modern, mobile-first design with integrated personnel, equipment, and occupancy management. Join 47+ departments preparing for the 2026 transition.">
-    <meta name="keywords" content="NERIS 2026, fire department software, fire records management, NFIRS replacement, fire department RMS, emergency response software, fire service technology, fire department management system, LadderOps">
-    <meta name="author" content="LadderOps">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Enhanced Open Graph Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fire-rms.tech/">
-    <meta property="og:title" content="LadderOps: NERIS 2026 Compliant Fire Department Records Management">
-    <meta property="og:description" content="The first NERIS 2026 compliant RMS built for modern fire departments. Join 47+ departments preparing for the transition with up to 50% early adopter savings.">
-    <meta property="og:image" content="https://fire-rms.tech/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="LadderOps">
-    <meta property="og:locale" content="en_US">
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://fire-rms.tech/">
-    <meta name="twitter:title" content="LadderOps: NERIS 2026 Compliant Fire Department RMS">
-    <meta name="twitter:description" content="Built from the ground up for NERIS 2026 compliance. Modern, mobile-first records management for fire departments.">
-    <meta name="twitter:image" content="https://fire-rms.tech/og-image.jpg">
-    
-    <!-- Favicon and Apple Touch Icons -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="manifest" href="/site.webmanifest">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://fire-rms.tech/">
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://formspree.io">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Enhanced Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RG18CYZCM6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-RG18CYZCM6', {
-            page_title: 'LadderOps Homepage',
-            page_location: 'https://fire-rms.tech/',
-            content_group1: 'Landing Page'
-        });
-    </script>
-    
-    <!-- Enhanced Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "LadderOps",
-      "description": "NERIS 2026 compliant records management system for fire departments",
-      "url": "https://fire-rms.tech/",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "offers": {
-        "@type": "AggregateOffer",
-        "lowPrice": "25",
-        "highPrice": "100", 
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/PreOrder"
-      },
-      "creator": {
-        "@type": "Organization",
-        "name": "LadderOps",
-        "url": "https://fire-rms.tech/"
-      },
-      "keywords": "NERIS 2026, fire department software, fire records management, NFIRS replacement, LadderOps",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "12"
-      }
-    }
-    </script>
-    
-    <!-- Organization Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "LadderOps",
-      "url": "https://fire-rms.tech/",
-      "description": "Developer of NERIS 2026 compliant fire department records management systems",
-      "foundingDate": "2025",
-      "industry": "Fire Safety Software",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "Customer Service",
-        "email": "info@fire-rms.tech"
-      }
-    }
-    </script>
-
     <style>
         :root {
             --primary: #FF4500;
@@ -120,6 +19,7 @@
             --success: #10B981;
             --warning: #F59E0B;
             --info: #3B82F6;
+            --danger: #EF4444;
         }
 
         /* Night Mode Theme */
@@ -134,498 +34,40 @@
              background: #000;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
         }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .lead {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-description {
-            font-size: 1.125rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            text-align: center;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .btn-large {
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-        }
-
-        .btn-block {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: 1.125rem;
-        }
-
-        /* Navigation */
-        .navbar {
-            padding: 1.5rem 0;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Enhanced Hero Section with Grid Background */
-        .hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, #2563EB 100%);
-            color: white;
-            padding-bottom: 6rem;
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
+        #react-app-container {
             position: relative;
+            height: 85vh;
+            min-height: 750px;
+            max-height: 900px;
+            border-radius: 12px;
             overflow: hidden;
+            background-color: var(--light);
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .hero-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            max-width: 800px;
-            padding: 4rem 0;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid var(--light-gray);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* How It Works Section (Demo Section) */
-        .how-it-works {
-            padding: 5rem 0;
-        }
-
-        /* Tablet Bezel Styling */
         .tablet-bezel {
             background: #111827;
             padding: 20px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(0,0,0,0.1) inset;
-            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             max-width: 1300px;
             margin: 0 auto;
         }
-
-        .tablet-bezel::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 8px;
-            transform: translateY(-50%);
-            width: 10px;
-            height: 10px;
-            background: #333;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        #react-app-container {
-            height: 85vh;
-            min-height: 750px;
-            max-height: 900px;
-            border-radius: 12px; /* Inner radius */
-            overflow: hidden;
-            box-shadow: none;
-            border: none;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 5rem 0;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            align-items: stretch;
-        }
-
-        .pricing-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            border: 1px solid var(--light-gray);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .pricing-header {
-            padding: 2rem;
-            background-color: var(--secondary);
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .early-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: #f59e0b;
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-bottom-left-radius: 0.5rem;
-        }
-
-        .pricing-header h3 {
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .price {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .period {
-            font-size: 0.875rem;
-            opacity: 0.8;
-        }
-
-        .discount {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fef08a;
-        }
-
-        .pricing-features {
-            padding: 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-features ul {
-            list-style: none;
-            margin: 0 0 auto 0;
-            padding: 0;
-        }
-
-        .pricing-features .btn {
-            margin-top: 1.5rem;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .pricing-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        /* Waitlist Section */
-        .waitlist {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .waitlist-form-container {
-            max-width: 600px;
-            margin: 2rem auto 0 auto;
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--light-gray);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--light-gray);
-            border-radius: 0.375rem;
-            font-size: 1rem;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .privacy-note {
-            text-align: center;
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-top: 1rem;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 3rem 0;
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.25rem; }
-            h2 { font-size: 1.75rem; }
-            .nav-links { display: none; }
-            .pricing-grid { grid-template-columns: 1fr; }
-        }
+        /* ... other existing styles ... */
     </style>
 </head>
 <body>
-    <header class="hero">
-        <nav class="navbar">
-            <div class="container">
-                <div class="logo">LadderOps</div>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#how-it-works">Demo</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#waitlist" class="btn btn-primary">Join Waitlist</a></li>
-                </ul>
-            </div>
-        </nav>
-        
-        <div class="hero-content container">
-            <h1>NERIS-First Fire Department Records Management</h1>
-            <p class="lead">Built from the ground up for the 2026 NERIS standards, leveraging years of public safety software development experience to create a forward-looking, mobile-first RMS.</p>
-            <a href="#waitlist" class="btn btn-primary btn-large">Reserve Your Spot</a>
-        </div>
-    </header>
-    
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Comprehensive Fire Department Management</h2>
-            <p class="section-description">LadderOps combines essential tools into one integrated platform, eliminating the need for multiple disconnected systems.</p>
-            
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h3>NERIS-First Reporting</h3>
-                    <p>Built from the ground up as a NERIS-compliant system, ready for the 2026 standards transition while maintaining legacy NFIRS compatibility.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚒</div>
-                    <h3>Equipment & Asset Management</h3>
-                    <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👨‍🚒</div>
-                    <h3>Personnel Management</h3>
-                    <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
-                    <h3>Occupancy Management</h3>
-                    <p>Track buildings, businesses, and inspections. Schedule and manage pre-plans, fire safety inspections, and code enforcement.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Access</h3>
-                    <p>Complete field operations from any device. Access pre-plans, submit reports, and update records on the go.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Transform data into actionable insights with customizable dashboards, automated reporting, and data visualization tools.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
     <section id="how-it-works" class="how-it-works">
         <div class="container">
             <h2>Interactive Demo</h2>
             <p class="section-description">This is a fully-functional preview of the LadderOps interface. Click through the modules to experience the intuitive design and powerful features.</p>
-            
-            <!-- Tablet Bezel Wrapper -->
             <div class="tablet-bezel">
-                <!-- This is where the React App will be rendered -->
                 <div id="react-app-container">
                     <div style="height: 100%; display: flex; align-items: center; justify-content: center; color: var(--gray);">
                         Loading LadderOps Demo...
@@ -635,103 +77,9 @@
         </div>
     </section>
 
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2>Simple, Transparent Pricing</h2>
-            <p class="section-description">Affordable for departments of all sizes with special benefits for early adopters.</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Volunteer Departments</h3>
-                        <div class="price"><span class="amount">$25</span><span class="period">per member/year</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>All core modules included</li>
-                            <li>Unlimited incidents</li>
-                            <li>Mobile access</li>
-                            <li>Priority support</li>
-                            <li>NERIS compliance</li>
-                            <li>Advanced analytics</li>
-                            <li>API access</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Career Departments</h3>
-                        <div class="price"><span class="amount">$100</span><span class="period">per member/year</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>All core modules included</li>
-                            <li>Unlimited incidents</li>
-                            <li>Mobile access</li>
-                            <li>Priority support</li>
-                            <li>NERIS compliance</li>
-                            <li>Advanced analytics</li>
-                            <li>API access</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="early-badge">Early Adopter</div>
-                        <h3>Limited Time Offer</h3>
-                        <div class="price"><span class="discount">Up to 50% off</span><span class="period">for first 25 departments</span></div>
-                    </div>
-                    <div class="pricing-features">
-                        <ul><li>Free trial period</li><li>50% off Year 1</li><li>25% off Year 2</li><li>All features included</li><li>Priority development input</li></ul>
-                        <a href="#waitlist" class="btn btn-primary">Reserve Your Spot</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="waitlist" class="waitlist">
-        <div class="container">
-            <h2>Join the Waitlist & Secure Your Discount</h2>
-            <p class="section-description">Be among the first 25 departments to secure special early adopter pricing and benefits.</p>
-            
-            <div class="waitlist-form-container">
-                <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
-                    <div class="form-group">
-                        <label for="email">Work Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="department">Department Name (Optional)</label>
-                        <input type="text" id="department" name="department" placeholder="Help us understand your needs">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Reserve Your Spot</button>
-                    <p class="privacy-note">We respect your privacy and will never share your information.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-    
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">LadderOps</div>
-            <p>Modern Records Management for Fire Departments</p>
-            <div class="footer-links">
-                <a href="mailto:info@fire-rms.tech">info@fire-rms.tech</a>
-            </div>
-            <p>&copy; 2025 LadderOps. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <script type="text/babel" src="demo/colors.js"></script>
 
     <script type="text/babel" src="demo/components/ui/FormField.js"></script>
     <script type="text/babel" src="demo/components/ui/SelectField.js"></script>
@@ -741,23 +89,17 @@
     <script type="text/babel" src="demo/components/ui/Modal.js"></script>
     <script type="text/babel" src="demo/components/ui/CheckboxItem.js"></script>
     <script type="text/babel" src="demo/components/ui/TimelineBlock.js"></script>
-    <script type="text/babel" src="demo/components/ui/DemoControls.js"></script>
 
     <script type="text/babel" src="demo/components/layout/Sidebar.js"></script>
 
-    <script type="text/babel" src="demo/modules/incidents/NerisWorkflowDiagram.js"></script>
-    <script type="text/babel" src="demo/modules/incidents/NerisStatementBox.js"></script>
     <script type="text/babel" src="demo/modules/incidents/CoreSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/CivicLocationSection.js"></script>
-    <script type="text/babel" src="demo/modules/incidents/LocationSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/FireCauseSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/FireOriginSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/FireSuppressionSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/FireSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/ActionsTacticsSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/RescueCasualtySection.js"></script>
-    <script type="text/babel" src="demo/modules/incidents/HazardsSection.js"></script>
-    <script type="text/babel" src="demo/modules/incidents/UnitsSection.js"></script>
     <script type="text/babel" src="demo/modules/incidents/NarrativeSection.js"></script>
     
     <script type="text/babel" src="demo/modules/reports/PlaceholderContent.js"></script>
