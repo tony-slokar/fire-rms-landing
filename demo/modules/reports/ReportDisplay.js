@@ -3,22 +3,59 @@
 const ReportDisplay = ({ reportData, onBack }) => {
     const { title, dateRange, kpis, table } = reportData;
 
+    const handleExportCSV = () => {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += table.headers.join(",") + "\r\n";
+        table.rows.forEach(rowArray => {
+            let row = rowArray.join(",");
+            csvContent += row + "\r\n";
+        });
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `${title.replace(/ /g, "_")}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const handleExportPDF = () => {
+        // Simple print-to-pdf functionality
+        window.print();
+    };
+
     const KpiCard = ({ label, value }) => (
-        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', border: `1px solid var(--light-gray)`, textAlign: 'center' }}>
+        <div className="report-kpi" style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', border: `1px solid var(--light-gray)`, textAlign: 'center' }}>
             <div style={{ color: 'var(--gray)', fontSize: '14px', marginBottom: '8px' }}>{label}</div>
             <div style={{ color: 'var(--dark)', fontSize: '24px', fontWeight: 'bold' }}>{value}</div>
         </div>
     );
+    
+    const actionButtonStyle = {
+        background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', 
+        padding: '8px 12px', borderRadius: '6px', cursor: 'pointer', 
+        fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px'
+    };
 
     return (
-        <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '25px' }}>
-                <button onClick={onBack} style={{ background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer', fontSize: '20px', fontWeight: 'bold' }}>
-                    &larr;
-                </button>
-                <div>
-                    <h2 style={{ color: 'var(--dark)', margin: 0 }}>{title}</h2>
-                    <p style={{ color: 'var(--gray)', margin: 0 }}>{dateRange}</p>
+        <div className="report-container">
+            <div className="report-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '15px', marginBottom: '25px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <button onClick={onBack} className="back-button" style={{ background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer', fontSize: '20px', fontWeight: 'bold' }}>
+                        &larr;
+                    </button>
+                    <div>
+                        <h2 style={{ color: 'var(--dark)', margin: 0 }}>{title}</h2>
+                        <p style={{ color: 'var(--gray)', margin: 0 }}>{dateRange}</p>
+                    </div>
+                </div>
+                <div className="report-actions" style={{display: 'flex', gap: '10px'}}>
+                    <button onClick={handleExportCSV} style={actionButtonStyle}>
+                        <span style={{fontSize: '18px'}}>📄</span> CSV
+                    </button>
+                     <button onClick={handleExportPDF} style={actionButtonStyle}>
+                        <span style={{fontSize: '18px'}}>🖨️</span> PDF
+                    </button>
                 </div>
             </div>
 
