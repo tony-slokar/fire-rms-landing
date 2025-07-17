@@ -19,7 +19,7 @@ const PageHeader = ({ title, children, isNightMode, onNightModeToggle, onFullScr
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px', flexWrap: 'wrap', gap: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '25px', flexWrap: 'wrap', gap: '10px' }}>
             <div>
                 <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: 'var(--dark)', margin: 0, marginBottom: '5px' }}>{title}</h2>
                 {children}
