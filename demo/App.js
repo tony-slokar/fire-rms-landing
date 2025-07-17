@@ -1,62 +1,62 @@
 const App = () => {
-  const [activeTab, setActiveTab] = React.useState('dashboard');
-  
-  // State for new UI features
-  const [isNightMode, setIsNightMode] = React.useState(false);
-  const [isNavHidden, setIsNavHidden] = React.useState(false);
+    const [activeTab, setActiveTab] = React.useState('dashboard');
+    const [isNightMode, setIsNightMode] = React.useState(false);
+    const [isNavHidden, setIsNavHidden] = React.useState(false);
 
-  // Track demo interactions for analytics
-  React.useEffect(() => {
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'demo_module_view', {
-        event_category: 'demo_interaction',
-        event_label: activeTab
-      });
-    }
-  }, [activeTab]);
-  
-  const handleFullScreenToggle = () => {
-    const elem = document.querySelector('.tablet-bezel');
-    if (!document.fullscreenElement) {
-        elem.requestFullscreen().catch(err => {
-            alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-        });
-    } else {
-        document.exitFullscreen();
-    }
-  };
+    const handleFullScreenToggle = () => {
+        // This function now correctly targets the demo bezel for fullscreen
+        const elem = document.querySelector('.tablet-bezel'); 
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => {
+                alert(`Error: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    };
+    
+    // Pass the header props to the currently active component
+    const contentProps = {
+        isNightMode,
+        onNightModeToggle: () => setIsNightMode(!isNightMode),
+        onFullScreenToggle: handleFullScreenToggle
+    };
 
-  const renderContent = () => {
-    // ... (This function remains unchanged)
-    switch (activeTab) {
-      case 'dashboard': return <DashboardContent />;
-      case 'events': return <EventRecordContent />;
-      case 'occupancies': return <OccupanciesContent />;
-      case 'personnel': return <PersonnelContent />;
-      case 'equipment': return <EquipmentContent />;
-      case 'reports': return <PlaceholderContent tabName="reports" />;
-      case 'settings': return <PlaceholderContent tabName="settings" />;
-      default: return <DashboardContent />;
-    }
-  };
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'dashboard': return <DashboardContent {...contentProps} />;
+            case 'events': return <EventRecordContent {...contentProps} />;
+            case 'occupancies': return <OccupanciesContent {...contentProps} />;
+            // Add {...contentProps} to other modules as you build them
+            default: return <PlaceholderContent tabName={activeTab} />;
+        }
+    };
 
-  // Main container class toggles night-mode on/off
-  const appContainerClass = isNightMode ? 'night-mode' : '';
+    const appContainerClass = isNightMode ? 'night-mode' : '';
 
-  return (
-    <div className={appContainerClass} style={{ display: 'flex', height: '100%', width: '100%', fontFamily: 'Inter, sans-serif' }}>
-        <div style={{ background: colors.light, display: 'flex', height: '100%', width: '100%' }}>
-            {!isNavHidden && <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />}
-            <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
-                {renderContent()}
+    return (
+        <div className={appContainerClass} style={{ display: 'flex', height: '100%', fontFamily: 'Inter, sans-serif' }}>
+            <div style={{ background: 'var(--light)', display: 'flex', height: '100%', width: '100%' }}>
+                {!isNavHidden && (
+                    <Sidebar 
+                        activeTab={activeTab} 
+                        setActiveTab={setActiveTab} 
+                        onNavToggle={() => setIsNavHidden(!isNavHidden)}
+                    />
+                )}
+                {isNavHidden && (
+                     <button 
+                        onClick={() => setIsNavHidden(false)} 
+                        style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 1000, background: 'var(--secondary)', color: 'white', border: 'none', width: '40px', height: '40px', borderRadius: '50%', fontSize: '20px' }}
+                        title="Show Sidebar"
+                    >
+                        {'☰'}
+                    </button>
+                )}
+                <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
+                    {renderContent()}
+                </div>
             </div>
         </div>
-        <DemoControls 
-            isNightMode={isNightMode}
-            onNightModeToggle={() => setIsNightMode(!isNightMode)}
-            onFullScreenToggle={handleFullScreenToggle}
-            onNavToggle={() => setIsNavHidden(!isNavHidden)}
-        />
-    </div>
-  );
+    );
 };
