@@ -16,7 +16,7 @@ const App = () => {
             case 'occupancies': return <OccupanciesContent {...contentProps} />;
             case 'personnel': return <PersonnelContent {...contentProps} />;
             case 'equipment': return <EquipmentContent {...contentProps} />;
-            case 'reports': return <PlaceholderContent tabName="reports" {...contentProps} />;
+            case 'reports': return <ReportsContent {...contentProps} />;
             case 'settings': return <PlaceholderContent tabName="settings" {...contentProps} />;
             default: return <DashboardContent {...contentProps} />;
         }
