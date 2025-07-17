@@ -1,6 +1,10 @@
 const PlaceholderContent = ({ tabName }) => ( 
     <div style={{ padding: '25px', textAlign: 'center' }}>
-        <PageHeader title={`${tabName.charAt(0).toUpperCase() + tabName.slice(1)} Module`} />
+        <PageHeader title={`${tabName.charAt(0).toUpperCase() + tabName.slice(1)} Module`}
+            isNightMode={isNightMode}
+            onNightModeToggle={onNightModeToggle}
+            onFullScreenToggle={onFullScreenToggle}
+        />
         <div style={{ background: colors.white, padding: '40px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginTop: '20px' }}>
             <div style={{ fontSize: '48px', marginBottom: '20px' }}>
                 {{ reports: '📄', settings: '⚙️' }[tabName]}
