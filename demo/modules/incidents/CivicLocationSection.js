@@ -14,8 +14,8 @@ const CivicLocationSection = () => (
             <option>215 - Hospital</option>
         </SelectField>
         <FormField label="Business / Occupancy Name" value="Riverside Apartments" />
-        <div style={{ gridColumn: '1 / -1', borderTop: `1px solid ${colors.lightGray}`, paddingTop: '20px', marginTop: '10px' }}>
-             <h4 style={{marginBottom: '15px'}}>Geographic Coordinates</h4>
+        <div style={{ gridColumn: '1 / -1', borderTop: `1px solid var(--light-gray)`, paddingTop: '20px', marginTop: '10px' }}>
+             <h4 style={{marginBottom: '15px', color: 'var(--dark)'}}>Geographic Coordinates</h4>
              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
                 <FormField label="Latitude" value="42.3601" />
                 <FormField label="Longitude" value="-71.0589" />
