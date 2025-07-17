@@ -1,10 +1,10 @@
+// demo/App.js
 const App = () => {
-    const [activeTab, setActiveTab] = React.useState('dashboard');
+    const [activeTab, setActiveTab] = React.useState('events');
     const [isNightMode, setIsNightMode] = React.useState(false);
     const [isNavHidden, setIsNavHidden] = React.useState(false);
 
     const handleFullScreenToggle = () => {
-        // This function now correctly targets the demo bezel for fullscreen
         const elem = document.querySelector('.tablet-bezel'); 
         if (!document.fullscreenElement) {
             elem.requestFullscreen().catch(err => {
@@ -15,7 +15,6 @@ const App = () => {
         }
     };
     
-    // Pass the header props to the currently active component
     const contentProps = {
         isNightMode,
         onNightModeToggle: () => setIsNightMode(!isNightMode),
@@ -27,8 +26,11 @@ const App = () => {
             case 'dashboard': return <DashboardContent {...contentProps} />;
             case 'events': return <EventRecordContent {...contentProps} />;
             case 'occupancies': return <OccupanciesContent {...contentProps} />;
-            // Add {...contentProps} to other modules as you build them
-            default: return <PlaceholderContent tabName={activeTab} />;
+            case 'personnel': return <PersonnelContent {...contentProps} />;
+            case 'equipment': return <EquipmentContent {...contentProps} />;
+            case 'reports': return <PlaceholderContent tabName="reports" {...contentProps} />;
+            case 'settings': return <PlaceholderContent tabName="settings" {...contentProps} />;
+            default: return <DashboardContent {...contentProps} />;
         }
     };
 
@@ -47,7 +49,7 @@ const App = () => {
                 {isNavHidden && (
                      <button 
                         onClick={() => setIsNavHidden(false)} 
-                        style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 1000, background: 'var(--secondary)', color: 'white', border: 'none', width: '40px', height: '40px', borderRadius: '50%', fontSize: '20px' }}
+                        style={{ position: 'absolute', top: '20px', left: '20px', zIndex: 1000, background: 'var(--secondary)', color: 'white', border: 'none', width: '40px', height: '40px', borderRadius: '50%', fontSize: '20px', cursor: 'pointer' }}
                         title="Show Sidebar"
                     >
                         {'☰'}
