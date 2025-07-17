@@ -17,7 +17,7 @@ const FireSection = () => {
 
     return (
         <div>
-            <h3 style={{ borderBottom: `2px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '20px' }}>Fire Module</h3>
+            <h3 style={{ borderBottom: `2px solid var(--light-gray)`, paddingBottom: '10px', marginBottom: '20px', color: 'var(--dark)' }}>Fire Module</h3>
             <SubNav tabs={subNavTabs} activeTab={activeSubNav} setActiveTab={setActiveSubNav} />
             <div style={{ marginTop: '20px' }}>
                 {renderFireContent()}
