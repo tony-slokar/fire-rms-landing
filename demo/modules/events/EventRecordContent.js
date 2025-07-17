@@ -1,4 +1,4 @@
-const EventRecordContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
     const [requiredModules, setRequiredModules] = React.useState([]);
 
     const handleIncidentTypeValidation = (type) => {
@@ -19,7 +19,6 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle
                 title="Event #2025-00123"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
-                onFullScreenToggle={onFullScreenToggle}
             />
 
             <TimelineBlock title="The Call" icon="📞" timestamp="14:02 HRS">
