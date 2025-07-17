@@ -1,4 +1,4 @@
-const OccupanciesContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const OccupanciesContent = ({ isNightMode, onNightModeToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Buildings');
     const [showModal, setShowModal] = React.useState(false);
     const tabs = ['Buildings', 'Inspections', 'Pre-Plans'];
@@ -165,7 +165,6 @@ const OccupanciesContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle
                 buttonLabel="Add Building"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
-                onFullScreenToggle={onFullScreenToggle}
             />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
