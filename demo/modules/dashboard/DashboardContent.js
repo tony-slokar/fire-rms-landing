@@ -22,7 +22,7 @@ const DashboardContent = () => {
     return (
         <div style={{padding: '25px'}}>
             <PageHeader 
-                title="Event #2025-00123" 
+                title="Dashboard" 
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
                 onFullScreenToggle={onFullScreenToggle}
