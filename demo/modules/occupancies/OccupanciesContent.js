@@ -158,7 +158,11 @@ const OccupanciesContent = () => {
 
     return (
         <div style={{ padding: '25px' }}>
-            <PageHeader title="Occupancy Management" buttonLabel="Add Building" />
+            <PageHeader title="Occupancy Management" buttonLabel="Add Building" 
+                isNightMode={isNightMode}
+                onNightModeToggle={onNightModeToggle}
+                onFullScreenToggle={onFullScreenToggle}
+            />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
             {showModal && <BuildingDetailModal />}
