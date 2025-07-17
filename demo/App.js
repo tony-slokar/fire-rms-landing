@@ -1,4 +1,3 @@
-// demo/App.js
 const App = () => {
     const [activeTab, setActiveTab] = React.useState('events');
     const [isNightMode, setIsNightMode] = React.useState(false);
@@ -36,6 +35,15 @@ const App = () => {
 
     const appContainerClass = isNightMode ? 'night-mode' : '';
 
+    // Define the style for the main content area
+    const mainContentStyle = {
+        flex: 1,
+        overflowY: 'auto',
+        position: 'relative',
+        // Add padding to the left ONLY when the nav is hidden
+        paddingLeft: isNavHidden ? '70px' : '0'
+    };
+
     return (
         <div className={appContainerClass} style={{ display: 'flex', height: '100%', fontFamily: 'Inter, sans-serif' }}>
             <div style={{ background: 'var(--light)', display: 'flex', height: '100%', width: '100%' }}>
@@ -55,7 +63,8 @@ const App = () => {
                         {'☰'}
                     </button>
                 )}
-                <div style={{ flex: 1, overflowY: 'auto', position: 'relative' }}>
+                {/* Apply the dynamic style to this div */}
+                <div style={mainContentStyle}>
                     {renderContent()}
                 </div>
             </div>
