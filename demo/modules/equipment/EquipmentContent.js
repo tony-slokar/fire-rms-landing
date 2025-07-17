@@ -43,13 +43,13 @@ const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.type}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{unit.year}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.mileage}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: 'var(--success)', color: 'white' }}>
                                         {unit.status}
                                     </span>
                                 </td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.lastPM}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{unit.nextPM}</td>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.lastPM}</td>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{unit.nextPM}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -76,9 +76,9 @@ const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.name}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.type}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{item.location}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.lastInspection}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.nextDue}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.lastInspection}</td>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.nextDue}</td>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
@@ -115,9 +115,9 @@ const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{work.id}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.apparatus}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.type}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.date}</td>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.date}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{work.technician}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                <td className="no-wrap" style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
