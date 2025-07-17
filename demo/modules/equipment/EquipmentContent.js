@@ -1,5 +1,4 @@
-
-const EquipmentContent = () => {
+const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Apparatus');
     const [showModal, setShowModal] = React.useState(false);
     const tabs = ['Apparatus', 'Equipment', 'Maintenance'];
@@ -26,31 +25,31 @@ const EquipmentContent = () => {
     ];
 
     const ApparatusTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['Unit ID', 'Name', 'Type', 'Year', 'Mileage', 'Status', 'Last PM', 'Next PM'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {apparatus.map(unit => (
                             <tr key={unit.id} style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{unit.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.name}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.type}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{unit.year}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.mileage}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.success, color: colors.white }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{unit.id}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.name}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.type}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{unit.year}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.mileage}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: 'var(--success)', color: 'white' }}>
                                         {unit.status}
                                     </span>
                                 </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{unit.lastPM}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{unit.nextPM}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{unit.lastPM}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{unit.nextPM}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -60,33 +59,33 @@ const EquipmentContent = () => {
     );
 
     const EquipmentTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['Equipment ID', 'Name', 'Type', 'Location', 'Last Inspection', 'Next Due', 'Status'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {equipment.map(item => (
                             <tr key={item.id} style={{ cursor: 'pointer' }}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{item.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.name}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.type}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{item.location}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.lastInspection}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{item.nextDue}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{item.id}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.name}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.type}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{item.location}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.lastInspection}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{item.nextDue}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
                                         fontSize: '12px',
                                         fontWeight: '600',
-                                        background: item.status === 'Ready' ? colors.success : colors.warning,
-                                        color: colors.white
+                                        background: item.status === 'Ready' ? 'var(--success)' : 'var(--warning)',
+                                        color: 'white'
                                     }}>
                                         {item.status}
                                     </span>
@@ -100,37 +99,37 @@ const EquipmentContent = () => {
     );
 
     const MaintenanceTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['Work Order', 'Apparatus', 'Type', 'Date', 'Technician', 'Status', 'Cost'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {maintenance.map(work => (
                             <tr key={work.id} style={{ cursor: 'pointer' }}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{work.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.apparatus}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.type}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{work.date}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{work.technician}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{work.id}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.apparatus}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.type}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{work.date}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{work.technician}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
                                         fontSize: '12px',
                                         fontWeight: '600',
-                                        background: work.status === 'Completed' ? colors.success : work.status === 'In Progress' ? colors.warning : colors.info,
-                                        color: colors.white
+                                        background: work.status === 'Completed' ? 'var(--success)' : work.status === 'In Progress' ? 'var(--warning)' : 'var(--info)',
+                                        color: 'white'
                                     }}>
                                         {work.status}
                                     </span>
                                 </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{work.cost}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{work.cost}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -141,7 +140,7 @@ const EquipmentContent = () => {
 
     const ApparatusDetailModal = () => (
         <Modal onClose={() => setShowModal(false)}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>Engine 1 - Vehicle Details</h3>
+            <h3 style={{ marginTop: 0, marginBottom: '20px', color: 'var(--dark)' }}>Engine 1 - Vehicle Details</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
                 <FormField label="Unit ID" value="E-1" readOnly />
                 <FormField label="VIN" value="1FDWE35L98HA12345" />
@@ -151,8 +150,8 @@ const EquipmentContent = () => {
                 <FormField label="Ladder Length" value="35 feet" />
             </div>
             <div style={{ marginTop: '20px' }}>
-                <h4 style={{ marginBottom: '10px' }}>Recent Maintenance</h4>
-                <div style={{ color: colors.gray, fontSize: '14px' }}>
+                <h4 style={{ marginBottom: '10px', color: 'var(--dark)' }}>Recent Maintenance</h4>
+                <div style={{ color: 'var(--gray)', fontSize: '14px' }}>
                     Oil Change (07/01/25) • Brake Inspection (06/15/25) • Pump Test (05/20/25)
                 </div>
             </div>
@@ -171,7 +170,8 @@ const EquipmentContent = () => {
     return (
         <div style={{ padding: '25px' }}>
             <PageHeader
-                title="Equipment & Asset Management" buttonLabel="Add Asset"
+                title="Equipment & Asset Management"
+                buttonLabel="Add Asset"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
                 onFullScreenToggle={onFullScreenToggle}
