@@ -127,6 +127,24 @@
         .footer-links a { color: white; text-decoration: none; }
         .footer-links a:hover { text-decoration: underline; }
         @media (max-width: 768px) { h1 { font-size: 2.25rem; } h2 { font-size: 1.75rem; } .nav-links { display: none; } .pricing-grid { grid-template-columns: 1fr; } }
+        /* Print-specific styles for PDF export */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .report-container, .report-container * {
+                visibility: visible;
+            }
+            .report-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .back-button, .report-actions {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
