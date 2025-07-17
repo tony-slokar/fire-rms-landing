@@ -1,4 +1,4 @@
-const DashboardContent = ({ isNightMode, onNightModeToggle }) => {
+const DashboardContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
     const KpiCard = ({ title, value, icon, change }) => (
         <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: `1px solid var(--light-gray)` }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
@@ -12,11 +12,11 @@ const DashboardContent = ({ isNightMode, onNightModeToggle }) => {
         </div>
     );
 
-    const recentIncidents = [
-        { id: '2025-00123', type: '111 - Building Fire', status: 'Closed' },
-        { id: '2025-00122', type: '322 - Vehicle Fire', status: 'Closed' },
-        { id: '2025-00121', type: '554 - Person in Water', status: 'Open' },
-        { id: '2025-00120', type: '611 - EMS Call', status: 'Closed' },
+    const recentEvents = [
+        { id: '2025-00123', date: '2025-07-17', type: '111 - Building Fire', status: 'Closed' },
+        { id: '2025-00122', date: '2025-07-17', type: '322 - Vehicle Fire', status: 'Closed' },
+        { id: '2025-00121', date: '2025-07-16', type: '554 - Person in Water', status: 'Open' },
+        { id: '2025-00120', date: '2025-07-16', type: '611 - EMS Call', status: 'Closed' },
     ];
     
     return (
@@ -34,15 +34,28 @@ const DashboardContent = ({ isNightMode, onNightModeToggle }) => {
             </div>
             <h3 style={{color: 'var(--dark)', marginBottom: '15px'}}>Recent Events</h3>
             <div style={{ background: 'var(--light)', borderRadius: '8px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: `1px solid var(--light-gray)` }}>
-                {recentIncidents.map((inc, index) => (
-                    <div key={inc.id} style={{display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', alignItems: 'center', padding: '10px', borderBottom: index === recentIncidents.length - 1 ? 'none' : `1px solid var(--light-gray)`}}>
-                        <div style={{fontWeight: '600', color: 'var(--dark)'}}>{inc.id}</div>
-                        <div style={{color: 'var(--gray)'}}>{inc.type}</div>
-                        <div>
-                            <span style={{padding: '4px 8px', borderRadius: '10px', fontSize: '12px', background: inc.status === 'Closed' ? 'var(--success)' : 'var(--warning)', color: 'white'}}>{inc.status}</span>
-                        </div>
-                    </div>
-                ))}
+                <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--dark)'}}>
+                    <thead>
+                        <tr>
+                            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '2px solid var(--light-gray)', color: 'var(--gray)'}}>Event ID</th>
+                            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '2px solid var(--light-gray)', color: 'var(--gray)'}}>Date</th>
+                            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '2px solid var(--light-gray)', color: 'var(--gray)'}}>Type</th>
+                            <th style={{ padding: '10px', textAlign: 'left', borderBottom: '2px solid var(--light-gray)', color: 'var(--gray)'}}>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {recentEvents.map((event, index) => (
+                            <tr key={event.id}>
+                                <td style={{padding: '10px', fontWeight: '600', borderBottom: `1px solid var(--light-gray)`}}>{event.id}</td>
+                                <td style={{padding: '10px', borderBottom: `1px solid var(--light-gray)`}}>{event.date}</td>
+                                <td style={{padding: '10px', color: 'var(--gray)', borderBottom: `1px solid var(--light-gray)`}}>{event.type}</td>
+                                <td style={{padding: '10px', borderBottom: `1px solid var(--light-gray)`}}>
+                                    <span style={{padding: '4px 8px', borderRadius: '10px', fontSize: '12px', background: event.status === 'Closed' ? 'var(--success)' : 'var(--warning)', color: 'white'}}>{event.status}</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
