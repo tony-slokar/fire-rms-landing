@@ -12,7 +12,8 @@ const Sidebar = ({ activeTab, setActiveTab, onNavToggle }) => {
     borderLeft: activeTab === tabName ? `4px solid var(--primary)` : '4px solid transparent',
     cursor: 'pointer',
     transition: 'background 0.2s ease-in-out, border-left 0.2s ease-in-out',
-    fontWeight: activeTab === tabName ? '600' : 'normal'
+    fontWeight: activeTab === tabName ? '600' : 'normal',
+    color: 'white'
   });
 
   const hamburgerStyle = {
