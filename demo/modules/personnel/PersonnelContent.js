@@ -1,4 +1,4 @@
-const PersonnelContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const PersonnelContent = ({ isNightMode, onNightModeToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Roster');
     const [showModal, setShowModal] = React.useState(false);
     const tabs = ['Roster', 'Certifications', 'Scheduling'];
@@ -167,7 +167,6 @@ const PersonnelContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                 buttonLabel="Add Member"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
-                onFullScreenToggle={onFullScreenToggle}
             />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
