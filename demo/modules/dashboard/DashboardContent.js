@@ -21,7 +21,12 @@ const DashboardContent = () => {
     
     return (
         <div style={{padding: '25px'}}>
-            <PageHeader title="Dashboard"/>
+            <PageHeader 
+                title="Event #2025-00123" 
+                isNightMode={isNightMode}
+                onNightModeToggle={onNightModeToggle}
+                onFullScreenToggle={onFullScreenToggle}
+            />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '25px' }}>
                 <KpiCard title="Incidents this Month" value="123" icon="🔥" change="+5.2%"/>
                 <KpiCard title="Avg. Response Time" value="4:32" icon="⏱️" change="-0.8%"/>
