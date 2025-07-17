@@ -1,4 +1,4 @@
-const PageHeader = ({ title, children, isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const PageHeader = ({ title, children, isNightMode, onNightModeToggle }) => {
     const headerActionsStyle = {
         display: 'flex',
         gap: '15px'
@@ -27,9 +27,6 @@ const PageHeader = ({ title, children, isNightMode, onNightModeToggle, onFullScr
             <div style={headerActionsStyle}>
                  <button onClick={onNightModeToggle} style={buttonStyle} title="Toggle Night Mode">
                     {isNightMode ? '☀️' : '🌙'}
-                </button>
-                 <button onClick={onFullScreenToggle} style={buttonStyle} title="Toggle Full Screen">
-                    {'↔️'}
                 </button>
             </div>
         </div>
