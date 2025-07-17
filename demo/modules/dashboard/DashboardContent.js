@@ -1,4 +1,4 @@
-const DashboardContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const DashboardContent = ({ isNightMode, onNightModeToggle }) => {
     const KpiCard = ({ title, value, icon, change }) => (
         <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: `1px solid var(--light-gray)` }}>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
@@ -25,7 +25,6 @@ const DashboardContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                 title="Dashboard"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
-                onFullScreenToggle={onFullScreenToggle}
             />
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '25px' }}>
                 <KpiCard title="Events this Month" value="123" icon="🚨" change="+5.2%"/>
