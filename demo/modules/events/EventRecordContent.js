@@ -17,7 +17,11 @@ const EventRecordContent = () => {
 
     return (
         <div style={{ padding: '25px', maxWidth: '900px', margin: '0 auto' }}>
-            <PageHeader title="Event #2025-00123" />
+            <PageHeader title="Event #2025-00123"
+                isNightMode={isNightMode}
+                onNightModeToggle={onNightModeToggle}
+                onFullScreenToggle={onFullScreenToggle}
+            />
 
             {/* --- The Timeline Starts Here --- */}
 
