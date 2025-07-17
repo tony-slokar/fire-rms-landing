@@ -3,21 +3,10 @@ const App = () => {
     const [isNightMode, setIsNightMode] = React.useState(false);
     const [isNavHidden, setIsNavHidden] = React.useState(false);
 
-    const handleFullScreenToggle = () => {
-        const elem = document.querySelector('.tablet-bezel'); 
-        if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch(err => {
-                alert(`Error: ${err.message}`);
-            });
-        } else {
-            document.exitFullscreen();
-        }
-    };
-    
+    // Pass the header props to the currently active component
     const contentProps = {
         isNightMode,
-        onNightModeToggle: () => setIsNightMode(!isNightMode),
-        onFullScreenToggle: handleFullScreenToggle
+        onNightModeToggle: () => setIsNightMode(!isNightMode)
     };
 
     const renderContent = () => {
@@ -35,12 +24,10 @@ const App = () => {
 
     const appContainerClass = isNightMode ? 'night-mode' : '';
 
-    // Define the style for the main content area
     const mainContentStyle = {
         flex: 1,
         overflowY: 'auto',
         position: 'relative',
-        // Add padding to the left ONLY when the nav is hidden
         paddingLeft: isNavHidden ? '70px' : '0'
     };
 
@@ -63,7 +50,6 @@ const App = () => {
                         {'☰'}
                     </button>
                 )}
-                {/* Apply the dynamic style to this div */}
                 <div style={mainContentStyle}>
                     {renderContent()}
                 </div>
