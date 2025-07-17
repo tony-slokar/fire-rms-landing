@@ -21,8 +21,13 @@ const EventRecordContent = () => {
 
             {/* --- The Timeline Starts Here --- */}
 
-            <TimelineBlock title="The Call" icon="📞" timestamp="14:02 HRS">
+            <TimelineBlock title="The Call & Location" icon="📞" timestamp="14:02 HRS">
+                <h4 style={{ borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '15px' }}>Initial Dispatch Details</h4>
                 <CoreSection />
+                <div style={{marginTop: '25px'}}>
+                  <h4 style={{ borderBottom: `1px solid ${colors.lightGray}`, paddingBottom: '10px', marginBottom: '15px' }}>Civic Location</h4>
+                  <CivicLocationSection />
+                </div>
             </TimelineBlock>
 
             <TimelineBlock title="Scene Validation" icon="✅" isAwaitingInput={true}>
