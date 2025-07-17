@@ -1,5 +1,4 @@
-
-const PersonnelContent = () => {
+const PersonnelContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Roster');
     const [showModal, setShowModal] = React.useState(false);
     const tabs = ['Roster', 'Certifications', 'Scheduling'];
@@ -29,32 +28,32 @@ const PersonnelContent = () => {
     ];
 
     const RosterTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['ID', 'Name', 'Rank', 'Station', 'Shift', 'Status', 'Cert Alerts'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {personnel.map(person => (
                             <tr key={person.id} style={{ cursor: 'pointer' }} onClick={() => setShowModal(true)}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{person.id}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.name}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.rank}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{person.station}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{person.shift}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
-                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.success, color: colors.white }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{person.id}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{person.name}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{person.rank}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{person.station}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{person.shift}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                    <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: 'var(--success)', color: 'white' }}>
                                         {person.status}
                                     </span>
                                 </td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     {person.certExpirations > 0 && (
-                                        <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: colors.warning, color: colors.white }}>
+                                        <span style={{ padding: '4px 8px', borderRadius: '12px', fontSize: '12px', fontWeight: '600', background: 'var(--warning)', color: 'white' }}>
                                             {person.certExpirations} Expiring
                                         </span>
                                     )}
@@ -68,31 +67,31 @@ const PersonnelContent = () => {
     );
 
     const CertificationsTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['Member', 'Certification', 'Issue Date', 'Expiration', 'Status'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {certifications.map((cert, index) => (
                             <tr key={index}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{cert.member}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cert.cert}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{cert.issueDate}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{cert.expiration}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{cert.member}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{cert.cert}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{cert.issueDate}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{cert.expiration}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
                                         fontSize: '12px',
                                         fontWeight: '600',
-                                        background: cert.status === 'Current' ? colors.success : colors.warning,
-                                        color: colors.white
+                                        background: cert.status === 'Current' ? 'var(--success)' : 'var(--warning)',
+                                        color: 'white'
                                     }}>
                                         {cert.status}
                                     </span>
@@ -106,24 +105,24 @@ const PersonnelContent = () => {
     );
 
     const SchedulingTab = () => (
-        <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
                             {['Date', 'Shift', 'Captain', 'Lieutenant', 'Additional Members'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid ${colors.lightGray}`, padding: '12px', textAlign: 'left', color: colors.gray, fontSize: '14px' }}>{h}</th>
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {schedule.map((shift, index) => (
                             <tr key={index}>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', fontWeight: '600' }}>{shift.date}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.shift}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.captain}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px' }}>{shift.lieutenant}</td>
-                                <td style={{ borderBottom: `1px solid ${colors.lightGray}`, padding: '12px', color: colors.gray }}>{shift.members}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{shift.date}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{shift.shift}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{shift.captain}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{shift.lieutenant}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{shift.members}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -134,7 +133,7 @@ const PersonnelContent = () => {
 
     const PersonnelDetailModal = () => (
         <Modal onClose={() => setShowModal(false)}>
-            <h3 style={{ marginTop: 0, marginBottom: '20px' }}>John Davis - Personnel Record</h3>
+            <h3 style={{ marginTop: 0, marginBottom: '20px', color: 'var(--dark)' }}>John Davis - Personnel Record</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '15px' }}>
                 <FormField label="Employee ID" value="P-001" readOnly />
                 <FormField label="Badge Number" value="101" />
@@ -144,8 +143,8 @@ const PersonnelContent = () => {
                 <FormField label="Phone" value="(555) 987-6543" />
             </div>
             <div style={{ marginTop: '20px' }}>
-                <h4 style={{ marginBottom: '10px' }}>Current Certifications</h4>
-                <div style={{ color: colors.gray, fontSize: '14px' }}>
+                <h4 style={{ marginBottom: '10px', color: 'var(--dark)' }}>Current Certifications</h4>
+                <div style={{ color: 'var(--gray)', fontSize: '14px' }}>
                     Firefighter I/II (Exp: 2025-03-15) • Hazmat Operations (Exp: 2025-06-10) • CPR (Exp: 2025-12-01)
                 </div>
             </div>
@@ -163,7 +162,9 @@ const PersonnelContent = () => {
 
     return (
         <div style={{ padding: '25px' }}>
-            <PageHeader title="Personnel Management" buttonLabel="Add Member" 
+            <PageHeader
+                title="Personnel Management"
+                buttonLabel="Add Member"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
                 onFullScreenToggle={onFullScreenToggle}
