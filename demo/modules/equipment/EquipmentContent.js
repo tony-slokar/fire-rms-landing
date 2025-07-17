@@ -170,7 +170,12 @@ const EquipmentContent = () => {
 
     return (
         <div style={{ padding: '25px' }}>
-            <PageHeader title="Equipment & Asset Management" buttonLabel="Add Asset" />
+            <PageHeader
+                title="Equipment & Asset Management" buttonLabel="Add Asset"
+                isNightMode={isNightMode}
+                onNightModeToggle={onNightModeToggle}
+                onFullScreenToggle={onFullScreenToggle}
+            />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
             {showModal && <ApparatusDetailModal />}
