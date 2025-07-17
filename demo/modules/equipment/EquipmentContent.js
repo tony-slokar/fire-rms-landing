@@ -1,4 +1,4 @@
-const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }) => {
+const EquipmentContent = ({ isNightMode, onNightModeToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Apparatus');
     const [showModal, setShowModal] = React.useState(false);
     const tabs = ['Apparatus', 'Equipment', 'Maintenance'];
@@ -174,7 +174,6 @@ const EquipmentContent = ({ isNightMode, onNightModeToggle, onFullScreenToggle }
                 buttonLabel="Add Asset"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
-                onFullScreenToggle={onFullScreenToggle}
             />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
