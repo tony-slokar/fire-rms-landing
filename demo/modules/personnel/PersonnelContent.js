@@ -163,7 +163,11 @@ const PersonnelContent = () => {
 
     return (
         <div style={{ padding: '25px' }}>
-            <PageHeader title="Personnel Management" buttonLabel="Add Member" />
+            <PageHeader title="Personnel Management" buttonLabel="Add Member" 
+                isNightMode={isNightMode}
+                onNightModeToggle={onNightModeToggle}
+                onFullScreenToggle={onFullScreenToggle}
+            />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             {renderTabContent()}
             {showModal && <PersonnelDetailModal />}
