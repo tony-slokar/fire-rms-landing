@@ -1,7 +1,7 @@
 const TimelineBlock = ({ icon, title, timestamp, children, isAwaitingInput = false }) => {
     const lineStyle = {
         width: '2px',
-        backgroundColor: colors.lightGray,
+        backgroundColor: 'var(--light-gray)', // Changed from colors.lightGray
         flexShrink: 0,
         marginLeft: '19px',
         minHeight: '30px'
@@ -11,8 +11,8 @@ const TimelineBlock = ({ icon, title, timestamp, children, isAwaitingInput = fal
         width: '40px',
         height: '40px',
         borderRadius: '50%',
-        backgroundColor: isAwaitingInput ? colors.primary : colors.secondary,
-        color: colors.white,
+        backgroundColor: isAwaitingInput ? 'var(--primary)' : 'var(--secondary)', // Changed
+        color: 'white', // Unchanged
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,10 +32,10 @@ const TimelineBlock = ({ icon, title, timestamp, children, isAwaitingInput = fal
             {/* --- Content Card --- */}
             <div style={{ flex: 1, marginLeft: '20px', paddingBottom: '30px' }}>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px'}}>
-                    <h3 style={{ margin: 0 }}>{title}</h3>
-                    {timestamp && <span style={{color: colors.gray, fontSize: '12px', fontWeight: 'bold'}}>{timestamp}</span>}
+                    <h3 style={{ margin: 0, color: 'var(--dark)' }}>{title}</h3> {/* Changed */}
+                    {timestamp && <span style={{color: 'var(--gray)', fontSize: '12px', fontWeight: 'bold'}}>{timestamp}</span>} {/* Changed */}
                 </div>
-                <div style={{ background: colors.white, padding: '20px', borderRadius: '8px', border: `1px solid ${colors.lightGray}`, boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+                <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', border: `1px solid var(--light-gray)`, boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}> {/* Changed */}
                     {children}
                 </div>
             </div>
