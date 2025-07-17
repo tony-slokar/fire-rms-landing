@@ -6,10 +6,37 @@
     
     <title>LadderOps: NERIS 2026 Compliant Fire Department Records Management System</title>
     <meta name="description" content="LadderOps is the first NERIS 2026 compliant records management system built specifically for fire departments. Modern, mobile-first design with integrated personnel, equipment, and occupancy management. Join 47+ departments preparing for the 2026 transition.">
+    <meta name="keywords" content="NERIS 2026, fire department software, fire records management, NFIRS replacement, fire department RMS, emergency response software, fire service technology, fire department management system, LadderOps">
+    <meta name="author" content="LadderOps">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fire-rms.tech/">
+    <meta property="og:title" content="LadderOps: NERIS 2026 Compliant Fire Department Records Management">
+    <meta property="og:description" content="The first NERIS 2026 compliant RMS built for modern fire departments. Join 47+ departments preparing for the transition with up to 50% early adopter savings.">
+    <meta property="og:image" content="https://fire-rms.tech/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LadderOps">
+    <meta property="og:locale" content="en_US">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://fire-rms.tech/">
+    <meta name="twitter:title" content="LadderOps: NERIS 2026 Compliant Fire Department RMS">
+    <meta name="twitter:description" content="Built from the ground up for NERIS 2026 compliance. Modern, mobile-first records management for fire departments.">
+    <meta name="twitter:image" content="https://fire-rms.tech/og-image.jpg">
+    
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
+    
+    <link rel="canonical" href="https://fire-rms.tech/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://formspree.io">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -47,11 +74,22 @@
         .btn-block { width: 100%; padding: 0.75rem; font-size: 1.125rem; }
         .navbar { padding: 1.5rem 0; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: white; }
         .nav-links { display: flex; list-style: none; }
         .nav-links li { margin-left: 2rem; }
         .nav-links a { color: white; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: rgba(255, 255, 255, 0.8); }
         .hero { background: linear-gradient(135deg, var(--secondary) 0%, #2563EB 100%); color: white; padding-bottom: 6rem; min-height: 600px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
         .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; max-width: 800px; padding: 4rem 0; position: relative; z-index: 10; }
         .features { padding: 5rem 0; background-color: white; }
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
@@ -60,11 +98,17 @@
         .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
         .how-it-works { padding: 5rem 0; }
         .tablet-bezel { background: #111827; padding: 20px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1300px; margin: 0 auto; }
+        .tablet-bezel::after { content: ''; position: absolute; top: 50%; left: 8px; transform: translateY(-50%); width: 10px; height: 10px; background: #333; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; }
         #react-app-container { position: relative; height: 85vh; min-height: 750px; max-height: 900px; border-radius: 12px; overflow: hidden; background-color: var(--light); }
         .pricing { padding: 5rem 0; }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: stretch; }
         .pricing-card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--light-gray); }
-        .pricing-header { padding: 2rem; background-color: var(--secondary); color: white; text-align: center; }
+        .pricing-header { padding: 2rem; background-color: var(--secondary); color: white; text-align: center; position: relative; }
+        .early-badge { position: absolute; top: 0; right: 0; background-color: #f59e0b; color: white; padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; border-bottom-left-radius: 0.5rem; }
+        .price { display: flex; flex-direction: column; align-items: center; }
+        .amount { font-size: 2.5rem; font-weight: 700; }
+        .period { font-size: 0.875rem; opacity: 0.8; }
+        .discount { font-size: 1.5rem; font-weight: 700; color: #fef08a; }
         .pricing-features { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
         .pricing-features ul { list-style: none; margin: 0 0 auto 0; padding: 0; }
         .pricing-features .btn { margin-top: 1.5rem; }
@@ -75,7 +119,13 @@
         .form-group { margin-bottom: 1.5rem; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
         input { width: 100%; padding: 0.75rem; border: 1px solid var(--light-gray); border-radius: 0.375rem; font-size: 1rem; }
+        input:focus { outline: none; border-color: var(--primary); }
+        .privacy-note { text-align: center; font-size: 0.875rem; color: var(--gray); margin-top: 1rem; }
         .footer { padding: 3rem 0; background-color: var(--dark); color: white; text-align: center; }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .footer p { margin-bottom: 1rem; }
+        .footer-links a { color: white; text-decoration: none; }
+        .footer-links a:hover { text-decoration: underline; }
         @media (max-width: 768px) { h1 { font-size: 2.25rem; } h2 { font-size: 1.75rem; } .nav-links { display: none; } .pricing-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -163,33 +213,45 @@
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Volunteer Departments</h3>
+                        <div class="price"><span class="amount">$25</span><span class="period">per member/year</span></div>
                     </div>
                     <div class="pricing-features">
                         <ul>
                             <li>All core modules included</li>
                             <li>Unlimited incidents</li>
                             <li>Mobile access</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Career Departments</h3>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>All core modules included</li>
                             <li>Priority support</li>
+                            <li>NERIS compliance</li>
+                            <li>Advanced analytics</li>
                             <li>API access</li>
                         </ul>
                     </div>
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Limited Time Offer</h3>
+                        <h3>Career Departments</h3>
+                        <div class="price"><span class="amount">$100</span><span class="period">per member/year</span></div>
                     </div>
                     <div class="pricing-features">
-                        <ul><li>Free trial period</li><li>50% off Year 1</li><li>25% off Year 2</li></ul>
+                        <ul>
+                            <li>All core modules included</li>
+                            <li>Unlimited incidents</li>
+                            <li>Mobile access</li>
+                            <li>Priority support</li>
+                            <li>NERIS compliance</li>
+                            <li>Advanced analytics</li>
+                            <li>API access</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="early-badge">Early Adopter</div>
+                        <h3>Limited Time Offer</h3>
+                        <div class="price"><span class="discount">Up to 50% off</span><span class="period">for first 25 departments</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul><li>Free trial period</li><li>50% off Year 1</li><li>25% off Year 2</li><li>All features included</li><li>Priority development input</li></ul>
                         <a href="#waitlist" class="btn btn-primary">Reserve Your Spot</a>
                     </div>
                 </div>
@@ -217,7 +279,7 @@
                         <input type="text" id="department" name="department" placeholder="Help us understand your needs">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Reserve Your Spot</button>
-                    <p class="privacy-note" style="text-align: center; font-size: 0.875rem; color: var(--gray); margin-top: 1rem;">We respect your privacy.</p>
+                    <p class="privacy-note">We respect your privacy and will never share your information.</p>
                 </form>
             </div>
         </div>
@@ -227,6 +289,9 @@
         <div class="container">
             <div class="footer-logo">LadderOps</div>
             <p>Modern Records Management for Fire Departments</p>
+            <div class="footer-links">
+                <a href="mailto:info@fire-rms.tech">info@fire-rms.tech</a>
+            </div>
             <p>&copy; 2025 LadderOps. All rights reserved.</p>
         </div>
     </footer>
