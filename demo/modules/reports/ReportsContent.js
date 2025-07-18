@@ -1,4 +1,3 @@
-// demo/modules/reports/ReportsContent.js
 const ReportsContent = ({ isNightMode, onNightModeToggle }) => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const [selectedReport, setSelectedReport] = React.useState(null);
@@ -25,33 +24,45 @@ const ReportsContent = ({ isNightMode, onNightModeToggle }) => {
     };
 
     const handleRunReport = () => {
-        // Find the corresponding mock data.
         const reportData = mockReportData[selectedReport];
         if (reportData) {
             setGeneratedReport(reportData);
         } else {
-            // Fallback for reports without mock data yet
             alert(`The report '${selectedReport}' is not yet implemented in this demo.`);
         }
         setIsModalOpen(false);
     };
 
-    const ReportParameterModal = () => (
-        <Modal onClose={() => setIsModalOpen(false)}>
-            <h3 style={{ color: 'var(--dark)', marginTop: 0, marginBottom: '5px' }}>Report Parameters</h3>
-            <p style={{ color: 'var(--gray)', marginBottom: '20px', fontSize: '14px' }}>{selectedReport}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <FormField label="Start Date" type="date" />
-                <FormField label="End Date" type="date" />
-            </div>
-            <div style={{display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '30px', borderTop: '1px solid var(--light-gray)', paddingTop: '20px' }}>
-                 <button onClick={() => setIsModalOpen(false)} style={{ background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Cancel</button>
-                 <button onClick={handleRunReport} style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Run Report</button>
-            </div>
-        </Modal>
-    );
+    const ReportParameterModal = () => {
+        // Function to get today's date in YYYY-MM-DD format
+        const getTodayDate = () => {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+            const day = String(today.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
 
-    // If a report has been generated, show it. Otherwise, show the list.
+        return (
+            <Modal onClose={() => setIsModalOpen(false)}>
+                <h3 style={{ color: 'var(--dark)', marginTop: 0, marginBottom: '5px' }}>Report Parameters</h3>
+                <p style={{ color: 'var(--gray)', marginBottom: '20px', fontSize: '14px' }}>{selectedReport}</p>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    {/* For controlled components, we use value and a dummy onChange */}
+                    <FormField label="Start Date" type="date" value="" onChange={() => {}} />
+                    <FormField label="End Date" type="date" value={getTodayDate()} onChange={() => {}} />
+                </div>
+                
+                <div style={{display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '30px', borderTop: '1px solid var(--light-gray)', paddingTop: '20px' }}>
+                     <button onClick={() => setIsModalOpen(false)} style={{ background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Cancel</button>
+                     <button onClick={handleRunReport} style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Run Report</button>
+                </div>
+            </Modal>
+        );
+    };
+
+    // Main component return logic remains the same
     if (generatedReport) {
         return (
             <div style={{ padding: '25px' }}>
