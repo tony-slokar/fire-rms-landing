@@ -3,13 +3,11 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
 
     const handleIncidentTypeValidation = (type) => {
         if (type === '111') {
-            setRequiredModules(['Fire', 'Casualty', 'Actions']);
-        } else if (type === '322') {
-            setRequiredModules(['Fire', 'Actions']);
+            setRequiredModules(['Units', 'Fire', 'Casualty', 'Actions', 'Narrative']);
         } else if (type === '611') {
-            setRequiredModules(['Medical', 'Casualty']);
+            setRequiredModules(['Units', 'Medical', 'Casualty', 'Actions', 'Narrative']);
         } else {
-            setRequiredModules([]);
+            setRequiredModules(['Units', 'Actions', 'Narrative']);
         }
     };
 
@@ -34,11 +32,17 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 <SelectField label="Validated Incident Type" onChange={(e) => handleIncidentTypeValidation(e.target.value)}>
                     <option value="">-- Select Type --</option>
                     <option value="111">111 - Building Fire</option>
-                    <option value="322">322 - Vehicle Fire</option>
                     <option value="611">611 - EMS Call</option>
                     <option value="554">554 - Person in Water</option>
                 </SelectField>
             </TimelineBlock>
+
+            {/* --- Dynamically Rendered Modules --- */}
+            {requiredModules.includes('Units') && (
+                <TimelineBlock title="Units & Personnel" icon="🚒">
+                    <UnitsAndPersonnelBlock />
+                </TimelineBlock>
+            )}
 
             {requiredModules.includes('Fire') && (
                 <TimelineBlock title="Fire Module" icon="🔥">
@@ -48,13 +52,13 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
             
             {requiredModules.includes('Medical') && (
                 <TimelineBlock title="Medical Module" icon="⚕️">
-                    <p style={{color: 'var(--dark)'}}>Medical-specific fields would appear here.</p>
+                    <p style={{color: 'var(--dark)'}}>A dedicated, rich form for EMS data entry would be here.</p>
                 </TimelineBlock>
             )}
 
             {requiredModules.includes('Casualty') && (
-                <TimelineBlock title="Casualty & Rescue" icon="👨‍⚕️">
-                    <RescueCasualtySection />
+                <TimelineBlock title="Casualty Information" icon="👨‍⚕️">
+                    <CasualtyBlock />
                 </TimelineBlock>
             )}
 
@@ -64,12 +68,14 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 </TimelineBlock>
             )}
 
-            <TimelineBlock title="Narrative & Closure" icon="✍️">
-                <NarrativeSection />
-                <button style={{ background: 'var(--primary)', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: 'white', fontWeight: '600', marginTop: '20px' }}>
-                    Close Event Record
-                </button>
-            </TimelineBlock>
+            {requiredModules.includes('Narrative') && (
+                <TimelineBlock title="Narrative & Closure" icon="✍️">
+                    <NarrativeSection />
+                    <button style={{ background: 'var(--primary)', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: 'white', fontWeight: '600', marginTop: '20px' }}>
+                        Close Event Record
+                    </button>
+                </TimelineBlock>
+            )}
         </div>
     );
 };
