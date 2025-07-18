@@ -2,6 +2,7 @@ const PageHeader = ({ title, children, isNightMode, onNightModeToggle }) => {
     const headerActionsStyle = {
         display: 'flex',
         gap: '15px'
+        // No margin needed here
     };
 
     const buttonStyle = {
@@ -19,11 +20,16 @@ const PageHeader = ({ title, children, isNightMode, onNightModeToggle }) => {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '25px', flexWrap: 'wrap', gap: '10px' }}>
+        // This is the main container. It uses flexbox to separate the title from the buttons.
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '20px 0', width: '100%' }}>
+            
+            {/* Div for the title and metadata. This will stay on the left. */}
             <div>
-                <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: 'var(--dark)', margin: 0, marginBottom: '5px' }}>{title}</h2>
+                <h2 style={{ fontSize: '22px', fontWeight: 'bold', color: 'var(--dark)', margin: 0 }}>{title}</h2>
                 {children}
             </div>
+            
+            {/* Div for the action buttons. This will stay on the right. */}
             <div style={headerActionsStyle}>
                  <button onClick={onNightModeToggle} style={buttonStyle} title="Toggle Night Mode">
                     {isNightMode ? '☀️' : '🌙'}

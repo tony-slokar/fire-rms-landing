@@ -1,26 +1,36 @@
-const CivicLocationSection = () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
-        <div style={{ gridColumn: '1 / -1' }}>
-            <FormField label="Address Line 1" value="455 Main St" />
+const CivicLocationSection = () => {
+    const [address, setAddress] = React.useState("455 Main St");
+    const [showSuggestions, setShowSuggestions] = React.useState(false);
+
+    const handleAddressChange = (e) => {
+        setAddress(e.target.value);
+        setShowSuggestions(e.target.value.length > 3);
+    };
+    
+    const handleSuggestionClick = (suggestion) => {
+        setAddress(suggestion);
+        setShowSuggestions(false);
+    }
+
+    return (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+            <div style={{ gridColumn: '1 / -1', position: 'relative' }}>
+                <FormField label="Address Line 1" value={address} onChange={handleAddressChange} required={true} />
+                {showSuggestions && (
+                    <div style={{ position: 'absolute', top: '100%', left: 0, right: 0, background: 'var(--light)', border: '1px solid var(--light-gray)', borderRadius: '6px', zIndex: 100 }}>
+                        <div onClick={() => handleSuggestionClick("455 Main St, Anytown, MA")} style={{padding: '10px', cursor: 'pointer', color: 'var(--dark)'}}><b>455 Main St</b>, Anytown, MA</div>
+                        <div onClick={() => handleSuggestionClick("45 Main St, Pleasantville, MA")} style={{padding: '10px', cursor: 'pointer', color: 'var(--dark)'}}><b>45 Main St</b>, Pleasantville, MA</div>
+                    </div>
+                )}
+            </div>
+            <FormField label="City" value="Anytown" required={true} />
+            <SelectField label="State" required={true}>
+                {usStatesAndTerritories.map(state => <option key={state} value={state}>{state}</option>)}
+            </SelectField>
+            <FormField label="Zip Code" value="01234" required={true} />
+            <SelectField label="Property Use" required={true}>
+                 {Object.entries(propertyUseCodes).map(([code, name]) => <option key={code} value={code}>{`${code} - ${name}`}</option>)}
+            </SelectField>
         </div>
-        <FormField label="City" value="Anytown" />
-        <FormField label="State" value="MA" />
-        <FormField label="Zip Code" value="01234" />
-        <FormField label="Apartment / Suite" value="" />
-        <FormField label="Cross Street" value="River Rd" />
-        <SelectField label="Property Use">
-            <option>419 - Single-Family Dwelling</option>
-            <option>500 - Mercantile Business</option>
-            <option>215 - Hospital</option>
-        </SelectField>
-        <FormField label="Business / Occupancy Name" value="Riverside Apartments" />
-        <div style={{ gridColumn: '1 / -1', borderTop: `1px solid var(--light-gray)`, paddingTop: '20px', marginTop: '10px' }}>
-             <h4 style={{marginBottom: '15px', color: 'var(--dark)'}}>Geographic Coordinates</h4>
-             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
-                <FormField label="Latitude" value="42.3601" />
-                <FormField label="Longitude" value="-71.0589" />
-                <FormField label="US National Grid" value="19T CH 80252 00191" />
-             </div>
-        </div>
-    </div>
-);
+    );
+};

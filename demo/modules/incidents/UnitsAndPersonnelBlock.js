@@ -1,4 +1,6 @@
 const UnitsAndPersonnelBlock = () => {
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+
     const unitResponses = [
         { 
             unit: 'E-1', 
@@ -18,18 +20,36 @@ const UnitsAndPersonnelBlock = () => {
     ];
 
     const headerCellStyle = {
-        padding: '10px',
+        padding: '10px 0',
         textAlign: 'left',
         color: 'var(--gray)',
         fontSize: '12px',
         textTransform: 'uppercase',
         borderBottom: '1px solid var(--light-gray)'
     };
+
+    const AddUnitModal = () => (
+        <Modal onClose={() => setIsModalOpen(false)}>
+            <h3 style={{color: 'var(--dark)', marginTop: 0}}>Add Responding Unit</h3>
+            <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
+                <FormField label="Unit ID" required={true}/>
+                <FormField label="Personnel Assigned" placeholder="e.g., Cpt. Smith, FF Jones"/>
+                <FormField label="Time Dispatched" type="datetime-local" />
+                <FormField label="Time En Route" type="datetime-local" />
+                <FormField label="Time Arrived" type="datetime-local" />
+                <FormField label="Time Cleared" type="datetime-local" />
+            </div>
+            <div style={{display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '30px', borderTop: '1px solid var(--light-gray)', paddingTop: '20px' }}>
+                 <button onClick={() => setIsModalOpen(false)} style={{ background: 'var(--light-gray)', color: 'var(--dark)', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Cancel</button>
+                 <button onClick={() => setIsModalOpen(false)} style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>Add Unit</button>
+            </div>
+        </Modal>
+    );
     
     return (
         <div>
             <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '15px'}}>
-                 <button style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
+                 <button onClick={() => setIsModalOpen(true)} style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
                     + Add Unit
                  </button>
             </div>
@@ -64,6 +84,7 @@ const UnitsAndPersonnelBlock = () => {
                     </div>
                 ))}
             </div>
+            {isModalOpen && <AddUnitModal />}
         </div>
     );
 };
