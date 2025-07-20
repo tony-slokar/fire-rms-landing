@@ -30,7 +30,7 @@ const App = () => {
             case 'personnel': return <PersonnelContent {...contentProps} />;
             case 'equipment': return <EquipmentContent {...contentProps} />;
             case 'reports': return <ReportsContent {...contentProps} />;
-            case 'settings': return <PlaceholderContent tabName="settings" {...contentProps} />;
+            case 'settings': return <SettingsContent {...contentProps} />;
             default: return <DashboardContent {...contentProps} />;
         }
     };
