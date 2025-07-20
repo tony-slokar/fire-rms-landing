@@ -1,7 +1,49 @@
+// demo/modules/settings/SettingsContent.js
+
 const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Profile');
     const [showModal, setShowModal] = React.useState(false);
+    
+    // Toggle states
+    const [showTips, setShowTips] = React.useState(true);
+    const [newEventNotifications, setNewEventNotifications] = React.useState(true);
+    const [eventUpdates, setEventUpdates] = React.useState(true);
+    const [mutualAidRequests, setMutualAidRequests] = React.useState(false);
+    const [certificationReminders, setCertificationReminders] = React.useState(true);
+    const [scheduleChanges, setScheduleChanges] = React.useState(true);
+    const [systemMaintenance, setSystemMaintenance] = React.useState(false);
+    
     const tabs = ['Profile', 'Preferences', 'Notifications', 'Admin'];
+
+    // Toggle component
+    const Toggle = ({ checked, onChange }) => (
+        <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
+            <input type="checkbox" checked={checked} onChange={onChange} style={{opacity: 0, width: 0, height: 0}} />
+            <span style={{
+                position: 'absolute', 
+                cursor: 'pointer', 
+                top: 0, 
+                left: 0, 
+                right: 0, 
+                bottom: 0, 
+                background: checked ? 'var(--primary)' : 'var(--light-gray)', 
+                transition: '.4s', 
+                borderRadius: '28px'
+            }}>
+                <span style={{
+                    position: 'absolute', 
+                    height: '22px', 
+                    width: '22px', 
+                    left: '3px', 
+                    bottom: '3px', 
+                    background: 'white', 
+                    transition: '.4s', 
+                    borderRadius: '50%', 
+                    transform: checked ? 'translateX(22px)' : 'translateX(0)'
+                }}></span>
+            </span>
+        </label>
+    );
 
     const ProfileTab = () => (
         <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
@@ -108,12 +150,7 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
                         <div style={{ fontWeight: '600', color: 'var(--dark)', marginBottom: '5px' }}>Show tips and tutorials</div>
                         <div style={{ fontSize: '12px', color: 'var(--gray)' }}>Get helpful hints while using the app</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" defaultChecked style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--primary)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: 'translateX(22px)'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={showTips} onChange={(e) => setShowTips(e.target.checked)} />
                 </div>
             </div>
         </div>
@@ -128,36 +165,21 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>New Event Assignments</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Get notified when assigned to new events</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" defaultChecked style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--primary)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: 'translateX(22px)'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={newEventNotifications} onChange={(e) => setNewEventNotifications(e.target.checked)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px', border: '1px solid var(--light-gray)', borderRadius: '6px' }}>
                     <div>
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>Event Updates</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Status changes on events you're involved in</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" defaultChecked style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--primary)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: 'translateX(22px)'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={eventUpdates} onChange={(e) => setEventUpdates(e.target.checked)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px', border: '1px solid var(--light-gray)', borderRadius: '6px' }}>
                     <div>
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>Mutual Aid Requests</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Notifications for mutual aid calls</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--light-gray)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={mutualAidRequests} onChange={(e) => setMutualAidRequests(e.target.checked)} />
                 </div>
             </div>
 
@@ -168,36 +190,21 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>Certification Reminders</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Alerts 30 days before expiration</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" defaultChecked style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--primary)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: 'translateX(22px)'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={certificationReminders} onChange={(e) => setCertificationReminders(e.target.checked)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px', border: '1px solid var(--light-gray)', borderRadius: '6px' }}>
                     <div>
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>Schedule Changes</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Notifications when your schedule is updated</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" defaultChecked style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--primary)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%', transform: 'translateX(22px)'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={scheduleChanges} onChange={(e) => setScheduleChanges(e.target.checked)} />
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px', border: '1px solid var(--light-gray)', borderRadius: '6px' }}>
                     <div>
                         <div style={{ fontWeight: '600', color: 'var(--dark)' }}>System Maintenance</div>
                         <div style={{ fontSize: '14px', color: 'var(--gray)' }}>Scheduled downtime and updates</div>
                     </div>
-                    <label style={{position: 'relative', display: 'inline-block', width: '50px', height: '28px'}}>
-                        <input type="checkbox" style={{opacity: 0, width: 0, height: 0}} />
-                        <span style={{position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, background: 'var(--light-gray)', transition: '.4s', borderRadius: '28px'}}>
-                            <span style={{position: 'absolute', height: '22px', width: '22px', left: '3px', bottom: '3px', background: 'white', transition: '.4s', borderRadius: '50%'}}></span>
-                        </span>
-                    </label>
+                    <Toggle checked={systemMaintenance} onChange={(e) => setSystemMaintenance(e.target.checked)} />
                 </div>
             </div>
         </div>
