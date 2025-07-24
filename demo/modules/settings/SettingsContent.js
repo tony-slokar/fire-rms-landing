@@ -1,5 +1,3 @@
-// demo/modules/settings/SettingsContent.js
-
 const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
     const [activeTab, setActiveTab] = React.useState('Profile');
     const [showModal, setShowModal] = React.useState(false);
@@ -214,7 +212,9 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
         <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', alignItems: 'center' }}>
                 <div style={{ textAlign: 'center' }}>
-                    <div style={{ fontSize: '48px', marginBottom: '20px' }}>🔐</div>
+                    <div style={{ marginBottom: '20px' }}>
+                        <i data-feather="lock" style={{ width: '48px', height: '48px', color: 'var(--secondary)' }}></i>
+                    </div>
                     <h3 style={{ color: 'var(--dark)', marginBottom: '15px' }}>
                         Department Administration
                     </h3>
@@ -232,11 +232,16 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
                                 cursor: 'pointer', 
                                 fontWeight: '600',
                                 fontSize: '16px',
-                                minWidth: '200px'
+                                minWidth: '200px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                justifyContent: 'center'
                             }}
                             onClick={() => alert('In a real deployment, this would open: https://admin.ladderops.com')}
                         >
-                            🚀 Open Admin Portal
+                            <i data-feather="external-link" style={{ width: '16px', height: '16px' }}></i>
+                            Open Admin Portal
                         </button>
                         <div style={{ fontSize: '12px', color: 'var(--gray)', textAlign: 'center' }}>
                             Requires administrator privileges<br/>

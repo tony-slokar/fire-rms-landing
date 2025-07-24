@@ -1,7 +1,15 @@
 const Sidebar = ({ activeTab, setActiveTab, onNavToggle, isLoggedIn, onLogout, onLoginClick }) => {
   const [hoveredTab, setHoveredTab] = React.useState(null);
   const navItems = ['dashboard', 'events', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
-  const navIcons = {'dashboard': '📊', 'events': '🚨', 'occupancies': '🏢', 'reports': '📄', 'personnel': '👨‍🚒', 'equipment': '🚒', 'settings': '⚙️'};
+  const navIcons = {
+    'dashboard': 'bar-chart-2', 
+    'events': 'alert-circle', 
+    'occupancies': 'home', // Changed to 'home' which is a common Feather icon
+    'reports': 'file-text', 
+    'personnel': 'users', 
+    'equipment': 'truck', 
+    'settings': 'settings'
+  };
   
   const navItemStyle = (tabName) => ({
     padding: '12px 20px', marginBottom: '4px', display: 'flex', alignItems: 'center',
@@ -15,20 +23,32 @@ const Sidebar = ({ activeTab, setActiveTab, onNavToggle, isLoggedIn, onLogout, o
     background: 'none', border: 'none', color: 'white', fontSize: '24px', cursor: 'pointer', padding: '5px'
   };
 
+  React.useEffect(() => {
+    if (typeof feather !== 'undefined') {
+      feather.replace();
+    }
+  }, [activeTab]);
+
   return (
     <div style={{ width: '220px', background: 'var(--secondary)', color: 'white', display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' }}>
       <div style={{ padding: '20px 20px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold' }}>
-              <div style={{ width: '30px', height: '30px', background: 'var(--primary)', borderRadius: '6px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>🔥</div>
+              <div style={{ width: '30px', height: '30px', background: 'var(--primary)', borderRadius: '6px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>
+                <i data-feather="flame" style={{ width: '16px', height: '16px', color: 'white' }}></i>
+              </div>
               LadderOps
           </div>
-          <button onClick={onNavToggle} style={hamburgerStyle} title="Toggle Sidebar">{'☰'}</button>
+          <button onClick={onNavToggle} style={hamburgerStyle} title="Toggle Sidebar">
+            <i data-feather="menu" style={{ width: '20px', height: '20px' }}></i>
+          </button>
       </div>
       <nav style={{ flex: 1 }}>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {navItems.map(tab => (
             <li key={tab} style={navItemStyle(tab)} onClick={() => setActiveTab(tab)} onMouseEnter={() => setHoveredTab(tab)} onMouseLeave={() => setHoveredTab(null)} role="button" aria-current={activeTab === tab ? 'page' : undefined}>
-              <span style={{ marginRight: '12px', fontSize: '18px', width: '24px', textAlign: 'center' }}>{navIcons[tab]}</span>
+              <span style={{ marginRight: '12px', fontSize: '18px', width: '24px', textAlign: 'center' }}>
+                <i data-feather={navIcons[tab]} style={{ width: '18px', height: '18px' }}></i>
+              </span>
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
               {tab === 'events' && <span style={{ marginLeft: 'auto', background: 'var(--success)', color: 'white', fontSize: '10px', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>NERIS</span>}
             </li>

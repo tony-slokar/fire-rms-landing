@@ -37,6 +37,9 @@
     <link rel="preconnect" href="https://formspree.io">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
         :root {
@@ -89,7 +92,7 @@
         .btn-block { width: 100%; padding: 0.75rem; font-size: 1.125rem; }
         .navbar { padding: 1.5rem 0; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: white; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 0.5rem; }
         .nav-links { display: flex; list-style: none; }
         .nav-links li { margin-left: 2rem; }
         .nav-links a { color: white; text-decoration: none; font-weight: 500; }
@@ -110,7 +113,7 @@
         .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .feature-card { background-color: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border: 1px solid var(--light-gray); transition: transform 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .feature-icon { width: 48px; height: 48px; margin-bottom: 1rem; color: var(--primary); }
         .how-it-works { padding: 5rem 0; }
         .tablet-bezel { background: #111827; padding: 20px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); max-width: 1300px; margin: 0 auto; }
         .tablet-bezel::after { content: ''; position: absolute; top: 50%; left: 8px; transform: translateY(-50%); width: 10px; height: 10px; background: #333; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; }
@@ -137,7 +140,7 @@
         input:focus { outline: none; border-color: var(--primary); }
         .privacy-note { text-align: center; font-size: 0.875rem; color: var(--gray); margin-top: 1rem; }
         .footer { padding: 3rem 0; background-color: var(--dark); color: white; text-align: center; }
-        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .footer-logo { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
         .footer p { margin-bottom: 1rem; }
         .footer-links a { color: white; text-decoration: none; }
         .footer-links a:hover { text-decoration: underline; }
@@ -171,7 +174,10 @@
     <header class="hero">
         <nav class="navbar">
             <div class="container">
-                <div class="logo">LadderOps</div>
+                <div class="logo">
+                    <i data-feather="flame" style="width: 24px; height: 24px;"></i>
+                    LadderOps
+                </div>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#how-it-works">Demo</a></li>
@@ -195,32 +201,32 @@
             
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📋</div>
+                    <i data-feather="clipboard" class="feature-icon"></i>
                     <h3>NERIS-First Reporting</h3>
                     <p>Built from the ground up as a NERIS-compliant system, ready for the 2026 standards transition while maintaining legacy NFIRS compatibility.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🚒</div>
+                    <i data-feather="truck" class="feature-icon"></i>
                     <h3>Equipment & Asset Management</h3>
                     <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👨‍🚒</div>
+                    <i data-feather="users" class="feature-icon"></i>
                     <h3>Personnel Management</h3>
                     <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏢</div>
+                    <i data-feather="home" class="feature-icon"></i>
                     <h3>Occupancy Management</h3>
                     <p>Track buildings, businesses, and inspections. Schedule and manage pre-plans, fire safety inspections, and code enforcement.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
+                    <i data-feather="smartphone" class="feature-icon"></i>
                     <h3>Mobile Access</h3>
                     <p>Complete field operations from any device. Access pre-plans, submit reports, and update records on the go.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <i data-feather="bar-chart-2" class="feature-icon"></i>
                     <h3>Advanced Analytics</h3>
                     <p>Transform data into actionable insights with customizable dashboards, automated reporting, and data visualization tools.</p>
                 </div>
@@ -325,7 +331,10 @@
     
     <footer class="footer">
         <div class="container">
-            <div class="footer-logo">LadderOps</div>
+            <div class="footer-logo">
+                <i data-feather="flame" style="width: 20px; height: 20px;"></i>
+                LadderOps
+            </div>
             <p>Modern Records Management for Fire Departments</p>
             <div class="footer-links">
                 <a href="mailto:info@fire-rms.tech">info@fire-rms.tech</a>
@@ -340,6 +349,7 @@
 
     <script type="text/babel" src="demo/data/usStatesAndTerritories.js"></script>
     <script type="text/babel" src="demo/data/propertyUseCodes.js"></script>
+    <script type="text/babel" src="demo/data/mockEventsData.js"></script>
     
     <script type="text/babel" src="demo/components/ui/FormField.js"></script>
     <script type="text/babel" src="demo/components/ui/SelectField.js"></script>
@@ -363,16 +373,27 @@
     <script type="text/babel" src="demo/modules/incidents/UnitsAndPersonnelBlock.js"></script>
     <script type="text/babel" src="demo/modules/incidents/CasualtyBlock.js"></script>
     <script type="text/babel" src="demo/modules/incidents/NarrativeSection.js"></script>
+    <script type="text/babel" src="demo/modules/incidents/HazardsSection.js"></script>
     <script type="text/babel" src="demo/modules/reports/mockReportData.js"></script>
     <script type="text/babel" src="demo/modules/reports/ReportDisplay.js"></script>
     <script type="text/babel" src="demo/modules/reports/ReportsContent.js"></script>
-    <script type="text/babel" src="demo/modules/settings/SettingsContent.js"></script>
     <script type="text/babel" src="demo/modules/dashboard/DashboardContent.js"></script>
+    <script type="text/babel" src="demo/modules/events/EventsListContent.js"></script>
     <script type="text/babel" src="demo/modules/events/EventRecordContent.js"></script> 
     <script type="text/babel" src="demo/modules/occupancies/OccupanciesContent.js"></script>
     <script type="text/babel" src="demo/modules/personnel/PersonnelContent.js"></script>
     <script type="text/babel" src="demo/modules/equipment/EquipmentContent.js"></script>
+    <script type="text/babel" src="demo/modules/settings/SettingsContent.js"></script>
     <script type="text/babel" src="demo/App.js"></script>
     <script type="text/babel" src="demo.js"></script>
+
+    <script>
+        // Initialize Feather icons after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
 </body>
 </html>

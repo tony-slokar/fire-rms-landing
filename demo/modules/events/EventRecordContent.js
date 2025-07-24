@@ -1,4 +1,8 @@
 const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
+    const [currentView, setCurrentView] = React.useState('list'); // 'list' or 'detail'
+    const [selectedEvent, setSelectedEvent] = React.useState(null);
+    
+    // Original detail view state
     const [requiredModules, setRequiredModules] = React.useState(['Units & Personnel', 'Fire Module', 'Casualty Information', 'Actions Taken', 'Narrative & Closure']);
     const [incidentTypeName, setIncidentTypeName] = React.useState('Building Fire');
     const [completedModules, setCompletedModules] = React.useState(['The Call', 'Civic Location', 'Scene Validation']);
@@ -8,11 +12,12 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
     const allTimelineModules = ['The Call', 'Civic Location', 'Scene Validation', ...requiredModules];
 
     React.useEffect(() => {
+        if (currentView !== 'detail') return;
+        
         const handleScroll = () => {
             const scrollContainer = scrollContainerRef.current;
             if (!scrollContainer) return;
 
-            // Find the step whose corresponding element is closest to the top of the scroll container
             let closestStep = allTimelineModules[0];
             let smallestDistance = Infinity;
 
@@ -38,58 +43,201 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 scrollableElement.removeEventListener('scroll', handleScroll);
             }
         };
-    }, [allTimelineModules]); // Dependency array ensures this runs only when modules change
+    }, [allTimelineModules, currentView]);
 
-    const metadata = (
-        <div style={{display: 'flex', alignItems: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '5px'}}>
-            <span style={{background: 'var(--danger)', color: 'white', padding: '4px 10px', borderRadius: '15px', fontSize: '12px', fontWeight: 'bold'}}>
-                {incidentTypeName}
-            </span>
-            <span style={{color: 'var(--gray)', fontSize: '12px'}}>
-               Modules: {requiredModules.join(', ')}
-            </span>
-        </div>
-    );
-    
-    const moduleMap = {
-        'Units & Personnel': { icon: '🚒', component: <UnitsAndPersonnelBlock /> },
-        'Fire Module': { icon: '🔥', component: <FireSection /> },
-        'Casualty Information': { icon: '👨‍⚕️', component: <CasualtyBlock /> },
-        'Actions Taken': { icon: '🛠️', component: <ActionsTacticsSection /> },
-        'Narrative & Closure': { icon: '✍️', component: <NarrativeSection /> }
+    // Add effect to initialize feather icons after render
+    React.useEffect(() => {
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }, [currentView, selectedEvent]);
+
+    const handleEventSelect = (event) => {
+        setSelectedEvent(event);
+        // Update incident type based on selected event
+        setIncidentTypeName(event.type);
+        setCurrentView('detail');
     };
 
-    return (
-        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '0 25px' }}>
-                 <PageHeader title="Event #2025-00123" isNightMode={isNightMode} onNightModeToggle={onNightModeToggle}>{metadata}</PageHeader>
-            </div>
-            
-            <div style={{ position: 'sticky', top: 0, zIndex: 100, background: 'var(--light)', padding: '15px 25px', borderBottom: '1px solid var(--light-gray)', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
-                <WorkflowTracker steps={allTimelineModules} completedSteps={completedModules} activeStep={activeWorkflowStep} />
-            </div>
-           
-            <div ref={scrollContainerRef} style={{ overflowY: 'auto', flex: 1, padding: '25px', maxWidth: '900px', margin: '0 auto', width: '100%', scrollBehavior: 'smooth' }}>
-                <div id="The-Call"><TimelineBlock title="The Call" icon="📞" timestamp="14:02 HRS"><CoreSection /></TimelineBlock></div>
-                <div id="Civic-Location"><TimelineBlock title="Civic Location" icon="📍"><CivicLocationSection /></TimelineBlock></div>
-                <div id="Scene-Validation"><TimelineBlock title="Scene Validation" icon="✅"><FormField label="Validated Incident Type" value="111 - Building Fire" readOnly={true}/></TimelineBlock></div>
+    const handleBackToList = () => {
+        setCurrentView('list');
+        setSelectedEvent(null);
+    };
 
-                {requiredModules.map(moduleName => (
-                    <div key={moduleName} id={moduleName.replace(/ /g, '-')}>
-                         <TimelineBlock title={moduleName} icon={moduleMap[moduleName]?.icon || '📄'}>
-                            {moduleMap[moduleName]?.component}
-                        </TimelineBlock>
-                    </div>
-                ))}
-                 
-                {requiredModules.includes('Narrative & Closure') && (
-                    <div style={{paddingLeft: '60px', marginTop: '-20px'}}>
-                        <button style={{ background: 'var(--primary)', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', color: 'white', fontWeight: '600' }}>
-                            Close Event Record
-                        </button>
-                    </div>
-                )}
-            </div>
-        </div>
-    );
+    // Show list view
+    if (currentView === 'list') {
+        return React.createElement(EventsListContent, {
+            isNightMode: isNightMode,
+            onNightModeToggle: onNightModeToggle,
+            onEventSelect: handleEventSelect
+        });
+    }
+
+    // Show detail view (original timeline-based workflow)
+    const metadata = React.createElement('div', {
+        style: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '15px',
+            flexWrap: 'wrap',
+            marginTop: '5px'
+        }
+    }, [
+        React.createElement('button', {
+            key: 'back-btn',
+            onClick: handleBackToList,
+            style: {
+                background: 'var(--secondary)',
+                color: 'white',
+                border: 'none',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: '600',
+                fontSize: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+            }
+        }, [
+            React.createElement('i', {
+                key: 'back-icon',
+                'data-feather': 'arrow-left',
+                style: { width: '16px', height: '16px' }
+            }),
+            'Back to Events'
+        ]),
+        React.createElement('span', {
+            key: 'incident-type',
+            style: {
+                background: 'var(--danger)',
+                color: 'white',
+                padding: '4px 10px',
+                borderRadius: '15px',
+                fontSize: '12px',
+                fontWeight: 'bold'
+            }
+        }, incidentTypeName),
+        React.createElement('span', {
+            key: 'modules',
+            style: {
+                color: 'var(--gray)',
+                fontSize: '12px'
+            }
+        }, `Modules: ${requiredModules.join(', ')}`)
+    ]);
+    
+    const moduleMap = {
+        'Units & Personnel': { icon: 'truck', component: React.createElement(UnitsAndPersonnelBlock) },
+        'Fire Module': { icon: 'alert-circle', component: React.createElement(FireSection) }, // Changed to alert-circle for better visibility
+        'Casualty Information': { icon: 'heart', component: React.createElement(CasualtyBlock) },
+        'Actions Taken': { icon: 'tool', component: React.createElement(ActionsTacticsSection) },
+        'Narrative & Closure': { icon: 'edit-3', component: React.createElement(NarrativeSection) }
+    };
+
+    const eventTitle = selectedEvent ? `Event #${selectedEvent.id}` : 'Event #2025-00123';
+
+    return React.createElement('div', {
+        style: { height: '100%', display: 'flex', flexDirection: 'column' }
+    }, [
+        React.createElement('div', {
+            key: 'header',
+            style: { padding: '0 25px' }
+        }, React.createElement(PageHeader, {
+            title: eventTitle,
+            isNightMode: isNightMode,
+            onNightModeToggle: onNightModeToggle,
+            children: metadata
+        })),
+        
+        React.createElement('div', {
+            key: 'workflow',
+            style: {
+                position: 'sticky',
+                top: 0,
+                zIndex: 100,
+                background: 'var(--light)',
+                padding: '15px 25px',
+                borderBottom: '1px solid var(--light-gray)',
+                boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
+            }
+        }, React.createElement(WorkflowTracker, {
+            steps: allTimelineModules,
+            completedSteps: completedModules,
+            activeStep: activeWorkflowStep
+        })),
+       
+        React.createElement('div', {
+            key: 'content',
+            ref: scrollContainerRef,
+            style: {
+                overflowY: 'auto',
+                flex: 1,
+                padding: '25px',
+                maxWidth: '900px',
+                margin: '0 auto',
+                width: '100%',
+                scrollBehavior: 'smooth'
+            }
+        }, [
+            React.createElement('div', {
+                key: 'the-call',
+                id: 'The-Call'
+            }, React.createElement(TimelineBlock, {
+                title: 'The Call',
+                icon: 'phone',
+                timestamp: '14:02 HRS',
+                children: React.createElement(CoreSection)
+            })),
+            
+            React.createElement('div', {
+                key: 'civic-location',
+                id: 'Civic-Location'
+            }, React.createElement(TimelineBlock, {
+                title: 'Civic Location',
+                icon: 'map-pin',
+                children: React.createElement(CivicLocationSection)
+            })),
+            
+            React.createElement('div', {
+                key: 'scene-validation',
+                id: 'Scene-Validation'
+            }, React.createElement(TimelineBlock, {
+                title: 'Scene Validation',
+                icon: 'check-circle',
+                children: React.createElement(FormField, {
+                    label: 'Validated Incident Type',
+                    value: '111 - Building Fire',
+                    readOnly: true
+                })
+            })),
+
+            ...requiredModules.map(moduleName => 
+                React.createElement('div', {
+                    key: moduleName,
+                    id: moduleName.replace(/ /g, '-')
+                }, React.createElement(TimelineBlock, {
+                    title: moduleName,
+                    icon: moduleMap[moduleName]?.icon || 'file-text',
+                    children: moduleMap[moduleName]?.component
+                }))
+            ),
+             
+            requiredModules.includes('Narrative & Closure') && React.createElement('div', {
+                key: 'close-btn',
+                style: { paddingLeft: '60px', marginTop: '-20px' }
+            }, React.createElement('button', {
+                style: {
+                    background: 'var(--primary)',
+                    border: 'none',
+                    padding: '10px 20px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    color: 'white',
+                    fontWeight: '600'
+                }
+            }, 'Close Event Record'))
+        ])
+    ]);
 };

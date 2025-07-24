@@ -21,10 +21,24 @@ const TimelineBlock = ({ icon, title, timestamp, children, isAwaitingInput = fal
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     };
 
+    // Use Feather icon if icon is a string, otherwise fallback to emoji/text
+    const iconElement = typeof icon === 'string' && icon.length > 2 ? 
+        React.createElement('i', {
+            'data-feather': icon,
+            style: { width: '20px', height: '20px' }
+        }) : 
+        icon;
+
+    React.useEffect(() => {
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    }, [icon]);
+
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                <div style={iconWrapperStyle}>{icon}</div>
+                <div style={iconWrapperStyle}>{iconElement}</div>
                 <div style={lineStyle}></div>
             </div>
             
