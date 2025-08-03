@@ -71,7 +71,7 @@ const mockEventsData = [
         clearedTime: '2025-07-20T13:45:00',
         status: 'Closed',
         priority: 'High',
-        unitsAssigned: ['E-1', 'L-1', 'R-1', 'C-1'],
+        unitsAssigned: ['E-1', 'L-1', 'R-1', 'C-1', 'A-1'], // Corrected: A-1 is now assigned
         casualties: 0,
         damage: 'None',
         weather: 'Sunny, 85°F',

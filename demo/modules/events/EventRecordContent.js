@@ -1,7 +1,7 @@
 const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
     const [currentView, setCurrentView] = React.useState('list'); // 'list' or 'detail'
     const [selectedEvent, setSelectedEvent] = React.useState(null);
-    
+
     // Original detail view state
     const [requiredModules, setRequiredModules] = React.useState(['Units & Personnel', 'Fire Module', 'Casualty Information', 'Actions Taken', 'Narrative & Closure']);
     const [incidentTypeName, setIncidentTypeName] = React.useState('Building Fire');
@@ -13,7 +13,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
 
     React.useEffect(() => {
         if (currentView !== 'detail') return;
-        
+
         const handleScroll = () => {
             const scrollContainer = scrollContainerRef.current;
             if (!scrollContainer) return;
@@ -126,13 +126,13 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
             }
         }, `Modules: ${requiredModules.join(', ')}`)
     ]);
-    
+
     const moduleMap = {
         'Units & Personnel': { icon: 'truck', component: React.createElement(UnitsAndPersonnelBlock) },
         'Fire Module': { icon: 'alert-circle', component: React.createElement(FireSection) }, // Changed to alert-circle for better visibility
         'Casualty Information': { icon: 'heart', component: React.createElement(CasualtyBlock) },
         'Actions Taken': { icon: 'tool', component: React.createElement(ActionsTacticsSection) },
-        'Narrative & Closure': { icon: 'edit-3', component: React.createElement(NarrativeSection) }
+        'Narrative & Closure': { icon: 'edit-3', component: React.createElement(NarrativeSection, { eventNarrative: selectedEvent ? selectedEvent.narrative : '' }) } // Passed selectedEvent.narrative here
     };
 
     const eventTitle = selectedEvent ? `Event #${selectedEvent.id}` : 'Event #2025-00123';
@@ -149,7 +149,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
             onNightModeToggle: onNightModeToggle,
             children: metadata
         })),
-        
+
         React.createElement('div', {
             key: 'workflow',
             style: {
@@ -166,7 +166,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
             completedSteps: completedModules,
             activeStep: activeWorkflowStep
         })),
-       
+
         React.createElement('div', {
             key: 'content',
             ref: scrollContainerRef,
@@ -189,7 +189,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 timestamp: '14:02 HRS',
                 children: React.createElement(CoreSection)
             })),
-            
+
             React.createElement('div', {
                 key: 'civic-location',
                 id: 'Civic-Location'
@@ -198,7 +198,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 icon: 'map-pin',
                 children: React.createElement(CivicLocationSection)
             })),
-            
+
             React.createElement('div', {
                 key: 'scene-validation',
                 id: 'Scene-Validation'
@@ -212,7 +212,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                 })
             })),
 
-            ...requiredModules.map(moduleName => 
+            ...requiredModules.map(moduleName =>
                 React.createElement('div', {
                     key: moduleName,
                     id: moduleName.replace(/ /g, '-')
@@ -222,7 +222,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
                     children: moduleMap[moduleName]?.component
                 }))
             ),
-             
+
             requiredModules.includes('Narrative & Closure') && React.createElement('div', {
                 key: 'close-btn',
                 style: { paddingLeft: '60px', marginTop: '-20px' }
