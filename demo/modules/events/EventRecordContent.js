@@ -1,9 +1,11 @@
+// demo/modules/events/EventRecordContent.js
+
 const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
     const [currentView, setCurrentView] = React.useState('list'); // 'list' or 'detail'
     const [selectedEvent, setSelectedEvent] = React.useState(null);
 
     // Original detail view state
-    const [requiredModules, setRequiredModules] = React.useState(['Units & Personnel', 'Fire Module', 'Casualty Information', 'Actions Taken', 'Narrative & Closure']);
+    const [requiredModules, setRequiredModules] = React.useState(['Units & Personnel', 'Fire Module', 'ePCR', 'Casualty Information', 'Actions Taken', 'Narrative & Closure']);
     const [incidentTypeName, setIncidentTypeName] = React.useState('Building Fire');
     const [completedModules, setCompletedModules] = React.useState(['The Call', 'Civic Location', 'Scene Validation']);
     const [activeWorkflowStep, setActiveWorkflowStep] = React.useState('The Call');
@@ -130,6 +132,7 @@ const EventRecordContent = ({ isNightMode, onNightModeToggle }) => {
     const moduleMap = {
         'Units & Personnel': { icon: 'truck', component: React.createElement(UnitsAndPersonnelBlock) },
         'Fire Module': { icon: 'alert-circle', component: React.createElement(FireSection) }, // Changed to alert-circle for better visibility
+        'ePCR': { icon: 'activity', component: React.createElement(ePCRSection) },
         'Casualty Information': { icon: 'heart', component: React.createElement(CasualtyBlock) },
         'Actions Taken': { icon: 'tool', component: React.createElement(ActionsTacticsSection) },
         'Narrative & Closure': { icon: 'edit-3', component: React.createElement(NarrativeSection, { eventNarrative: selectedEvent ? selectedEvent.narrative : '' }) } // Passed selectedEvent.narrative here

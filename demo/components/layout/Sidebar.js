@@ -50,7 +50,7 @@ const Sidebar = ({ activeTab, setActiveTab, onNavToggle, isLoggedIn, onLogout, o
                 <i data-feather={navIcons[tab]} style={{ width: '18px', height: '18px' }}></i>
               </span>
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              {tab === 'events' && <span style={{ marginLeft: 'auto', background: 'var(--success)', color: 'white', fontSize: '10px', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>NERIS</span>}
+              {tab === 'events' && <span style={{ marginLeft: 'auto', background: 'var(--success)', color: 'white', fontSize: '10px', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>NERIS/NEMSIS</span>}
             </li>
           ))}
         </ul>
