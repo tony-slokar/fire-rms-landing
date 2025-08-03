@@ -1,19 +1,20 @@
+# General rules for all bots
 User-agent: *
 Allow: /
+Sitemap: https://ladderops.tech/sitemap.xml
 
-# Block access to any admin or private areas (if you add them later)
-# Disallow: /admin/
-# Disallow: /private/
-
-# Allow specific search engines to crawl everything
+# Specific rules for Googlebot (no crawl-delay)
 User-agent: Googlebot
 Allow: /
 
+# Specific rules for Bingbot (with crawl-delay)
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
-# Sitemap location
-Sitemap: https://ladderops.tech/sitemap.xml
+# Other search engines that respect crawl-delay
+User-agent: Slurp
+Crawl-delay: 1
 
-# Crawl delay (optional - helps prevent server overload)
+User-agent: DuckDuckBot
 Crawl-delay: 1
