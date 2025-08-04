@@ -11,7 +11,7 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
     const [scheduleChanges, setScheduleChanges] = React.useState(true);
     const [systemMaintenance, setSystemMaintenance] = React.useState(false);
     
-    const tabs = ['Profile', 'Preferences', 'Notifications', 'Admin'];
+    const tabs = ['Profile', 'Preferences', 'Notifications', 'Forms', 'Admin'];
 
     // Toggle component
     const Toggle = ({ checked, onChange }) => (
@@ -265,6 +265,53 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
         </div>
     );
 
+    const FormsTab = () => {
+        const formTemplates = [
+            { id: 'F-001', name: 'Annual Business Inspection', type: 'Inspection', assignedTo: 'Inspections Module', lastUpdated: '2025-06-15' },
+            { id: 'F-002', name: 'Open Burning Permit', type: 'Permit', assignedTo: 'Permits Module', lastUpdated: '2025-05-20' },
+            { id: 'F-003', name: 'Hydrant Flow Test', type: 'Inspection', assignedTo: 'Assets Module', lastUpdated: '2025-07-01' },
+            { id: 'F-004', name: 'SCBA Daily Check', type: 'Checklist', assignedTo: 'Apparatus Module', lastUpdated: '2025-04-10' },
+        ];
+
+        return (
+            <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                    <div>
+                        <h4 style={{ color: 'var(--dark)', margin: 0 }}>Form Templates</h4>
+                        <p style={{ color: 'var(--gray)', fontSize: '14px', margin: 0 }}>Create and manage custom forms for any workflow.</p>
+                    </div>
+                    <button style={{ background: 'var(--primary)', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600' }}>
+                        + Create New Form
+                    </button>
+                </div>
+                <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--dark)' }}>
+                    <thead>
+                        <tr>
+                            {['ID', 'Form Name', 'Type', 'Assigned To', 'Last Updated', 'Actions'].map(h => (
+                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '12px', textTransform: 'uppercase' }}>{h}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {formTemplates.map(form => (
+                            <tr key={form.id}>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{form.id}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{form.name}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{form.type}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{form.assignedTo}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{form.lastUpdated}</td>
+                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
+                                    <button style={{background: 'var(--light-gray)', marginRight: '5px', border: 'none', padding: '6px 10px', borderRadius: '6px', cursor: 'pointer', color: 'var(--dark)'}}>Edit</button>
+                                    <button style={{background: 'var(--light-gray)', border: 'none', padding: '6px 10px', borderRadius: '6px', cursor: 'pointer', color: 'var(--dark)'}}>Duplicate</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    };
+
     const ChangePasswordModal = () => (
         <Modal onClose={() => setShowModal(false)}>
             <h3 style={{ marginTop: 0, marginBottom: '20px', color: 'var(--dark)' }}>Change Password</h3>
@@ -288,6 +335,7 @@ const SettingsContent = ({ isNightMode, onNightModeToggle }) => {
             case 'Profile': return <ProfileTab />;
             case 'Preferences': return <PreferencesTab />;
             case 'Notifications': return <NotificationsTab />;
+            case 'Forms': return <FormsTab />;
             case 'Admin': return <AdminTab />;
             default: return <ProfileTab />;
         }
