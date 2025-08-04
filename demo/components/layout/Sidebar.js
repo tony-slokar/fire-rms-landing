@@ -1,10 +1,11 @@
 const Sidebar = ({ activeTab, setActiveTab, onNavToggle, isLoggedIn, onLogout, onLoginClick }) => {
   const [hoveredTab, setHoveredTab] = React.useState(null);
-  const navItems = ['dashboard', 'events', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
+  const navItems = ['dashboard', 'events', 'inspections', 'occupancies', 'personnel', 'equipment', 'reports', 'settings'];
   const navIcons = {
     'dashboard': 'bar-chart-2', 
     'events': 'alert-circle', 
-    'occupancies': 'home', // Changed to 'home' which is a common Feather icon
+    'inspections': 'check-square',
+    'occupancies': 'home',
     'reports': 'file-text', 
     'personnel': 'users', 
     'equipment': 'truck', 

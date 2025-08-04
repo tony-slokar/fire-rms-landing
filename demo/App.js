@@ -26,6 +26,7 @@ const App = () => {
         switch (activeTab) {
             case 'dashboard': return <DashboardContent {...contentProps} />;
             case 'events': return <EventRecordContent {...contentProps} />;
+            case 'inspections': return <InspectionsContent {...contentProps} />;
             case 'occupancies': return <OccupanciesContent {...contentProps} />;
             case 'personnel': return <PersonnelContent {...contentProps} />;
             case 'equipment': return <EquipmentContent {...contentProps} />;

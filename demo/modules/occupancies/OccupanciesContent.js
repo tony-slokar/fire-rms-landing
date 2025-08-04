@@ -1,21 +1,14 @@
 const OccupanciesContent = ({ isNightMode, onNightModeToggle }) => {
+    // UPDATED: Removed Inspections tab. This module is now focused.
     const [activeTab, setActiveTab] = React.useState('Buildings');
     const [showModal, setShowModal] = React.useState(false);
-    const tabs = ['Buildings', 'Inspections', 'Pre-Plans'];
+    const tabs = ['Buildings', 'Pre-Plans'];
 
-    // All original data is preserved
     const buildings = [
-        { id: 'B-001', name: 'Main Street Plaza', address: '123 Main St', type: 'Mercantile', lastInspection: '2024-11-15', nextDue: '2025-11-15', status: 'Compliant' },
-        { id: 'B-002', name: 'Riverside Apartments', address: '456 River Rd', type: 'Residential', lastInspection: '2024-09-20', nextDue: '2025-09-20', status: 'Pending' },
-        { id: 'B-003', name: 'Tech Manufacturing', address: '789 Industrial Way', type: 'Industrial', lastInspection: '2024-12-01', nextDue: '2025-06-01', status: 'Compliant' },
-        { id: 'B-004', name: 'Downtown Hotel', address: '321 Center St', type: 'Assembly', lastInspection: '2024-08-10', nextDue: '2025-02-10', status: 'Overdue' }
-    ];
-
-    const inspections = [
-        { id: 'I-045', building: 'Main Street Plaza', type: 'Annual', date: '2025-07-20', inspector: 'Inspector Smith', status: 'Scheduled' },
-        { id: 'I-044', building: 'Riverside Apartments', type: 'Complaint', date: '2025-07-18', inspector: 'Inspector Jones', status: 'In Progress' },
-        { id: 'I-043', building: 'Tech Manufacturing', type: 'Follow-up', date: '2025-07-15', inspector: 'Inspector Brown', status: 'Completed' },
-        { id: 'I-042', building: 'Downtown Hotel', type: 'Annual', date: '2025-07-12', inspector: 'Inspector Davis', status: 'Completed' }
+        { id: 'B-001', name: 'Main Street Plaza', address: '123 Main St', type: 'Mercantile', prePlanStatus: 'Complete' },
+        { id: 'B-002', name: 'Riverside Apartments', address: '456 River Rd', type: 'Residential', prePlanStatus: 'In Progress' },
+        { id: 'B-003', name: 'Tech Manufacturing', address: '789 Industrial Way', type: 'Industrial', prePlanStatus: 'Complete' },
+        { id: 'B-004', name: 'Downtown Hotel', address: '321 Center St', type: 'Assembly', prePlanStatus: 'Outdated' }
     ];
 
     const prePlans = [
@@ -24,14 +17,13 @@ const OccupanciesContent = ({ isNightMode, onNightModeToggle }) => {
         { id: 'PP-014', building: 'Downtown Hotel', updated: '2024-08-10', hazards: 'High occupancy, elderly residents', access: 'Front lobby only', hydrants: '3 within 200ft' }
     ];
 
-    // Sub-Components are defined within to avoid needing more files, but could be broken out
     const BuildingsTab = () => (
-        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
+        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', border: '1px solid var(--light-gray)' }}>
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '800px', color: 'var(--dark)' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px', color: 'var(--dark)' }}>
                     <thead>
                         <tr>
-                            {['ID', 'Building Name', 'Address', 'Type', 'Last Inspection', 'Next Due', 'Status'].map(h => (
+                            {['ID', 'Building Name', 'Address', 'Type', 'Pre-Plan Status'].map(h => (
                                 <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
                             ))}
                         </tr>
@@ -43,57 +35,16 @@ const OccupanciesContent = ({ isNightMode, onNightModeToggle }) => {
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{building.name}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{building.address}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{building.type}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{building.lastInspection}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{building.nextDue}</td>
                                 <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
-                                    <span style={{
+                                     <span style={{
                                         padding: '4px 8px',
                                         borderRadius: '12px',
                                         fontSize: '12px',
                                         fontWeight: '600',
-                                        background: building.status === 'Compliant' ? 'var(--success)' : building.status === 'Pending' ? 'var(--warning)' : 'var(--danger)',
+                                        background: building.prePlanStatus === 'Complete' ? 'var(--success)' : building.prePlanStatus === 'In Progress' ? 'var(--info)' : 'var(--warning)',
                                         color: 'white'
                                     }}>
-                                        {building.status}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    );
-
-    const InspectionsTab = () => (
-        <div style={{ background: 'var(--light)', padding: '20px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid var(--light-gray)' }}>
-             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px', color: 'var(--dark)' }}>
-                    <thead>
-                        <tr>
-                            {['ID', 'Building', 'Type', 'Date', 'Inspector', 'Status'].map(h => (
-                                <th key={h} style={{ borderBottom: `2px solid var(--light-gray)`, padding: '12px', textAlign: 'left', color: 'var(--gray)', fontSize: '14px' }}>{h}</th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {inspections.map(inspection => (
-                            <tr key={inspection.id} style={{ cursor: 'pointer' }}>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', fontWeight: '600' }}>{inspection.id}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{inspection.building}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{inspection.type}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>{inspection.date}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px', color: 'var(--gray)' }}>{inspection.inspector}</td>
-                                <td style={{ borderBottom: `1px solid var(--light-gray)`, padding: '12px' }}>
-                                    <span style={{
-                                        padding: '4px 8px',
-                                        borderRadius: '12px',
-                                        fontSize: '12px',
-                                        fontWeight: '600',
-                                        background: inspection.status === 'Completed' ? 'var(--success)' : inspection.status === 'In Progress' ? 'var(--warning)' : 'var(--info)',
-                                        color: 'white'
-                                    }}>
-                                        {inspection.status}
+                                        {building.prePlanStatus}
                                     </span>
                                 </td>
                             </tr>
@@ -152,22 +103,23 @@ const OccupanciesContent = ({ isNightMode, onNightModeToggle }) => {
     const renderTabContent = () => {
         switch (activeTab) {
             case 'Buildings': return <BuildingsTab />;
-            case 'Inspections': return <InspectionsTab />;
             case 'Pre-Plans': return <PrePlansTab />;
             default: return <BuildingsTab />;
         }
     };
-
+    
     return (
         <div style={{ padding: '25px' }}>
             <PageHeader
-                title="Occupancy Management"
+                title="Occupancy & Pre-Planning"
                 buttonLabel="Add Building"
                 isNightMode={isNightMode}
                 onNightModeToggle={onNightModeToggle}
             />
             <SubNav tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-            {renderTabContent()}
+            <div style={{marginTop: '25px'}}>
+                {renderTabContent()}
+            </div>
             {showModal && <BuildingDetailModal />}
         </div>
     );
