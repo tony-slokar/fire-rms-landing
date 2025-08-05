@@ -33,12 +33,12 @@ const Sidebar = ({ activeTab, setActiveTab, onNavToggle, isLoggedIn, onLogout, o
   return (
     <div style={{ width: '220px', background: 'var(--secondary)', color: 'white', display: 'flex', flexDirection: 'column', flexShrink: 0, overflowY: 'auto' }}>
       <div style={{ padding: '20px 20px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', fontSize: '20px', fontWeight: 'bold' }}>
-              <div style={{ width: '30px', height: '30px', background: 'var(--primary)', borderRadius: '6px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>
-                <i data-feather="flame" style={{ width: '16px', height: '16px', color: 'white' }}></i>
-              </div>
-              LadderOps
+          
+          {/* UPDATED: Replaced the old logo div with the new image logo */}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="images/logo-header-white.png" alt="LadderOps Logo" style={{ height: '30px', width: 'auto' }} />
           </div>
+
           <button onClick={onNavToggle} style={hamburgerStyle} title="Toggle Sidebar">
             <i data-feather="menu" style={{ width: '20px', height: '20px' }}></i>
           </button>
