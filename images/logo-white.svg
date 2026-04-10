@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 50" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="4,40 18,22 32,40" stroke="#ffffff" stroke-width="3.5" opacity="0.2"/>
+    <polyline points="4,32 18,14 32,32" stroke="#ffffff" stroke-width="3.5" opacity="0.45"/>
+    <polyline points="4,24 18,6 32,24" stroke="#d4513b" stroke-width="3.5"/>
+    <rect x="2" y="44" width="32" height="3" rx="1.5" fill="#ffffff" opacity="0.5"/>
+  </g>
+  <text x="46" y="38" font-family="'DM Sans', system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="#ffffff" letter-spacing="-0.5">LadderOps</text>
+</svg>

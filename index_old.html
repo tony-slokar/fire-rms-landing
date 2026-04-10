@@ -1,0 +1,543 @@
+n<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSS1G92R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5MRSS1G92R');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Modern Tools for Modern Heroes | LadderOps</title>
+    
+    <meta name="description" content="Free NERIS-compliant incident reporting forever. The only fire department software that grows with you - add scheduling, ePCR, assets, and more when you're ready. No vendor lock-in.">
+    
+    <meta name="keywords" content="NERIS 2026, NERIS compliance, free fire department software, fire RMS, NEMSIS ePCR, fire records management, emergency response software, First Due alternative, fire service technology, incident reporting, LadderOps">
+    <meta name="author" content="LadderOps">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ladderops.tech/">
+    <meta property="og:title" content="The Last Fire Department Software You'll Ever Need">
+    <meta property="og:description" content="Start with free NERIS reporting. Add powerful modules as you grow. Simple pricing. Start in minutes. Software that works.">
+    <meta property="og:image" content="https://ladderops.tech/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LadderOps">
+    <meta property="og:locale" content="en_US">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ladderops.tech/">
+    <meta name="twitter:title" content="Free NERIS Reporting + Complete Fire RMS">
+    <meta name="twitter:description" content="The only platform that starts free and scales with your department. NERIS 2026 ready.">
+    <meta name="twitter:image" content="https://ladderops.tech/og-image.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "LadderOps",
+        "description": "Free NERIS-compliant fire department records management system with optional premium modules",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web-based",
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "0",
+            "highPrice": "100",
+            "priceCurrency": "USD",
+            "offerCount": "4",
+            "offers": [
+                {
+                    "@type": "Offer",
+                    "name": "Free",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                    "description": "Free forever - NERIS incident reporting, unlimited incidents and users"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Standard",
+                    "price": "50",
+                    "priceCurrency": "USD",
+                    "description": "Per member per year - personnel, apparatus, inspections, scheduling, reporting"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Standard + Billing",
+                    "price": "75",
+                    "priceCurrency": "USD",
+                    "description": "Per member per year - everything in Standard plus cost recovery billing"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "Professional",
+                    "price": "100",
+                    "priceCurrency": "USD",
+                    "description": "Per member per year - for career and combination departments, includes ePCR, CAD integration, dedicated support"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="canonical" href="https://ladderops.tech/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://formspree.io">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --primary: #FF4500;
+            --primary-dark: #E03E00;
+            --secondary: #1E3A8A;
+            --light: #F9FAFB;
+            --dark: #111827;
+            --gray: #6B7280;
+            --light-gray: #E5E7EB;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --info: #3B82F6;
+            --danger: #EF4444;
+        }
+        .night-mode {
+            --light: #111827; --dark: #F9FAFB; --gray: #9CA3AF; --light-gray: #374151;
+        }
+        .night-mode .tablet-bezel { background: #000; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); background-color: var(--light); }
+        .no-wrap { white-space: nowrap; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { margin-bottom: 1rem; line-height: 1.2; }
+        h1 { font-size: 3rem; font-weight: 700; }
+        h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+        h3 { font-size: 1.5rem; font-weight: 600; }
+        .lead { font-size: 1.25rem; margin-bottom: 2rem; }
+        .section-description { font-size: 1.125rem; color: var(--gray); max-width: 700px; margin: 0 auto 3rem; text-align: center; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+        }
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-large { padding: 1rem 2rem; font-size: 1.125rem; }
+        .btn-block { width: 100%; padding: 0.75rem; font-size: 1.125rem; }
+        .navbar { padding: 1.5rem 0; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 0.5rem; }
+        .logo img { height: 50px; width: auto; } /* UPDATED: Logo image styling */
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: rgba(255, 255, 255, 0.8); }
+        .hero { background: linear-gradient(135deg, var(--secondary) 0%, #2563EB 100%); color: white; padding-bottom: 6rem; min-height: 600px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; max-width: 800px; padding: 4rem 0; position: relative; z-index: 10; }
+        .features { padding: 5rem 0; background-color: white; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .feature-card { background-color: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border: 1px solid var(--light-gray); transition: transform 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { width: 48px; height: 48px; margin-bottom: 1rem; color: var(--primary); }
+        .hero-shot { max-width: 1100px; margin: 3rem auto -8rem; position: relative; z-index: 10; padding: 0 20px; }
+        .browser-frame { background: #1f2937; border-radius: 12px; padding: 10px 10px 0; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35); }
+        .browser-frame::before { content: '\25CF \25CF \25CF'; display: block; color: #4b5563; font-size: 12px; letter-spacing: 4px; padding: 4px 8px 8px; }
+        .browser-frame img { display: block; width: 100%; height: auto; border-radius: 0 0 8px 8px; }
+        .showcase { padding: 7rem 0 5rem; background-color: white; }
+        .showcase + .showcase { padding-top: 5rem; }
+        .showcase.alt { background-color: var(--light); }
+        .showcase-row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
+        .showcase-row.reverse { grid-template-columns: 1.3fr 1fr; }
+        .showcase-row.reverse .showcase-text { order: 2; }
+        .showcase-text h2 { font-size: 2rem; }
+        .showcase-text p { font-size: 1.125rem; color: var(--gray); }
+        .showcase-image { display: flex; gap: 1rem; }
+        .showcase-image img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); border: 1px solid var(--light-gray); }
+        .showcase-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; width: 100%; }
+        .showcase-full { padding: 5rem 0; background: var(--light); }
+        .showcase-full .container > h2 { font-size: 2rem; text-align: center; }
+        .showcase-full .section-description { margin-bottom: 2.5rem; }
+        .showcase-full-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
+        .showcase-full-grid img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); border: 1px solid var(--light-gray); }
+        .billing-stack { position: relative; }
+        .billing-stack img.main { width: 100%; }
+        .billing-stack img.overlay { position: absolute; bottom: -30px; right: -20px; width: 55%; border: 3px solid white; }
+        .pricing-note { text-align: center; margin-top: 2.5rem; font-size: 1.05rem; color: var(--gray); font-style: italic; }
+        @media (max-width: 768px) {
+            .showcase-row, .showcase-row.reverse, .showcase-full-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .showcase-row.reverse .showcase-text { order: 0; }
+            .showcase-stack { grid-template-columns: 1fr; }
+            .billing-stack img.overlay { position: static; width: 100%; margin-top: 1rem; border: none; }
+            .hero-shot { margin-bottom: -4rem; }
+        }
+        .pricing { padding: 5rem 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: stretch; }
+        .pricing-card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--light-gray); }
+        .pricing-header { padding: 2rem; background-color: var(--secondary); color: white; text-align: center; position: relative; }
+        .early-badge { position: absolute; top: 0; right: 0; background-color: #f59e0b; color: white; padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; border-bottom-left-radius: 0.5rem; }
+        .price { display: flex; flex-direction: column; align-items: center; }
+        .amount { font-size: 2.5rem; font-weight: 700; }
+        .period { font-size: 0.875rem; opacity: 0.8; }
+        .pricing-features { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+        .pricing-features ul { list-style: none; margin: 0 0 auto 0; padding: 0; }
+        .pricing-features .btn { margin-top: 1.5rem; }
+        .pricing-features li { padding: 0.5rem 0; position: relative; padding-left: 1.5rem; }
+        .pricing-features li:before { content: "✓"; position: absolute; left: 0; color: var(--primary); }
+        .waitlist { padding: 5rem 0; background-color: white; }
+        .waitlist-form-container { max-width: 600px; margin: 2rem auto 0 auto; background-color: white; padding: 2.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid var(--light-gray); }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--light-gray); border-radius: 0.375rem; font-size: 1rem; font-family: inherit; }
+        .footer { padding: 3rem 0; background-color: var(--dark); color: white; text-align: center; }
+        .footer-logo img { height: 40px; width: auto; margin-bottom: 0.5rem; } /* UPDATED: Footer logo styling */
+        .footer-links { margin-bottom: 1rem; }
+        .footer-links a { color: #d1d5db; text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { text-decoration: underline; }
+        @media (max-width: 768px) { h1 { font-size: 2.25rem; } h2 { font-size: 1.75rem; } .nav-links { display: none; } .pricing-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#"><img src="images/logo-header-white.png" alt="LadderOps Logo"></a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#showcase">Product</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#waitlist" class="btn btn-primary">Partner with Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="hero-content container">
+            <h1>LadderOps | Modern Tools for Modern Heroes</h1>
+            <p class="lead">Start with free NERIS reporting. Add modules when you need them. Own your data forever. Simple pricing. Start in minutes. Software that works.</p>
+            <a href="#waitlist" class="btn btn-primary btn-large">Try It Free - Request a Sandbox</a>
+        </div>
+        <div class="hero-shot">
+            <div class="browser-frame">
+                <img src="screenshots/Dashboard.png" alt="LadderOps Dashboard" loading="lazy">
+            </div>
+        </div>
+    </header>
+    
+    <section id="features" class="features" style="padding-top: 12rem;">
+        <div class="container">
+            <h2 style="text-align: center;">One Integrated Platform for Fire & EMS</h2>
+            <p class="section-description">LadderOps connects every part of your operation, from dispatch to reporting, eliminating data silos and improving efficiency.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i data-feather="clipboard" class="feature-icon"></i>
+                    <h3>Compliant Incident Reporting</h3>
+                    <p>Free, intuitive, and fully NERIS-compliant reporting. Ensure a seamless transition and simplify data submission.</p>
+                </div>
+                <div class="feature-card">
+                    <i data-feather="heart" class="feature-icon"></i>
+                    <h3>ePCR & EMS Management</h3>
+                    <p>Fast, flexible, and NEMSIS v3.5 compliant patient care reporting. Integrated with incident data for a complete picture.</p>
+                </div>
+                <div class="feature-card">
+                    <i data-feather="check-square" class="feature-icon"></i>
+                    <h3>Inspections & Permits</h3>
+                    <p>Create intuitive, custom forms for any inspection or permit type. Streamline workflows for fire prevention and code enforcement.</p>
+                </div>
+                <div class="feature-card">
+                    <i data-feather="users" class="feature-icon"></i>
+                    <h3>Personnel & Scheduling</h3>
+                    <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
+                </div>
+                <div class="feature-card">
+                    <i data-feather="home" class="feature-icon"></i>
+                    <h3>Occupancy & Pre-Planning</h3>
+                    <p>Access critical building information and pre-plans from any device, ensuring your crews are prepared before they arrive on scene.</p>
+                </div>
+                <div class="feature-card">
+                    <i data-feather="truck" class="feature-icon"></i>
+                    <h3>Apparatus & Assets</h3>
+                    <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="showcase" class="showcase">
+        <div class="container">
+            <div class="showcase-row">
+                <div class="showcase-text">
+                    <h2>Incident Management</h2>
+                    <p>Track every call. From initial dispatch to NERIS submission, every incident is documented and compliant.</p>
+                </div>
+                <div class="showcase-image">
+                    <img src="screenshots/incidents.png" alt="Incident management" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase alt">
+        <div class="container">
+            <div class="showcase-row reverse">
+                <div class="showcase-image">
+                    <div class="showcase-stack">
+                        <img src="screenshots/personnel.png" alt="Personnel" loading="lazy">
+                        <img src="screenshots/apparatus.png" alt="Apparatus" loading="lazy">
+                    </div>
+                </div>
+                <div class="showcase-text">
+                    <h2>Personnel &amp; Apparatus</h2>
+                    <p>Your entire roster and fleet in one place. Ranks, certifications, apparatus specs, maintenance status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-row">
+                <div class="showcase-text">
+                    <h2>Cost Recovery Billing</h2>
+                    <p>Bill for every response. Track every dollar. Generate professional invoices in seconds.</p>
+                </div>
+                <div class="showcase-image">
+                    <div class="billing-stack">
+                        <img class="main" src="screenshots/billing dashboard.png" alt="Billing dashboard" loading="lazy">
+                        <img class="overlay" src="screenshots/incident billing view.png" alt="Incident billing view" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase-full">
+        <div class="container">
+            <h2>Fire Inspections &amp; Scheduling</h2>
+            <p class="section-description">Schedule inspections, track compliance, never miss a deadline. Map-based scheduling across your entire district.</p>
+            <div class="showcase-full-grid">
+                <img src="screenshots/inspection schedule map.png" alt="Inspection schedule map" loading="lazy">
+                <img src="screenshots/Inspection Calendar.png" alt="Inspection calendar" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-row reverse">
+                <div class="showcase-image">
+                    <img src="screenshots/status board personnel view.png" alt="Status board" loading="lazy">
+                </div>
+                <div class="showcase-text">
+                    <h2>Real-Time Status Board</h2>
+                    <p>Know where your people are. Real-time personnel and unit status tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase alt">
+        <div class="container">
+            <div class="showcase-row">
+                <div class="showcase-text">
+                    <h2>Reports &amp; Analytics</h2>
+                    <p>Data-driven decisions. Incident trends, response times, and department analytics at your fingertips.</p>
+                </div>
+                <div class="showcase-image">
+                    <img src="screenshots/reports dashboard.png" alt="Reports dashboard" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 style="text-align: center;">Simple, Transparent Pricing</h2>
+            <p class="section-description">Start for free and scale with powerful tools. No hidden fees, no data hostages. Special pricing available for early partners.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price"><span class="amount" style="color: var(--success);">$0</span><span class="period">per member/year</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><strong>NERIS Incident Reporting</strong></li>
+                            <li>Unlimited Incidents &amp; Users</li>
+                            <li>Mobile-First Interface</li>
+                            <li>Secure Cloud Hosting</li>
+                        </ul>
+                        <a href="#waitlist" class="btn btn-primary">Get Started Free</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Standard</h3>
+                        <div class="price"><span class="amount">$50</span><span class="period">per member/year</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><strong>Everything in Free, plus:</strong></li>
+                            <li>Personnel Management</li>
+                            <li>Apparatus Tracking</li>
+                            <li>Fire Inspections</li>
+                            <li>Scheduling</li>
+                            <li>Training &amp; Certifications</li>
+                            <li>Occupancy Management</li>
+                            <li>Reporting &amp; Analytics</li>
+                            <li>Priority Support</li>
+                        </ul>
+                        <a href="#waitlist" class="btn btn-primary" style="background-color: transparent; color: var(--primary); border: 1px solid var(--primary);">Start Free Trial</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="early-badge">Most Complete</div>
+                        <h3>Standard + Billing</h3>
+                        <div class="price"><span class="amount">$75</span><span class="period">per member/year</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><strong>Everything in Standard, plus:</strong></li>
+                            <li>Invoice Generation</li>
+                            <li>Fee Schedule Management</li>
+                            <li>Cost Recovery Tracking</li>
+                            <li>PDF Invoices</li>
+                            <li>Payment Status Tracking</li>
+                            <li>Insurance Documentation</li>
+                        </ul>
+                        <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price"><span class="amount">$100</span><span class="period">per member/year</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><strong>For career &amp; combination departments</strong></li>
+                            <li>Everything in Standard + Billing, plus:</li>
+                            <li>ePCR (NEMSIS Compliant)</li>
+                            <li>Advanced Shift Scheduling</li>
+                            <li>Multi-Station Management</li>
+                            <li>CAD Integration API</li>
+                            <li>Custom Reporting</li>
+                            <li>Dedicated Support</li>
+                            <li>SLA-Backed Uptime Guarantee</li>
+                        </ul>
+                        <a href="#waitlist" class="btn btn-primary">Request a Quote</a>
+                    </div>
+                </div>
+            </div>
+            <p class="pricing-note">Founding departments lock in $25/member/year for the life of their subscription.</p>
+        </div>
+    </section>
+    
+    <section id="waitlist" class="waitlist">
+        <div class="container">
+            <h2 style="text-align: center;">Start Your Free Trial</h2>
+            <p class="section-description">We're offering free 2-4 week sandbox tenants to volunteer and small combination departments. Your sandbox comes pre-loaded with demo data so you can explore immediately. No credit card, no commitment - just log in and see if it fits how your department works.</p>
+            
+            <div class="waitlist-form-container">
+                <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
+                    <div class="form-group">
+                        <label for="email">Work Email*</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name*</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department Name*</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Department Size*</label>
+                        <select id="size" name="size" required>
+                            <option value="">Select...</option>
+                            <option value="volunteer-small">Volunteer (1-25 members)</option>
+                            <option value="volunteer-large">Volunteer (26+ members)</option>
+                            <option value="combination">Combination</option>
+                            <option value="career-small">Career (1-50 members)</option>
+                            <option value="career-medium">Career (51-200 members)</option>
+                            <option value="career-large">Career (200+ members)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="current-software">Current Software (Optional)</label>
+                        <input type="text" id="current-software" name="current-software" placeholder="What are you using now?">
+                    </div>
+                    <div class="form-group">
+                        <label for="biggest-pain">Biggest Pain Point (Optional but helpful!)</label>
+                        <textarea id="biggest-pain" name="biggest-pain" rows="3" placeholder="What frustrates you most about your current system?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Request Free Access</button>
+                    <p class="privacy-note">We'll set up your sandbox and send login details within 48 hours. No spam, no sales pressure.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <img src="images/logo-header-white.png" alt="LadderOps Logo">
+            </div>
+            <p>Modern Tools for Modern Heroes.</p>
+            <div class="footer-links">
+                <a href="mailto:info@ladderops.tech">info@ladderops.tech</a>
+                <span style="color: #4b5563;">&bull;</span>
+                <a href="tel:+14132487233">Main: (413) 248-7233</a>
+                <span style="color: #4b5563;">&bull;</span>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2026 LadderOps. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+</html>
