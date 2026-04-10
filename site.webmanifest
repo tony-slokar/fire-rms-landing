@@ -1,21 +1,13 @@
 {
-  "name": "LadderOps: NERIS 2026 Compliant Fire Department Records Management",
+  "name": "LadderOps",
   "short_name": "LadderOps",
-  "description": "NERIS 2026 compliant records management system for fire departments.",
-  "icons": [
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
-    {
-      "src": "/favicon.ico",
-      "sizes": "48x48 32x32 16x16",
-      "type": "image/x-icon"
-    }
-  ],
+  "description": "Modern Tools for Modern Heroes",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#FF4500",
-  "background_color": "#1E3A8A"
+  "background_color": "#1a2332",
+  "theme_color": "#1a2332",
+  "icons": [
+    { "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
 }
