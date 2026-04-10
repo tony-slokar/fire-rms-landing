@@ -1,4 +1,4 @@
-n<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSS1G92R"></script>
@@ -6,7 +6,6 @@ n<!DOCTYPE html>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-5MRSS1G92R');
     </script>
 
@@ -16,7 +15,6 @@ n<!DOCTYPE html>
     <title>Modern Tools for Modern Heroes | LadderOps</title>
     
     <meta name="description" content="Free NERIS-compliant incident reporting forever. The only fire department software that grows with you - add scheduling, ePCR, assets, and more when you're ready. No vendor lock-in.">
-    
     <meta name="keywords" content="NERIS 2026, NERIS compliance, free fire department software, fire RMS, NEMSIS ePCR, fire records management, emergency response software, First Due alternative, fire service technology, incident reporting, LadderOps">
     <meta name="author" content="LadderOps">
     <meta name="robots" content="index, follow">
@@ -52,34 +50,10 @@ n<!DOCTYPE html>
             "priceCurrency": "USD",
             "offerCount": "4",
             "offers": [
-                {
-                    "@type": "Offer",
-                    "name": "Free",
-                    "price": "0",
-                    "priceCurrency": "USD",
-                    "description": "Free forever - NERIS incident reporting, unlimited incidents and users"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Standard",
-                    "price": "50",
-                    "priceCurrency": "USD",
-                    "description": "Per member per year - personnel, apparatus, inspections, scheduling, reporting"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Standard + Billing",
-                    "price": "75",
-                    "priceCurrency": "USD",
-                    "description": "Per member per year - everything in Standard plus cost recovery billing"
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Professional",
-                    "price": "100",
-                    "priceCurrency": "USD",
-                    "description": "Per member per year - for career and combination departments, includes ePCR, CAD integration, dedicated support"
-                }
+                {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "Free forever - NERIS incident reporting, unlimited incidents and users"},
+                {"@type": "Offer", "name": "Standard", "price": "50", "priceCurrency": "USD", "description": "Per member per year - personnel, apparatus, inspections, scheduling, reporting"},
+                {"@type": "Offer", "name": "Standard + Billing", "price": "75", "priceCurrency": "USD", "description": "Per member per year - everything in Standard plus cost recovery billing"},
+                {"@type": "Offer", "name": "Professional", "price": "100", "priceCurrency": "USD", "description": "Per member per year - for career and combination departments, includes ePCR, CAD integration, dedicated support"}
             ]
         }
     }
@@ -88,170 +62,428 @@ n<!DOCTYPE html>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="manifest" href="/site.webmanifest">
-
     <link rel="canonical" href="https://ladderops.tech/">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://formspree.io">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
         :root {
-            --primary: #FF4500;
-            --primary-dark: #E03E00;
-            --secondary: #1E3A8A;
-            --light: #F9FAFB;
-            --dark: #111827;
-            --gray: #6B7280;
-            --light-gray: #E5E7EB;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --info: #3B82F6;
-            --danger: #EF4444;
+            --navy-deep: #1a2332;
+            --navy: #1a2f4a;
+            --navy-mid: #2a4a6a;
+            --navy-light: #3a6a8a;
+            --red: #b83a2e;
+            --red-dark: #9a2f24;
+            --red-light: #d4513b;
+            --teal: #2a8a7a;
+            --amber: #c4922a;
+            --cream: #f8f6f3;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
         }
-        .night-mode {
-            --light: #111827; --dark: #F9FAFB; --gray: #9CA3AF; --light-gray: #374151;
-        }
-        .night-mode .tablet-bezel { background: #000; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--dark); background-color: var(--light); }
-        .no-wrap { white-space: nowrap; }
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        h1, h2, h3 { margin-bottom: 1rem; line-height: 1.2; }
-        h1 { font-size: 3rem; font-weight: 700; }
-        h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-        }
-        h3 { font-size: 1.5rem; font-weight: 600; }
-        .lead { font-size: 1.25rem; margin-bottom: 2rem; }
-        .section-description { font-size: 1.125rem; color: var(--gray); max-width: 700px; margin: 0 auto 3rem; text-align: center; }
+        body { font-family: var(--font); line-height: 1.6; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        h1, h2, h3 { line-height: 1.15; }
+        h1 { font-size: 3.25rem; font-weight: 700; letter-spacing: -0.03em; }
+        h2 { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; }
+        h3 { font-size: 1.25rem; font-weight: 600; }
+
         .btn {
             display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
+            padding: 0.8rem 1.75rem;
+            border-radius: 6px;
             font-weight: 600;
+            font-size: 0.95rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             border: none;
             font-family: inherit;
             text-align: center;
         }
-        .btn-primary { background-color: var(--primary); color: white; }
-        .btn-primary:hover { background-color: var(--primary-dark); }
-        .btn-large { padding: 1rem 2rem; font-size: 1.125rem; }
-        .btn-block { width: 100%; padding: 0.75rem; font-size: 1.125rem; }
-        .navbar { padding: 1.5rem 0; }
+        .btn-primary { background: var(--red); color: white; }
+        .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(184,58,46,0.3); }
+        .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+        .btn-large { padding: 1rem 2.25rem; font-size: 1.05rem; }
+        .btn-block { width: 100%; padding: 0.85rem; font-size: 1.05rem; }
+
+        /* Chevron Logo SVG */
+        .chevron-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .chevron-mark { width: 36px; height: 40px; }
+        .logo-text { font-size: 1.35rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+
+        /* Navigation */
+        .navbar { padding: 1.25rem 0; position: relative; z-index: 100; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 0.5rem; }
-        .logo img { height: 50px; width: auto; } /* UPDATED: Logo image styling */
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin-left: 2rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; }
-        .nav-links a:hover { color: rgba(255, 255, 255, 0.8); }
-        .hero { background: linear-gradient(135deg, var(--secondary) 0%, #2563EB 100%); color: white; padding-bottom: 6rem; min-height: 600px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 0.25rem; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+        .nav-links .btn { color: white; }
+
+        /* Hero */
+        .hero {
+            background: var(--navy-deep);
+            color: white;
+            padding-bottom: 6rem;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(184,58,46,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; max-width: 800px; padding: 4rem 0; position: relative; z-index: 10; }
-        .features { padding: 5rem 0; background-color: white; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .feature-card { background-color: white; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border: 1px solid var(--light-gray); transition: transform 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-icon { width: 48px; height: 48px; margin-bottom: 1rem; color: var(--primary); }
-        .hero-shot { max-width: 1100px; margin: 3rem auto -8rem; position: relative; z-index: 10; padding: 0 20px; }
-        .browser-frame { background: #1f2937; border-radius: 12px; padding: 10px 10px 0; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35); }
-        .browser-frame::before { content: '\25CF \25CF \25CF'; display: block; color: #4b5563; font-size: 12px; letter-spacing: 4px; padding: 4px 8px 8px; }
-        .browser-frame img { display: block; width: 100%; height: auto; border-radius: 0 0 8px 8px; }
-        .showcase { padding: 7rem 0 5rem; background-color: white; }
-        .showcase + .showcase { padding-top: 5rem; }
-        .showcase.alt { background-color: var(--light); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(42,74,106,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 780px;
+            padding: 4.5rem 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .hero-content h1 { margin-bottom: 1.25rem; }
+        .hero-content h1 span { color: var(--red-light); }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(184,58,46,0.12);
+            border: 1px solid rgba(184,58,46,0.25);
+            color: var(--red-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+        }
+        .hero-lead {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2.25rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .hero-shot { max-width: 1060px; margin: 2rem auto -8rem; position: relative; z-index: 10; padding: 0 24px; }
+        .browser-frame {
+            background: var(--gray-800);
+            border-radius: 10px;
+            padding: 8px 8px 0;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+            padding: 6px 8px 8px;
+        }
+        .browser-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gray-600);
+        }
+        .browser-frame img { display: block; width: 100%; height: auto; border-radius: 0 0 6px 6px; }
+
+        /* Trust bar */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 1rem 0;
+            margin-top: 1.5rem;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .trust-item svg { width: 14px; height: 14px; stroke: var(--red-light); }
+
+        /* Features */
+        .features { padding: 5rem 0; background: var(--white); }
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.75rem;
+        }
+        .section-head { text-align: center; margin-bottom: 3.5rem; }
+        .section-head h2 { margin-bottom: 1rem; }
+        .section-head p { font-size: 1.1rem; color: var(--gray-500); max-width: 620px; margin: 0 auto; }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.25s ease;
+            background: var(--white);
+        }
+        .feature-card:hover { border-color: var(--navy-mid); box-shadow: 0 8px 24px rgba(26,35,50,0.06); transform: translateY(-2px); }
+        .feature-icon-wrap {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+        .feature-icon-wrap.fire { background: rgba(184,58,46,0.08); color: var(--red); }
+        .feature-icon-wrap.ops { background: rgba(26,47,74,0.08); color: var(--navy); }
+        .feature-icon-wrap.teal { background: rgba(42,138,122,0.08); color: var(--teal); }
+        .feature-icon-wrap svg, .feature-icon-wrap .feather { width: 20px; height: 20px; }
+        .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .feature-card p { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Showcase */
+        .showcase { padding: 5rem 0; }
+        .showcase.alt { background: var(--gray-50); }
         .showcase-row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: center; }
         .showcase-row.reverse { grid-template-columns: 1.3fr 1fr; }
         .showcase-row.reverse .showcase-text { order: 2; }
-        .showcase-text h2 { font-size: 2rem; }
-        .showcase-text p { font-size: 1.125rem; color: var(--gray); }
-        .showcase-image { display: flex; gap: 1rem; }
-        .showcase-image img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); border: 1px solid var(--light-gray); }
-        .showcase-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; width: 100%; }
-        .showcase-full { padding: 5rem 0; background: var(--light); }
-        .showcase-full .container > h2 { font-size: 2rem; text-align: center; }
-        .showcase-full .section-description { margin-bottom: 2.5rem; }
+        .showcase-text h2 { font-size: 1.85rem; margin-bottom: 0.75rem; }
+        .showcase-text p { font-size: 1.05rem; color: var(--gray-500); line-height: 1.7; }
+        .showcase-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--gray-200);
+        }
+        .showcase-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .showcase-full { padding: 5rem 0; background: var(--gray-50); }
+        .showcase-full .section-head { margin-bottom: 2.5rem; }
         .showcase-full-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; align-items: start; }
-        .showcase-full-grid img { width: 100%; height: auto; border-radius: 10px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); border: 1px solid var(--light-gray); }
+        .showcase-full-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border: 1px solid var(--gray-200);
+        }
         .billing-stack { position: relative; }
         .billing-stack img.main { width: 100%; }
-        .billing-stack img.overlay { position: absolute; bottom: -30px; right: -20px; width: 55%; border: 3px solid white; }
-        .pricing-note { text-align: center; margin-top: 2.5rem; font-size: 1.05rem; color: var(--gray); font-style: italic; }
+        .billing-stack img.overlay { position: absolute; bottom: -30px; right: -20px; width: 55%; border: 3px solid white; border-radius: 10px; }
+
+        /* Pricing */
+        .pricing { padding: 5rem 0; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 3rem; align-items: stretch; }
+        .pricing-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s;
+        }
+        .pricing-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .pricing-card.featured { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+        .pricing-header {
+            padding: 1.75rem 1.5rem;
+            background: var(--navy-deep);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .pricing-header h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; opacity: 0.8; }
+        .featured-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--red);
+            color: white;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            border-bottom-left-radius: 8px;
+        }
+        .amount { font-size: 2.75rem; font-weight: 700; display: block; }
+        .amount.free { color: var(--teal); }
+        .period { font-size: 0.8rem; opacity: 0.6; }
+        .pricing-features { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .pricing-features ul { list-style: none; margin: 0 0 auto; padding: 0; }
+        .pricing-features li {
+            padding: 0.4rem 0;
+            padding-left: 1.35rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .pricing-features li::before { content: ""; position: absolute; left: 0; top: 0.7rem; width: 8px; height: 8px; border-radius: 50%; background: var(--red); opacity: 0.6; }
+        .pricing-features li strong { color: var(--gray-900); }
+        .pricing-features .btn { margin-top: 1.25rem; }
+        .pricing-note { text-align: center; margin-top: 2.5rem; font-size: 0.95rem; color: var(--gray-500); }
+        .pricing-note strong { color: var(--red); }
+
+        /* Waitlist / Trial */
+        .waitlist { padding: 5rem 0; background: var(--gray-50); }
+        .waitlist-form-container {
+            max-width: 580px;
+            margin: 2rem auto 0;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid var(--gray-200);
+        }
+        .form-group { margin-bottom: 1.25rem; }
+        label { display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: 0.9rem; }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy-mid); box-shadow: 0 0 0 3px rgba(42,74,106,0.08); }
+        .privacy-note { text-align: center; margin-top: 1rem; font-size: 0.82rem; color: var(--gray-400); }
+
+        /* Footer */
+        .footer {
+            padding: 3.5rem 0;
+            background: var(--navy-deep);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+        }
+        .footer-logo { margin-bottom: 0.75rem; }
+        .footer-logo .logo-text { font-size: 1.1rem; }
+        .footer p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .footer-links { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 10px; font-size: 0.85rem; }
+        .footer-links a:hover { color: white; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 1.75rem; }
+            .nav-links { display: none; }
+            .feature-grid { grid-template-columns: 1fr; }
             .showcase-row, .showcase-row.reverse, .showcase-full-grid { grid-template-columns: 1fr; gap: 2rem; }
             .showcase-row.reverse .showcase-text { order: 0; }
             .showcase-stack { grid-template-columns: 1fr; }
             .billing-stack img.overlay { position: static; width: 100%; margin-top: 1rem; border: none; }
             .hero-shot { margin-bottom: -4rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .trust-bar { flex-wrap: wrap; gap: 1rem 2rem; }
+            .hero-buttons { flex-direction: column; align-items: center; }
         }
-        .pricing { padding: 5rem 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: stretch; }
-        .pricing-card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--light-gray); }
-        .pricing-header { padding: 2rem; background-color: var(--secondary); color: white; text-align: center; position: relative; }
-        .early-badge { position: absolute; top: 0; right: 0; background-color: #f59e0b; color: white; padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; border-bottom-left-radius: 0.5rem; }
-        .price { display: flex; flex-direction: column; align-items: center; }
-        .amount { font-size: 2.5rem; font-weight: 700; }
-        .period { font-size: 0.875rem; opacity: 0.8; }
-        .pricing-features { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
-        .pricing-features ul { list-style: none; margin: 0 0 auto 0; padding: 0; }
-        .pricing-features .btn { margin-top: 1.5rem; }
-        .pricing-features li { padding: 0.5rem 0; position: relative; padding-left: 1.5rem; }
-        .pricing-features li:before { content: "✓"; position: absolute; left: 0; color: var(--primary); }
-        .waitlist { padding: 5rem 0; background-color: white; }
-        .waitlist-form-container { max-width: 600px; margin: 2rem auto 0 auto; background-color: white; padding: 2.5rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid var(--light-gray); }
-        .form-group { margin-bottom: 1.5rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-        input, select, textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--light-gray); border-radius: 0.375rem; font-size: 1rem; font-family: inherit; }
-        .footer { padding: 3rem 0; background-color: var(--dark); color: white; text-align: center; }
-        .footer-logo img { height: 40px; width: auto; margin-bottom: 0.5rem; } /* UPDATED: Footer logo styling */
-        .footer-links { margin-bottom: 1rem; }
-        .footer-links a { color: #d1d5db; text-decoration: none; margin: 0 10px; }
-        .footer-links a:hover { text-decoration: underline; }
-        @media (max-width: 768px) { h1 { font-size: 2.25rem; } h2 { font-size: 1.75rem; } .nav-links { display: none; } .pricing-grid { grid-template-columns: 1fr; } }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content > * {
+            animation: fadeUp 0.6s ease-out both;
+        }
+        .hero-content > :nth-child(1) { animation-delay: 0s; }
+        .hero-content > :nth-child(2) { animation-delay: 0.1s; }
+        .hero-content > :nth-child(3) { animation-delay: 0.2s; }
+        .hero-content > :nth-child(4) { animation-delay: 0.3s; }
+        .hero-content > :nth-child(5) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <header class="hero">
         <nav class="navbar">
             <div class="container">
-                <div class="logo">
-                    <a href="#"><img src="images/logo-header-white.png" alt="LadderOps Logo"></a>
-                </div>
+                <a href="#" class="chevron-logo">
+                    <svg class="chevron-mark" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
                 <ul class="nav-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#showcase">Product</a></li>
                     <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#waitlist" class="btn btn-primary">Partner with Us</a></li>
+                    <li><a href="#waitlist" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Partner with Us</a></li>
                 </ul>
             </div>
         </nav>
         
         <div class="hero-content container">
-            <h1>LadderOps | Modern Tools for Modern Heroes</h1>
-            <p class="lead">Start with free NERIS reporting. Add modules when you need them. Own your data forever. Simple pricing. Start in minutes. Software that works.</p>
-            <a href="#waitlist" class="btn btn-primary btn-large">Try It Free - Request a Sandbox</a>
+            <div class="hero-badge">NERIS 2026 Ready</div>
+            <h1>Modern Tools for <span>Modern Heroes</span></h1>
+            <p class="hero-lead">Start with free NERIS reporting. Add modules when you need them. Own your data forever. Simple pricing. Start in minutes. Software that works.</p>
+            <div class="hero-buttons">
+                <a href="#waitlist" class="btn btn-primary btn-large">Try It Free</a>
+                <a href="#showcase" class="btn btn-outline btn-large">See the Product</a>
+            </div>
+            <div class="trust-bar">
+                <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> NERIS Certified</span>
+                <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Encrypted & Cloud-Native</span>
+                <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg> Your Data, Your Control</span>
+            </div>
         </div>
         <div class="hero-shot">
             <div class="browser-frame">
+                <div class="browser-dots"><span></span><span></span><span></span></div>
                 <img src="screenshots/Dashboard.png" alt="LadderOps Dashboard" loading="lazy">
             </div>
         </div>
@@ -259,37 +491,40 @@ n<!DOCTYPE html>
     
     <section id="features" class="features" style="padding-top: 12rem;">
         <div class="container">
-            <h2 style="text-align: center;">One Integrated Platform for Fire & EMS</h2>
-            <p class="section-description">LadderOps connects every part of your operation, from dispatch to reporting, eliminating data silos and improving efficiency.</p>
+            <div class="section-head">
+                <div class="section-label">Platform</div>
+                <h2>One Integrated Platform for Fire & EMS</h2>
+                <p>LadderOps connects every part of your operation, from dispatch to reporting, eliminating data silos and improving efficiency.</p>
+            </div>
             
             <div class="feature-grid">
                 <div class="feature-card">
-                    <i data-feather="clipboard" class="feature-icon"></i>
+                    <div class="feature-icon-wrap fire"><i data-feather="clipboard"></i></div>
                     <h3>Compliant Incident Reporting</h3>
                     <p>Free, intuitive, and fully NERIS-compliant reporting. Ensure a seamless transition and simplify data submission.</p>
                 </div>
                 <div class="feature-card">
-                    <i data-feather="heart" class="feature-icon"></i>
+                    <div class="feature-icon-wrap teal"><i data-feather="heart"></i></div>
                     <h3>ePCR & EMS Management</h3>
                     <p>Fast, flexible, and NEMSIS v3.5 compliant patient care reporting. Integrated with incident data for a complete picture.</p>
                 </div>
                 <div class="feature-card">
-                    <i data-feather="check-square" class="feature-icon"></i>
+                    <div class="feature-icon-wrap ops"><i data-feather="check-square"></i></div>
                     <h3>Inspections & Permits</h3>
                     <p>Create intuitive, custom forms for any inspection or permit type. Streamline workflows for fire prevention and code enforcement.</p>
                 </div>
                 <div class="feature-card">
-                    <i data-feather="users" class="feature-icon"></i>
+                    <div class="feature-icon-wrap ops"><i data-feather="users"></i></div>
                     <h3>Personnel & Scheduling</h3>
                     <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
                 </div>
                 <div class="feature-card">
-                    <i data-feather="home" class="feature-icon"></i>
+                    <div class="feature-icon-wrap fire"><i data-feather="home"></i></div>
                     <h3>Occupancy & Pre-Planning</h3>
                     <p>Access critical building information and pre-plans from any device, ensuring your crews are prepared before they arrive on scene.</p>
                 </div>
                 <div class="feature-card">
-                    <i data-feather="truck" class="feature-icon"></i>
+                    <div class="feature-icon-wrap ops"><i data-feather="truck"></i></div>
                     <h3>Apparatus & Assets</h3>
                     <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
                 </div>
@@ -301,6 +536,7 @@ n<!DOCTYPE html>
         <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
+                    <div class="section-label">Incidents</div>
                     <h2>Incident Management</h2>
                     <p>Track every call. From initial dispatch to NERIS submission, every incident is documented and compliant.</p>
                 </div>
@@ -321,7 +557,8 @@ n<!DOCTYPE html>
                     </div>
                 </div>
                 <div class="showcase-text">
-                    <h2>Personnel &amp; Apparatus</h2>
+                    <div class="section-label">Operations</div>
+                    <h2>Personnel & Apparatus</h2>
                     <p>Your entire roster and fleet in one place. Ranks, certifications, apparatus specs, maintenance status.</p>
                 </div>
             </div>
@@ -332,6 +569,7 @@ n<!DOCTYPE html>
         <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
+                    <div class="section-label">Revenue</div>
                     <h2>Cost Recovery Billing</h2>
                     <p>Bill for every response. Track every dollar. Generate professional invoices in seconds.</p>
                 </div>
@@ -347,8 +585,11 @@ n<!DOCTYPE html>
 
     <section class="showcase-full">
         <div class="container">
-            <h2>Fire Inspections &amp; Scheduling</h2>
-            <p class="section-description">Schedule inspections, track compliance, never miss a deadline. Map-based scheduling across your entire district.</p>
+            <div class="section-head">
+                <div class="section-label">Prevention</div>
+                <h2>Fire Inspections & Scheduling</h2>
+                <p>Schedule inspections, track compliance, never miss a deadline. Map-based scheduling across your entire district.</p>
+            </div>
             <div class="showcase-full-grid">
                 <img src="screenshots/inspection schedule map.png" alt="Inspection schedule map" loading="lazy">
                 <img src="screenshots/Inspection Calendar.png" alt="Inspection calendar" loading="lazy">
@@ -363,6 +604,7 @@ n<!DOCTYPE html>
                     <img src="screenshots/status board personnel view.png" alt="Status board" loading="lazy">
                 </div>
                 <div class="showcase-text">
+                    <div class="section-label">Readiness</div>
                     <h2>Real-Time Status Board</h2>
                     <p>Know where your people are. Real-time personnel and unit status tracking.</p>
                 </div>
@@ -374,7 +616,8 @@ n<!DOCTYPE html>
         <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
-                    <h2>Reports &amp; Analytics</h2>
+                    <div class="section-label">Intelligence</div>
+                    <h2>Reports & Analytics</h2>
                     <p>Data-driven decisions. Incident trends, response times, and department analytics at your fingertips.</p>
                 </div>
                 <div class="showcase-image">
@@ -386,19 +629,23 @@ n<!DOCTYPE html>
 
     <section id="pricing" class="pricing">
         <div class="container">
-            <h2 style="text-align: center;">Simple, Transparent Pricing</h2>
-            <p class="section-description">Start for free and scale with powerful tools. No hidden fees, no data hostages. Special pricing available for early partners.</p>
+            <div class="section-head">
+                <div class="section-label">Pricing</div>
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Start for free and scale with powerful tools. No hidden fees, no data hostages.</p>
+            </div>
             
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Free</h3>
-                        <div class="price"><span class="amount" style="color: var(--success);">$0</span><span class="period">per member/year</span></div>
+                        <span class="amount free">$0</span>
+                        <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
                             <li><strong>NERIS Incident Reporting</strong></li>
-                            <li>Unlimited Incidents &amp; Users</li>
+                            <li>Unlimited Incidents & Users</li>
                             <li>Mobile-First Interface</li>
                             <li>Secure Cloud Hosting</li>
                         </ul>
@@ -408,7 +655,8 @@ n<!DOCTYPE html>
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Standard</h3>
-                        <div class="price"><span class="amount">$50</span><span class="period">per member/year</span></div>
+                        <span class="amount">$50</span>
+                        <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
@@ -417,19 +665,20 @@ n<!DOCTYPE html>
                             <li>Apparatus Tracking</li>
                             <li>Fire Inspections</li>
                             <li>Scheduling</li>
-                            <li>Training &amp; Certifications</li>
+                            <li>Training & Certifications</li>
                             <li>Occupancy Management</li>
-                            <li>Reporting &amp; Analytics</li>
+                            <li>Reporting & Analytics</li>
                             <li>Priority Support</li>
                         </ul>
-                        <a href="#waitlist" class="btn btn-primary" style="background-color: transparent; color: var(--primary); border: 1px solid var(--primary);">Start Free Trial</a>
+                        <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Start Free Trial</a>
                     </div>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card featured">
                     <div class="pricing-header">
-                        <div class="early-badge">Most Complete</div>
+                        <div class="featured-badge">Most Complete</div>
                         <h3>Standard + Billing</h3>
-                        <div class="price"><span class="amount">$75</span><span class="period">per member/year</span></div>
+                        <span class="amount">$75</span>
+                        <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
@@ -447,32 +696,36 @@ n<!DOCTYPE html>
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Professional</h3>
-                        <div class="price"><span class="amount">$100</span><span class="period">per member/year</span></div>
+                        <span class="amount">$100</span>
+                        <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><strong>For career &amp; combination departments</strong></li>
-                            <li>Everything in Standard + Billing, plus:</li>
+                            <li><strong>For career & combination depts</strong></li>
+                            <li>Everything in Std + Billing</li>
                             <li>ePCR (NEMSIS Compliant)</li>
                             <li>Advanced Shift Scheduling</li>
                             <li>Multi-Station Management</li>
                             <li>CAD Integration API</li>
                             <li>Custom Reporting</li>
                             <li>Dedicated Support</li>
-                            <li>SLA-Backed Uptime Guarantee</li>
+                            <li>SLA-Backed Uptime</li>
                         </ul>
-                        <a href="#waitlist" class="btn btn-primary">Request a Quote</a>
+                        <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Request a Quote</a>
                     </div>
                 </div>
             </div>
-            <p class="pricing-note">Founding departments lock in $25/member/year for the life of their subscription.</p>
+            <p class="pricing-note">Founding departments lock in <strong>$25/member/year</strong> for the life of their subscription.</p>
         </div>
     </section>
     
     <section id="waitlist" class="waitlist">
         <div class="container">
-            <h2 style="text-align: center;">Start Your Free Trial</h2>
-            <p class="section-description">We're offering free 2-4 week sandbox tenants to volunteer and small combination departments. Your sandbox comes pre-loaded with demo data so you can explore immediately. No credit card, no commitment - just log in and see if it fits how your department works.</p>
+            <div class="section-head">
+                <div class="section-label">Get Started</div>
+                <h2>Start Your Free Trial</h2>
+                <p>We're offering free 2-4 week sandbox tenants to volunteer and small combination departments. Your sandbox comes pre-loaded with demo data so you can explore immediately. No credit card, no commitment - just log in and see if it fits how your department works.</p>
+            </div>
             
             <div class="waitlist-form-container">
                 <form id="waitlist-form" action="https://formspree.io/f/movdznbb" method="POST">
@@ -518,14 +771,22 @@ n<!DOCTYPE html>
     <footer class="footer">
         <div class="container">
             <div class="footer-logo">
-                <img src="images/logo-header-white.png" alt="LadderOps Logo">
+                <a href="#" class="chevron-logo" style="justify-content: center;">
+                    <svg width="24" height="28" viewBox="0 0 36 40" fill="none">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
             </div>
             <p>Modern Tools for Modern Heroes.</p>
             <div class="footer-links">
                 <a href="mailto:info@ladderops.tech">info@ladderops.tech</a>
-                <span style="color: #4b5563;">&bull;</span>
+                <span>&bull;</span>
                 <a href="tel:+14132487233">Main: (413) 248-7233</a>
-                <span style="color: #4b5563;">&bull;</span>
+                <span>&bull;</span>
                 <a href="/privacy-policy.html">Privacy Policy</a>
             </div>
             <p>&copy; 2026 LadderOps. All rights reserved.</p>
