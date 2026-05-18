@@ -14,15 +14,15 @@
     
     <title>Modern Tools for Modern Heroes | LadderOps</title>
     
-    <meta name="description" content="Free NERIS-compliant incident reporting forever. The only fire department software that grows with you - add scheduling, ePCR, assets, and more when you're ready. No vendor lock-in.">
-    <meta name="keywords" content="NERIS 2026, NERIS compliance, free fire department software, fire RMS, NEMSIS ePCR, fire records management, emergency response software, First Due alternative, fire service technology, incident reporting, LadderOps">
+    <meta name="description" content="Modern fire & EMS software for volunteer and combination departments. Rally response coordination, NERIS reporting, full RMS. Start with Rally at $15/member/year. Founding pricing locks the full platform at $25/member/year for life.">
+    <meta name="keywords" content="NERIS 2026, NERIS compliance, fire department software, fire RMS, NEMSIS ePCR, fire records management, emergency response software, First Due alternative, IamResponding alternative, Active911 alternative, fire service technology, incident reporting, volunteer firefighter app, incident response app, responder coordination, fire department mobile app, real-time response, Rally, LadderOps">
     <meta name="author" content="LadderOps">
     <meta name="robots" content="index, follow">
     
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ladderops.tech/">
-    <meta property="og:title" content="The Last Fire Department Software You'll Ever Need">
-    <meta property="og:description" content="Start with free NERIS reporting. Add powerful modules as you grow. Simple pricing. Start in minutes. Software that works.">
+    <meta property="og:title" content="Modern Fire Department Software with Rally Response Coordination">
+    <meta property="og:description" content="Real-time response coordination, NERIS reporting, and a full RMS platform. Built for volunteer and combination fire departments. Founding pricing $25/member/year for life.">
     <meta property="og:image" content="https://ladderops.tech/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -31,8 +31,8 @@
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://ladderops.tech/">
-    <meta name="twitter:title" content="Free NERIS Reporting + Complete Fire RMS">
-    <meta name="twitter:description" content="The only platform that starts free and scales with your department. NERIS 2026 ready.">
+    <meta name="twitter:title" content="LadderOps: Rally Response Coordination + Full Fire RMS">
+    <meta name="twitter:description" content="Real-time response coordination for volunteer fire departments. Bundled with the full LadderOps RMS platform. NERIS 2026 ready.">
     <meta name="twitter:image" content="https://ladderops.tech/og-image.jpg">
 
     <script type="application/ld+json">
@@ -40,18 +40,18 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "LadderOps",
-        "description": "Free NERIS-compliant fire department records management system with optional premium modules",
+        "description": "Modern fire department records management and response coordination platform. Rally mobile app for responders, full RMS for chiefs and admins, NERIS-compliant from day one.",
         "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web-based",
+        "operatingSystem": "Web-based, iOS, Android",
         "offers": {
             "@type": "AggregateOffer",
-            "lowPrice": "0",
+            "lowPrice": "15",
             "highPrice": "100",
             "priceCurrency": "USD",
             "offerCount": "4",
             "offers": [
-                {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "Free forever - NERIS incident reporting, unlimited incidents and users"},
-                {"@type": "Offer", "name": "Standard", "price": "50", "priceCurrency": "USD", "description": "Per member per year - personnel, apparatus, inspections, scheduling, reporting"},
+                {"@type": "Offer", "name": "Rally Only", "price": "15", "priceCurrency": "USD", "description": "Per member per year - Rally response coordination app, live status board, CAD integration"},
+                {"@type": "Offer", "name": "Standard", "price": "50", "priceCurrency": "USD", "description": "Per member per year - Rally plus full RMS: personnel, apparatus, inspections, scheduling, reporting"},
                 {"@type": "Offer", "name": "Standard + Billing", "price": "75", "priceCurrency": "USD", "description": "Per member per year - everything in Standard plus cost recovery billing"},
                 {"@type": "Offer", "name": "Professional", "price": "100", "priceCurrency": "USD", "description": "Per member per year - for career and combination departments, includes ePCR, CAD integration, dedicated support"}
             ]
@@ -299,6 +299,7 @@
         .showcase-row.reverse .showcase-text { order: 2; }
         .showcase-text h2 { font-size: 1.85rem; margin-bottom: 0.75rem; }
         .showcase-text p { font-size: 1.05rem; color: var(--gray-500); line-height: 1.7; }
+        .showcase-text p + p { margin-top: 1rem; }
         .showcase-image img {
             width: 100%;
             height: auto;
@@ -356,7 +357,7 @@
             border-bottom-left-radius: 8px;
         }
         .amount { font-size: 2.75rem; font-weight: 700; display: block; }
-        .amount.free { color: var(--teal); }
+        .amount.entry { color: var(--red-light); }
         .period { font-size: 0.8rem; opacity: 0.6; }
         .pricing-features { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
         .pricing-features ul { list-style: none; margin: 0 0 auto; padding: 0; }
@@ -372,6 +373,7 @@
         .pricing-features .btn { margin-top: 1.25rem; }
         .pricing-note { text-align: center; margin-top: 2.5rem; font-size: 0.95rem; color: var(--gray-500); }
         .pricing-note strong { color: var(--red); }
+        .pricing-note a { color: var(--red); text-decoration: underline; font-weight: 500; }
 
         /* Waitlist / Trial */
         .waitlist { padding: 5rem 0; background: var(--gray-50); }
@@ -472,9 +474,9 @@
         <div class="hero-content container">
             <div class="hero-badge">NERIS 2026 Ready</div>
             <h1>Modern Tools for <span>Modern Heroes</span></h1>
-            <p class="hero-lead">Start with free NERIS reporting. Add modules when you need them. Own your data forever. Simple pricing. Start in minutes. Software that works.</p>
+            <p class="hero-lead">Real-time response coordination with Rally. NERIS reporting, personnel, apparatus, and inspections in one integrated platform. Built for volunteer and combination fire departments. Modern. Mobile. Yours to own.</p>
             <div class="hero-buttons">
-                <a href="#waitlist" class="btn btn-primary btn-large">Try It Free</a>
+                <a href="#waitlist" class="btn btn-primary btn-large">Start Free Trial</a>
                 <a href="#showcase" class="btn btn-outline btn-large">See the Product</a>
             </div>
             <div class="trust-bar">
@@ -496,14 +498,19 @@
             <div class="section-head">
                 <div class="section-label">Platform</div>
                 <h2>One Integrated Platform for Fire & EMS</h2>
-                <p>LadderOps connects every part of your operation, from dispatch to reporting, eliminating data silos and improving efficiency.</p>
+                <p>LadderOps connects every part of your operation, from response coordination to reporting, eliminating data silos and improving efficiency.</p>
             </div>
             
             <div class="feature-grid">
                 <div class="feature-card">
+                    <div class="feature-icon-wrap fire"><i data-feather="radio"></i></div>
+                    <h3>Rally Response Coordination</h3>
+                    <p>The mobile app for responders. When the tones drop, members tap their status. Chiefs see who's coming in real time. Works with your existing dispatch.</p>
+                </div>
+                <div class="feature-card">
                     <div class="feature-icon-wrap fire"><i data-feather="clipboard"></i></div>
                     <h3>Compliant Incident Reporting</h3>
-                    <p>Free, intuitive, and fully NERIS-compliant reporting. Ensure a seamless transition and simplify data submission.</p>
+                    <p>Fully NERIS-compliant reporting. Seamless transition from NFIRS, simplified data submission, no double entry.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap teal"><i data-feather="heart"></i></div>
@@ -521,11 +528,6 @@
                     <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon-wrap fire"><i data-feather="home"></i></div>
-                    <h3>Occupancy & Pre-Planning</h3>
-                    <p>Access critical building information and pre-plans from any device, ensuring your crews are prepared before they arrive on scene.</p>
-                </div>
-                <div class="feature-card">
                     <div class="feature-icon-wrap ops"><i data-feather="truck"></i></div>
                     <h3>Apparatus & Assets</h3>
                     <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
@@ -538,12 +540,13 @@
         <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
-                    <div class="section-label">Incidents</div>
-                    <h2>Incident Management</h2>
-                    <p>Track every call. From initial dispatch to NERIS submission, every incident is documented and compliant.</p>
+                    <div class="section-label">Real-Time Coordination</div>
+                    <h2>Rally + Status Board</h2>
+                    <p>When the dispatch tones go out, your members open Rally on their phone and pick a status: Responding to Scene, At Station, Standing By. Chiefs see every responder's state on the live Status Board within seconds.</p>
+                    <p>No more guessing who's coming or wondering who's behind you on the scene. Works with your existing CAD. iOS, Android, and web. Customizable status vocabularies so your department uses its own operational language.</p>
                 </div>
                 <div class="showcase-image">
-                    <img src="screenshots/incidents.png" alt="Incident management" loading="lazy">
+                    <img src="screenshots/status board personnel view.png" alt="Real-time status board and Rally responder coordination" loading="lazy">
                 </div>
             </div>
         </div>
@@ -553,15 +556,12 @@
         <div class="container">
             <div class="showcase-row reverse">
                 <div class="showcase-image">
-                    <div class="showcase-stack">
-                        <img src="screenshots/personnel.png" alt="Personnel" loading="lazy">
-                        <img src="screenshots/apparatus.png" alt="Apparatus" loading="lazy">
-                    </div>
+                    <img src="screenshots/incidents.png" alt="Incident management" loading="lazy">
                 </div>
                 <div class="showcase-text">
-                    <div class="section-label">Operations</div>
-                    <h2>Personnel & Apparatus</h2>
-                    <p>Your entire roster and fleet in one place. Ranks, certifications, apparatus specs, maintenance status.</p>
+                    <div class="section-label">Incidents</div>
+                    <h2>Incident Management</h2>
+                    <p>Track every call from initial dispatch to NERIS submission. Every incident is documented, compliant, and connected to your operational data: who responded, when they arrived, what apparatus was deployed.</p>
                 </div>
             </div>
         </div>
@@ -571,15 +571,33 @@
         <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
-                    <div class="section-label">Revenue</div>
-                    <h2>Cost Recovery Billing</h2>
-                    <p>Bill for every response. Track every dollar. Generate professional invoices in seconds.</p>
+                    <div class="section-label">Operations</div>
+                    <h2>Personnel & Apparatus</h2>
+                    <p>Your entire roster and fleet in one place. Ranks, certifications, apparatus specs, maintenance status. No more spreadsheets, no more forgotten certification renewals.</p>
                 </div>
+                <div class="showcase-image">
+                    <div class="showcase-stack">
+                        <img src="screenshots/personnel.png" alt="Personnel" loading="lazy">
+                        <img src="screenshots/apparatus.png" alt="Apparatus" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase alt">
+        <div class="container">
+            <div class="showcase-row reverse">
                 <div class="showcase-image">
                     <div class="billing-stack">
                         <img class="main" src="screenshots/billing dashboard.png" alt="Billing dashboard" loading="lazy">
                         <img class="overlay" src="screenshots/incident billing view.png" alt="Incident billing view" loading="lazy">
                     </div>
+                </div>
+                <div class="showcase-text">
+                    <div class="section-label">Revenue</div>
+                    <h2>Cost Recovery Billing</h2>
+                    <p>Bill for every response. Track every dollar. Generate professional invoices in seconds. Insurance documentation included.</p>
                 </div>
             </div>
         </div>
@@ -601,21 +619,6 @@
 
     <section class="showcase">
         <div class="container">
-            <div class="showcase-row reverse">
-                <div class="showcase-image">
-                    <img src="screenshots/status board personnel view.png" alt="Status board" loading="lazy">
-                </div>
-                <div class="showcase-text">
-                    <div class="section-label">Readiness</div>
-                    <h2>Real-Time Status Board</h2>
-                    <p>Know where your people are. Real-time personnel and unit status tracking.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="showcase alt">
-        <div class="container">
             <div class="showcase-row">
                 <div class="showcase-text">
                     <div class="section-label">Intelligence</div>
@@ -634,24 +637,27 @@
             <div class="section-head">
                 <div class="section-label">Pricing</div>
                 <h2>Simple, Transparent Pricing</h2>
-                <p>Start for free and scale with powerful tools. No hidden fees, no data hostages.</p>
+                <p>Start with Rally for response coordination. Add the full platform when you're ready. No hidden fees, no data hostages, no PE rollup squeeze.</p>
             </div>
             
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Free</h3>
-                        <span class="amount free">$0</span>
+                        <h3>Rally Only</h3>
+                        <span class="amount entry">$15</span>
                         <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><strong>NERIS Incident Reporting</strong></li>
-                            <li>Unlimited Incidents & Users</li>
-                            <li>Mobile-First Interface</li>
-                            <li>Secure Cloud Hosting</li>
+                            <li><strong>Response coordination only</strong></li>
+                            <li>Real-time mobile app (iOS/Android/Web)</li>
+                            <li>Live status board for chiefs</li>
+                            <li>CAD integration</li>
+                            <li>Custom status vocabularies</li>
+                            <li>Unlimited incidents</li>
+                            <li>Priority support</li>
                         </ul>
-                        <a href="#waitlist" class="btn btn-primary">Get Started Free</a>
+                        <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
                     </div>
                 </div>
                 <div class="pricing-card">
@@ -662,15 +668,14 @@
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><strong>Everything in Free, plus:</strong></li>
-                            <li>Personnel Management</li>
+                            <li><strong>Rally + Full RMS Platform:</strong></li>
+                            <li>NERIS Incident Reporting</li>
+                            <li>Personnel & Scheduling</li>
                             <li>Apparatus Tracking</li>
                             <li>Fire Inspections</li>
-                            <li>Scheduling</li>
                             <li>Training & Certifications</li>
                             <li>Occupancy Management</li>
                             <li>Reporting & Analytics</li>
-                            <li>Priority Support</li>
                         </ul>
                         <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Start Free Trial</a>
                     </div>
@@ -685,11 +690,10 @@
                     <div class="pricing-features">
                         <ul>
                             <li><strong>Everything in Standard, plus:</strong></li>
+                            <li>Cost Recovery Billing</li>
                             <li>Invoice Generation</li>
                             <li>Fee Schedule Management</li>
-                            <li>Cost Recovery Tracking</li>
-                            <li>PDF Invoices</li>
-                            <li>Payment Status Tracking</li>
+                            <li>Payment Tracking</li>
                             <li>Insurance Documentation</li>
                         </ul>
                         <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
@@ -717,7 +721,7 @@
                     </div>
                 </div>
             </div>
-            <p class="pricing-note">Founding departments lock in <strong>$25/member/year</strong> for the life of their subscription.</p>
+            <p class="pricing-note">Founding departments lock in <strong>$25/member/year</strong> for the full platform, for the life of their subscription. <a href="#waitlist">Claim founding status →</a></p>
         </div>
     </section>
     
@@ -753,6 +757,16 @@
                             <option value="career-small">Career (1-50 members)</option>
                             <option value="career-medium">Career (51-200 members)</option>
                             <option value="career-large">Career (200+ members)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Most Interested In*</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select...</option>
+                            <option value="rally-only">Rally response coordination only</option>
+                            <option value="full-platform">Full LadderOps platform</option>
+                            <option value="founding">Founding department pricing ($25/member/year for life)</option>
+                            <option value="not-sure">Not sure yet, want to explore</option>
                         </select>
                     </div>
                     <div class="form-group">
