@@ -1,0 +1,14 @@
+{
+  "name": "ladderops-screenshot-capture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automated Playwright rig that logs into LadderOps staging and captures marketing screenshots of the real product UI.",
+  "type": "module",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "install-browsers": "playwright install chromium"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
