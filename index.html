@@ -46,14 +46,12 @@
         "offers": {
             "@type": "AggregateOffer",
             "lowPrice": "15",
-            "highPrice": "100",
+            "highPrice": "50",
             "priceCurrency": "USD",
-            "offerCount": "4",
+            "offerCount": "2",
             "offers": [
-                {"@type": "Offer", "name": "Rally Only", "price": "15", "priceCurrency": "USD", "description": "Per member per year - Rally response coordination app, live status board, CAD integration"},
-                {"@type": "Offer", "name": "Standard", "price": "50", "priceCurrency": "USD", "description": "Per member per year - Rally plus full RMS: personnel, apparatus, inspections, scheduling, reporting"},
-                {"@type": "Offer", "name": "Standard + Billing", "price": "75", "priceCurrency": "USD", "description": "Per member per year - everything in Standard plus cost recovery billing"},
-                {"@type": "Offer", "name": "Professional", "price": "100", "priceCurrency": "USD", "description": "Per member per year - for career and combination departments, includes ePCR, CAD integration, dedicated support"}
+                {"@type": "Offer", "name": "Rally", "price": "15", "priceCurrency": "USD", "description": "Per member per year - Rally response coordination app, live status board, dispatch alerts, department messaging"},
+                {"@type": "Offer", "name": "LadderOps Platform", "price": "50", "priceCurrency": "USD", "description": "Per member per year, everything included - Rally plus NERIS reporting, billing, water supply and hydrants, pre-incident plans, inspections, personnel, apparatus, and AI tools"}
             ]
         }
     }
@@ -70,6 +68,21 @@
         "installUrl": "https://apps.apple.com/us/app/rally-fire-ems-response/id6789730069",
         "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         "publisher": {"@type": "Organization", "name": "LadderOps, Inc.", "url": "https://ladderops.tech"}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "What is NERIS, and why does 2026 matter?", "acceptedAnswer": {"@type": "Answer", "text": "NERIS is the national incident reporting system replacing NFIRS. Departments are transitioning now. LadderOps departments enter incidents once and submit to NERIS directly, with validation that catches problems before they bounce."}},
+            {"@type": "Question", "name": "How painful is switching from our current system?", "acceptedAnswer": {"@type": "Answer", "text": "Send us your roster and apparatus lists in any form, even a photo of a handwritten page, and AI-assisted import maps them into your system for a quick review. A recent department went from paper lists to a fully loaded system in one afternoon."}},
+            {"@type": "Question", "name": "Does Rally replace IamResponding or Active911?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Rally covers dispatch alerts, one-tap response status, a live status board, and department messaging, connected to the same records platform you run the rest of the department on."}},
+            {"@type": "Question", "name": "Does it work where cell coverage is bad?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The mobile app is offline-first: crews can document in dead zones and everything syncs when coverage returns."}},
+            {"@type": "Question", "name": "Who owns our data?", "acceptedAnswer": {"@type": "Answer", "text": "You do, unconditionally. Export everything at any time in standard formats with no export fees."}},
+            {"@type": "Question", "name": "What does founding pricing mean?", "acceptedAnswer": {"@type": "Answer", "text": "Early departments get the entire platform at 25 dollars per member per year, locked for the life of their subscription, including every future module and feature."}}
+        ]
     }
     </script>
 
@@ -497,6 +510,56 @@
             .announce-bar { font-size: 0.85rem; padding: 0.55rem 0.75rem; }
             .appstore-badge { height: 46px; }
         }
+
+        /* ===== GTM revamp: founding banner, two-card pricing, add-ons, FAQ ===== */
+        .founding-banner {
+            background: var(--navy);
+            color: #fff;
+            border-radius: 14px;
+            padding: 1.75rem 2rem;
+            text-align: center;
+            margin: 0 auto 2.5rem;
+            max-width: 720px;
+        }
+        .founding-banner .founding-tag {
+            display: inline-block;
+            background: var(--red-light);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
+        }
+        .founding-banner p { color: rgba(255,255,255,0.92); margin: 0 0 1.1rem; font-size: 1.05rem; }
+        .founding-banner p strong { color: #fff; font-size: 1.15rem; }
+        .pricing-grid-two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; margin-left: auto; margin-right: auto; }
+        .addon-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            max-width: 860px;
+            margin: 1.5rem auto 0;
+        }
+        .addon-card {
+            background: #fff;
+            border: 1px solid var(--gray-200, #e5e7eb);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+        }
+        .addon-card h4 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+        .addon-card p { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--gray-500, #6b7280); }
+        .addon-price { font-weight: 700; font-size: 0.9rem; color: var(--red); }
+        .starting-at { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; margin-bottom: -0.2rem; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--gray-200, #e5e7eb); padding: 1.1rem 0; }
+        .faq-item h3 { font-size: 1.08rem; margin: 0 0 0.4rem; }
+        .faq-item p { margin: 0; color: var(--gray-500, #6b7280); font-size: 0.97rem; }
+        @media (max-width: 768px) {
+            .pricing-grid-two, .addon-row { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -534,7 +597,7 @@
                 <a href="#showcase" class="btn btn-outline btn-large">See the Product</a>
             </div>
             <div class="trust-bar">
-                <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> NERIS Certified</span>
+                <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Submitting to NERIS Today</span>
                 <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Encrypted & Cloud-Native</span>
                 <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/></svg> Your Data, Your Control</span>
             </div>
@@ -559,32 +622,47 @@
                 <div class="feature-card">
                     <div class="feature-icon-wrap fire"><i data-feather="radio"></i></div>
                     <h3>Rally Response Coordination</h3>
-                    <p>The mobile app for responders. When the tones drop, members tap their status. Chiefs see who's coming in real time. Works with your existing dispatch.</p>
+                    <p>The mobile app for responders, now on the App Store. When the tones drop, members tap their status. Chiefs see who's coming in real time. Works with your existing dispatch.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap fire"><i data-feather="clipboard"></i></div>
-                    <h3>Compliant Incident Reporting</h3>
-                    <p>Fully NERIS-compliant reporting. Seamless transition from NFIRS, simplified data submission, no double entry.</p>
+                    <h3>NERIS Incident Reporting</h3>
+                    <p>Our departments are submitting to NERIS today. Guided validation catches problems before submission, so reports go through the first time. No double entry, no NFIRS hangover.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon-wrap teal"><i data-feather="heart"></i></div>
-                    <h3>ePCR & EMS Management</h3>
-                    <p>Fast, flexible, and NEMSIS v3.5 compliant patient care reporting. Integrated with incident data for a complete picture.</p>
+                    <div class="feature-icon-wrap fire"><i data-feather="cpu"></i></div>
+                    <h3>AI That Does the Paperwork</h3>
+                    <p>Photograph a handwritten roster and get a mapped import, ready to review. Turn any state PDF into a digital form that prints back onto the official document. Draft incident narratives from the facts you already entered.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap teal"><i data-feather="droplet"></i></div>
+                    <h3>Water Supply & Hydrants</h3>
+                    <p>Hydrants, dry hydrants, cisterns, and draft sites on one map. NFPA 291 flow testing and color coding, fire-flow calculations, and the nearest water source on every live incident. Built for rural water.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap teal"><i data-feather="map"></i></div>
+                    <h3>Pre-Incident Plans</h3>
+                    <p>Field-first preplans your crews can actually read en route: critical hazards up top, annotated site plans, linked hydrants. Command sees the plan before arrival, not after.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap ops"><i data-feather="check-square"></i></div>
-                    <h3>Inspections & Permits</h3>
-                    <p>Create intuitive, custom forms for any inspection or permit type. Streamline workflows for fire prevention and code enforcement.</p>
+                    <h3>Inspections & Occupancies</h3>
+                    <p>Map-based inspection scheduling across your district, state-form PDF export, and occupancy records that carry over year to year.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap ops"><i data-feather="users"></i></div>
-                    <h3>Personnel & Scheduling</h3>
-                    <p>Manage schedules, certifications, training records, and qualifications. Automated reminders for certification renewals.</p>
+                    <h3>Personnel & Certifications</h3>
+                    <p>Roster, training records, certifications, and shifts with automated renewal reminders. Department messaging and broadcasts push straight to members' phones.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon-wrap ops"><i data-feather="truck"></i></div>
-                    <h3>Apparatus & Assets</h3>
-                    <p>Track apparatus, equipment, and inventory with maintenance schedules, inspection logs, and real-time status updates.</p>
+                    <h3>Apparatus & Quartermaster</h3>
+                    <p>Apparatus checks and maintenance logs, plus optional full asset lifecycle tracking and EMS controlled-substance chain of custody with dual witness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap ops"><i data-feather="dollar-sign"></i></div>
+                    <h3>Cost Recovery Billing</h3>
+                    <p>Bill for every response with professional invoices, fee schedules, payment tracking, and the insurance documentation to back them up.</p>
                 </div>
             </div>
         </div>
@@ -691,95 +769,113 @@
         <div class="container">
             <div class="section-head">
                 <div class="section-label">Pricing</div>
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Start with Rally for response coordination. Add the full platform when you're ready. No hidden fees, no data hostages, no PE rollup squeeze.</p>
+                <h2>Two Products. One Simple Price Each.</h2>
+                <p>Start with Rally for response coordination, or take the whole platform with everything included. No tier maze, no data hostages, no PE rollup squeeze.</p>
             </div>
             
-            <div class="pricing-grid">
+            <div class="founding-banner">
+                <div class="founding-tag">Founding Departments</div>
+                <p><strong>$25 per member per year, locked for life.</strong> Early departments get the entire platform, every module and every future feature, at founding pricing for as long as they stay subscribed.</p>
+                <a href="#waitlist" class="btn btn-primary">Claim Founding Pricing</a>
+            </div>
+
+            <div class="pricing-grid pricing-grid-two">
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Rally Only</h3>
+                        <h3>Rally</h3>
                         <span class="amount entry">$15</span>
                         <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><strong>Response coordination only</strong></li>
+                            <li><strong>Response coordination</strong></li>
                             <li>iOS app live on the App Store (Android on the way), plus web</li>
+                            <li>Dispatch alerts from your existing CAD</li>
+                            <li>One-tap response status</li>
                             <li>Live status board for chiefs</li>
-                            <li>CAD integration</li>
+                            <li>Department messaging & broadcasts</li>
                             <li>Custom status vocabularies</li>
-                            <li>Unlimited incidents</li>
-                            <li>Priority support</li>
                         </ul>
-                        <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
+                        <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Start with Rally</a>
                     </div>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card featured">
                     <div class="pricing-header">
-                        <h3>Standard</h3>
+                        <div class="featured-badge">Everything Included</div>
+                        <h3>LadderOps Platform</h3>
+                        <span class="starting-at">starting at</span>
                         <span class="amount">$50</span>
                         <span class="period">per member / year</span>
                     </div>
                     <div class="pricing-features">
                         <ul>
-                            <li><strong>Rally + Full RMS Platform:</strong></li>
-                            <li>NERIS Incident Reporting</li>
-                            <li>Personnel & Scheduling</li>
-                            <li>Apparatus Tracking</li>
-                            <li>Fire Inspections</li>
-                            <li>Training & Certifications</li>
-                            <li>Occupancy Management</li>
-                            <li>Reporting & Analytics</li>
-                        </ul>
-                        <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Start Free Trial</a>
-                    </div>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-header">
-                        <div class="featured-badge">Most Complete</div>
-                        <h3>Standard + Billing</h3>
-                        <span class="amount">$75</span>
-                        <span class="period">per member / year</span>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><strong>Everything in Standard, plus:</strong></li>
-                            <li>Cost Recovery Billing</li>
-                            <li>Invoice Generation</li>
-                            <li>Fee Schedule Management</li>
-                            <li>Payment Tracking</li>
-                            <li>Insurance Documentation</li>
+                            <li><strong>Rally included, plus the full RMS:</strong></li>
+                            <li>NERIS incident reporting</li>
+                            <li>Cost recovery billing & invoicing</li>
+                            <li>Water supply & hydrant management</li>
+                            <li>Pre-incident plans</li>
+                            <li>Inspections, occupancies & state-form export</li>
+                            <li>Personnel, certifications & scheduling</li>
+                            <li>Apparatus checks & maintenance</li>
+                            <li>AI onboarding, form builder & narrative assist</li>
+                            <li>Reporting & analytics</li>
                         </ul>
                         <a href="#waitlist" class="btn btn-primary">Start Free Trial</a>
                     </div>
                 </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Professional</h3>
-                        <span class="amount">$100</span>
-                        <span class="period">per member / year</span>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><strong>For career & combination depts</strong></li>
-                            <li>Everything in Std + Billing</li>
-                            <li>ePCR (NEMSIS Compliant)</li>
-                            <li>Advanced Shift Scheduling</li>
-                            <li>Multi-Station Management</li>
-                            <li>CAD Integration API</li>
-                            <li>Custom Reporting</li>
-                            <li>Dedicated Support</li>
-                            <li>SLA-Backed Uptime</li>
-                        </ul>
-                        <a href="#waitlist" class="btn btn-outline" style="color: var(--navy); border-color: var(--gray-200);">Request a Quote</a>
-                    </div>
+            </div>
+
+            <div class="addon-row">
+                <div class="addon-card">
+                    <h4>Quartermaster</h4>
+                    <p>Full asset lifecycle: issue and return, composite assets, maintenance history.</p>
+                    <span class="addon-price">$500 / department / year</span>
+                </div>
+                <div class="addon-card">
+                    <h4>Controlled Substances</h4>
+                    <p>EMS narcotics chain of custody with dual-witness verification.</p>
+                    <span class="addon-price">$500 / department / year</span>
                 </div>
             </div>
-            <p class="pricing-note">Founding departments lock in <strong>$25/member/year</strong> for the full platform, for the life of their subscription. <a href="#waitlist">Claim founding status →</a></p>
+            <p class="pricing-note">No hidden fees, no data hostages, no per-module surprises. Your data exports freely, always.<br>Career and combination departments, or anything over a few stations: <a href="#waitlist">talk to us</a> and we'll build a quote that fits.</p>
         </div>
     </section>
     
+    <section id="faq" class="features">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-label">Questions</div>
+                <h2>Straight Answers</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>What is NERIS, and why does 2026 matter?</h3>
+                    <p>NERIS is the national incident reporting system replacing NFIRS. Departments are transitioning now, and manual entry through the federal portal is slow and unforgiving. LadderOps departments enter incidents once and submit to NERIS directly, with validation that catches problems before they bounce.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How painful is switching from our current system?</h3>
+                    <p>We do the heavy lifting. Send us your roster and apparatus lists in any form, even a photo of a handwritten page, and our AI-assisted import maps them into your system for a quick review. A recent department went from paper lists to a fully loaded system in one afternoon.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does Rally replace IamResponding or Active911?</h3>
+                    <p>Yes. Rally covers dispatch alerts, one-tap response status, a live status board, and department messaging, and it connects to the same records platform you run the rest of the department on. One login, one bill, one vendor.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does it work where cell coverage is bad?</h3>
+                    <p>Yes. The mobile app is offline-first: crews can document in dead zones and everything syncs when coverage returns. We built for rural Wisconsin, not a downtown demo room.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Who owns our data?</h3>
+                    <p>You do, unconditionally. Export everything at any time in standard formats. If you ever leave, your data goes with you. No export fees, no hostage negotiations.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What does founding pricing mean?</h3>
+                    <p>Early departments get the entire platform at $25 per member per year, locked for the life of their subscription, including every module and feature we ship later. When founding pricing ends, it ends for new departments only.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="waitlist" class="waitlist">
         <div class="container">
             <div class="section-head">
