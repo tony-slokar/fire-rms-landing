@@ -167,7 +167,7 @@ async function seedMessages(page) {
 }
 
 // ---------------------------------------------------------------------------
-// Quartermaster storage-location seeding
+// Quartermaster seeding: storage locations + assets
 // ---------------------------------------------------------------------------
 
 const SEED_STORAGE_LOCATIONS = [
@@ -179,14 +179,12 @@ const SEED_STORAGE_LOCATIONS = [
 ];
 
 /**
- * Quartermaster's Asset Register has no create-asset UI in this build - confirmed
- * by exhaustive exploration (no visible or icon-only button, no dialog anywhere
- * creates an asset instance; the "Set up catalog" action on Storage Locations only
- * seeds asset TYPES via an NFPA starter set, not actual asset records). Storage
- * Locations is the one sub-entity the UI actually lets you create, so seed a
- * handful of realistic ones there instead - the most populated, authentic view
- * the module currently offers. Idempotent - mirrors seedMessages()'s
- * check-before-create pattern so repeated rig runs don't pile up duplicates.
+ * Seeds a handful of realistic storage locations. These back the optional
+ * Location field on the "New asset" dialog below - seeding them first means
+ * seedQuartermasterAssets() can place each asset somewhere real instead of
+ * leaving every row's Location as "None". Idempotent - mirrors
+ * seedMessages()'s check-before-create pattern so repeated rig runs don't
+ * pile up duplicates.
  */
 async function seedQuartermasterLocations(page) {
   for (const name of SEED_STORAGE_LOCATIONS) {
@@ -202,6 +200,69 @@ async function seedQuartermasterLocations(page) {
     await dialog.locator('input[placeholder="e.g. Bay 2 / Shelf A"]').fill(name);
     await dialog.getByRole("button", { name: "Create" }).click();
     await page.waitForTimeout(1500);
+  }
+}
+
+// The ridgeview catalog only has 4 asset types seeded (an NFPA PPE/hose/
+// ladder/SCBA starter set: Fire Hose, Ground Ladder, SCBA Pack, Turnout
+// Gear) - there's no "electronics" or "power tools" category, so every
+// seeded asset tag below is chosen to genuinely match one of those 4 types
+// rather than forcing a mismatched one into the register.
+const SEED_ASSETS = [
+  { tag: "SCBA-12", type: "SCBA Pack", status: "In Service", location: "Station 1 - SCBA Room", condition: "Good" },
+  { tag: "LADR-24", type: "Ground Ladder", status: "In Service", location: "Station 1 - Bay 2", condition: "Good" },
+  { tag: "HOSE-14", type: "Fire Hose", status: "In Service", location: "Engine 1 - Cab Compartment", condition: "New" },
+  { tag: "HOSE-22", type: "Fire Hose", status: "In Service", location: "Rescue 2 - Compartment 3", condition: "Good" },
+  {
+    tag: "TURN-07",
+    type: "Turnout Gear",
+    status: "In Service",
+    location: "Station 1 - Turnout Gear Room",
+    condition: "Fair",
+  },
+];
+
+/**
+ * Selects an option from a Radix Select combobox trigger button by its
+ * accessible name. Radix renders the option list in a portal appended to
+ * <body>, not inside the dialog, so the option locator must be page-scoped
+ * rather than dialog-scoped.
+ */
+async function selectComboboxOption(page, trigger, optionName) {
+  await trigger.click();
+  await page.waitForTimeout(500);
+  await page.getByRole("option", { name: optionName, exact: true }).click();
+  await page.waitForTimeout(300);
+}
+
+/**
+ * Quartermaster's Asset Register now has a real "New asset" create dialog
+ * (asset tag, type, status required; location/condition/serial/notes
+ * optional) - confirmed against staging. Seeds a handful of realistic
+ * assets through that dialog, idempotently by asset tag - mirrors
+ * seedMessages()'s check-before-create pattern so repeated rig runs don't
+ * pile up duplicates.
+ */
+async function seedQuartermasterAssets(page) {
+  for (const asset of SEED_ASSETS) {
+    const alreadyExists = await page.getByText(asset.tag, { exact: true }).count();
+    if (alreadyExists > 0) {
+      log(`Asset already seeded: "${asset.tag}" - skipping`);
+      continue;
+    }
+    log(`Seeding asset: "${asset.tag}" (${asset.type})`);
+    await page.getByRole("button", { name: "New asset" }).first().click();
+    await page.waitForTimeout(1000);
+    const dialog = page.locator('[role="dialog"], [role="alertdialog"]').first();
+    const combos = dialog.locator('button[role="combobox"]');
+    await dialog.locator("#asset-tag").fill(asset.tag);
+    // Combobox order in the dialog: Asset type, Status, Location, Condition.
+    await selectComboboxOption(page, combos.nth(0), asset.type);
+    await selectComboboxOption(page, combos.nth(1), asset.status);
+    await selectComboboxOption(page, combos.nth(2), asset.location);
+    await selectComboboxOption(page, combos.nth(3), asset.condition);
+    await dialog.getByRole("button", { name: "Create" }).click();
+    await page.waitForTimeout(1800);
   }
 }
 
@@ -508,14 +569,24 @@ async function captureDesktop(browser) {
 
   await safeStep("quartermaster", async () => {
     // Quartermaster lives under the "Apparatus & Equipment" hub (/hub/assets)
-    // as its own card, at /quartermaster.
+    // as its own card, at /quartermaster. The Asset Register
+    // (/quartermaster/assets) now has a real "New asset" create dialog, so
+    // seed real asset records for the most populated, authentic view of the
+    // module - Storage Locations are seeded first only as a prerequisite
+    // for the dialog's optional Location field.
     await page.goto(BASE_URL + "/quartermaster/storage-locations", { waitUntil: "domcontentloaded" });
     await page.getByText("Storage Locations", { exact: true }).first().waitFor({ timeout: 15000 });
     await page.waitForTimeout(800);
     await seedQuartermasterLocations(page);
-    // Reload for a clean shot without a lingering "Storage location created" toast.
-    await page.goto(BASE_URL + "/quartermaster/storage-locations", { waitUntil: "domcontentloaded" });
-    await waitForRows(page, "table tbody tr", 1);
+
+    await page.goto(BASE_URL + "/quartermaster/assets", { waitUntil: "domcontentloaded" });
+    await page.getByText("Asset Register", { exact: true }).first().waitFor({ timeout: 15000 });
+    await page.waitForTimeout(800);
+    await seedQuartermasterAssets(page);
+
+    // Reload for a clean shot without a lingering "Asset created" toast.
+    await page.goto(BASE_URL + "/quartermaster/assets", { waitUntil: "domcontentloaded" });
+    await waitForRows(page, "table tbody tr", 5);
     await page.waitForTimeout(500);
     await shoot(page, "quartermaster");
   });
