@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.resolve(__dirname, "../../screenshots-v2");
 
 const BASE_URL = process.env.CAPTURE_BASE_URL || "https://staging.ladderops.tech";
-const USERNAME = process.env.CAPTURE_USERNAME || "shots";
+const USERNAME = process.env.CAPTURE_USERNAME || "chief";
 const PASSWORD = process.env.CAPTURE_PASSWORD || "Capture2026!shots";
 const TENANT = process.env.CAPTURE_TENANT || "ridgeview";
 
@@ -58,7 +58,9 @@ async function login(page) {
   }
 
   await page.locator('button[type="submit"]').click();
-  await page.getByText("Good morning").waitFor({ timeout: 30000 });
+  // Greeting is time-of-day dependent ("Good morning/afternoon/evening"), so
+  // match any of them rather than hardcoding one.
+  await page.getByText(/Good (morning|afternoon|evening)/).waitFor({ timeout: 30000 });
   await page.waitForTimeout(1500);
 }
 
@@ -109,6 +111,129 @@ async function safeStep(label, fn) {
     log(`SKIP ${label}: ${err.message.split("\n")[0]}`);
     skips.push({ page: label, reason: err.message.split("\n")[0] });
   }
+}
+
+// ---------------------------------------------------------------------------
+// Message seeding (realistic department broadcasts for the messages capture)
+// ---------------------------------------------------------------------------
+
+const SEED_BROADCASTS = [
+  {
+    subject: "Pump Training Moved to Thursday",
+    body: "Heads up: this week's pump training has been moved to Thursday at 1900 hours at Station 1. Bring your turnout gear, we will be running full relay evolutions off the pond. Contact Chief if you have a scheduling conflict.",
+  },
+  {
+    subject: "Hydrant Flushing This Saturday - North Side",
+    body: "Public Works will be flushing hydrants on the north side of town this Saturday starting at 0800. Expect discolored water in that area through midday. Crews running the flush should log any hydrants found inoperable in the water supply module.",
+  },
+  {
+    subject: "Welcome Our New Probationary Members",
+    body: "Please give a warm welcome to our two newest probationary members, who joined the department this month. They will be riding along and training with each shift over the next few weeks, so introduce yourselves and help them get squared away.",
+  },
+];
+
+/**
+ * Sends the seed broadcasts via the real Compose UI, skipping any whose
+ * subject is already present in Sent (idempotent across repeated rig runs -
+ * otherwise every re-run would pile up duplicate broadcasts on staging).
+ */
+async function seedMessages(page) {
+  // "Inbox"/"Sent" and "Direct Message"/"Broadcast" are Radix Tabs
+  // (role="tab"), not plain buttons.
+  await page.getByRole("tab", { name: "Sent", exact: true }).click();
+  await page.waitForTimeout(800);
+
+  for (const msg of SEED_BROADCASTS) {
+    const alreadySent = await page.getByText(msg.subject, { exact: true }).count();
+    if (alreadySent > 0) {
+      log(`Broadcast already seeded: "${msg.subject}" - skipping`);
+      continue;
+    }
+    log(`Seeding broadcast: "${msg.subject}"`);
+    await page.getByRole("button", { name: "Compose" }).click();
+    await page.waitForTimeout(600);
+    const dialog = page.getByRole("dialog");
+    await dialog.getByRole("tab", { name: "Broadcast", exact: true }).click();
+    await page.waitForTimeout(400);
+    await dialog.locator('input[placeholder="Enter message subject..."]').fill(msg.subject);
+    await dialog.locator('textarea[placeholder="Enter your message..."]').fill(msg.body);
+    await dialog.getByRole("button", { name: "Send Message" }).click();
+    await page
+      .getByText("Broadcast sent to all personnel")
+      .waitFor({ timeout: 10000 })
+      .catch(() => {});
+    await page.waitForTimeout(1200);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Water-supply map: zoom the marker cluster in and recenter it
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the pixel centroid + bounding box of the densest cluster of
+ * MapLibre marker DOM nodes (filters out far-flung single outlier pins so
+ * they don't skew the centroid).
+ */
+async function clusterBounds(page) {
+  const markerCount = await page.locator(".maplibregl-marker").count();
+  const boxes = [];
+  for (let i = 0; i < markerCount; i++) {
+    const box = await page.locator(".maplibregl-marker").nth(i).boundingBox();
+    if (box) boxes.push({ x: box.x + box.width / 2, y: box.y + box.height / 2 });
+  }
+  if (boxes.length === 0) return null;
+  const meanX = boxes.reduce((s, b) => s + b.x, 0) / boxes.length;
+  const meanY = boxes.reduce((s, b) => s + b.y, 0) / boxes.length;
+  const dists = boxes.map((b) => Math.hypot(b.x - meanX, b.y - meanY));
+  const sortedDists = [...dists].sort((a, b) => a - b);
+  const medianDist = sortedDists[Math.floor(sortedDists.length / 2)];
+  const inliers = boxes.filter((b, i) => dists[i] <= Math.max(medianDist * 3, 50));
+  const cx = inliers.reduce((s, b) => s + b.x, 0) / inliers.length;
+  const cy = inliers.reduce((s, b) => s + b.y, 0) / inliers.length;
+  const minX = Math.min(...inliers.map((b) => b.x));
+  const maxX = Math.max(...inliers.map((b) => b.x));
+  const minY = Math.min(...inliers.map((b) => b.y));
+  const maxY = Math.max(...inliers.map((b) => b.y));
+  return { cx, cy, minX, maxX, minY, maxY, count: inliers.length, total: boxes.length };
+}
+
+/** Drags the map by (dx, dy) screen pixels via a multi-step mouse drag. */
+async function panBy(page, viewport, dx, dy) {
+  const startX = viewport.width / 2;
+  const startY = viewport.height / 2;
+  await page.mouse.move(startX, startY);
+  await page.mouse.down();
+  const steps = 8;
+  for (let i = 1; i <= steps; i++) {
+    await page.mouse.move(startX + (dx * i) / steps, startY + (dy * i) / steps);
+    await page.waitForTimeout(20);
+  }
+  await page.mouse.up();
+}
+
+/**
+ * Zooms the map in on the current cluster centroid via mouse wheel (wheel
+ * events don't trigger the markers' own click-to-navigate handlers the way
+ * a click/dblclick landing on a marker DOM node would), then pans to
+ * recenter the now-spread-out cluster in the viewport. Markers pack so
+ * tightly at the default zoom that a single zoom pass only spreads them a
+ * little; multiple zoom+recenter passes progressively spread them into
+ * individually distinguishable pins while keeping the whole group in frame.
+ */
+async function zoomAndRecenterOnce(page, viewport, wheelDelta) {
+  const before = await clusterBounds(page);
+  if (!before) return;
+  await page.mouse.move(before.cx, before.cy);
+  await page.mouse.wheel(0, wheelDelta);
+  await page.waitForTimeout(2500);
+
+  const after = await clusterBounds(page);
+  if (!after) return;
+  const dx = viewport.width / 2 - (after.minX + after.maxX) / 2;
+  const dy = viewport.height / 2 - (after.minY + after.maxY) / 2;
+  await panBy(page, viewport, dx, dy);
+  await page.waitForTimeout(1500);
 }
 
 // ---------------------------------------------------------------------------
@@ -195,13 +320,38 @@ async function captureDesktop(browser) {
     await page.getByRole("button", { name: "Map" }).waitFor({ timeout: 15000 });
     await page.getByRole("button", { name: "Map" }).click();
     await page.waitForSelector("canvas", { timeout: 15000 });
-    await page.waitForTimeout(2500); // map tiles + marker clustering settle
-    // Default view packs markers into a tight cluster at a multi-state
-    // extent. Tried zooming in via the map's "+" control (pans the cluster
-    // off-screen, since it zooms on map center) and clicking a marker
-    // (navigates straight to that source's detail page instead of
-    // zooming) - both worse than the plain default view, reverted to it.
-    await shoot(page, "water-supply");
+    await page.waitForTimeout(5000); // map tiles + marker clustering settle
+    // Default view packs ~100 markers into a tight cluster (a few dozen px
+    // across) at a multi-state extent. The map's "+" control zooms on map
+    // center (pans the cluster off-screen) and clicking a marker navigates
+    // straight to that source's detail page instead of zooming - both worse
+    // than the plain default view. Mouse-wheel zoom centered on the cluster
+    // centroid avoids the marker click-navigation trap, then a pan recenters
+    // the now-spread cluster in frame. Multiple passes spread the pins out
+    // further; capture 3 increasingly-zoomed variants so a human can pick.
+    await zoomAndRecenterOnce(page, DESKTOP_VIEWPORT, -1800);
+    await page.mouse.move(20, 20);
+    await page.waitForTimeout(300);
+    await shoot(page, "water-supply-a");
+
+    await zoomAndRecenterOnce(page, DESKTOP_VIEWPORT, -1800);
+    await page.mouse.move(20, 20);
+    await page.waitForTimeout(300);
+    await shoot(page, "water-supply-b");
+
+    await zoomAndRecenterOnce(page, DESKTOP_VIEWPORT, -1800);
+    await page.mouse.move(20, 20);
+    await page.waitForTimeout(300);
+    await shoot(page, "water-supply-c");
+
+    // water-supply-c (3 zoom+recenter passes) spreads the pins into
+    // individually distinguishable markers while keeping the whole group in
+    // frame - picked as the default water-supply.png. Re-review
+    // water-supply-{a,b,c}.png by hand if the underlying seed data changes.
+    fs.copyFileSync(path.join(OUT_DIR, "water-supply-c.png"), path.join(OUT_DIR, "water-supply.png"));
+    const stat = fs.statSync(path.join(OUT_DIR, "water-supply.png"));
+    results.push({ name: "water-supply", ok: stat.size >= MIN_FILE_BYTES, bytes: stat.size });
+    log(`OK water-supply.png copied from water-supply-c.png (${(stat.size / 1024).toFixed(1)} KB)`);
   });
 
   await safeStep("pre-plans", async () => {
@@ -267,8 +417,14 @@ async function captureDesktop(browser) {
     await page.goto(BASE_URL + "/messages", { waitUntil: "domcontentloaded" });
     await page.getByText("Internal messaging and broadcasts").waitFor({ timeout: 15000 });
     await page.waitForTimeout(1000);
-    // Demo account's inbox is genuinely empty (not a bug/spinner) - captured
-    // as-is; noted in the run report.
+    // The capture account's inbox is genuinely empty (chief doesn't receive
+    // its own broadcasts), so seed a few realistic department broadcasts via
+    // the real Compose UI and capture the Sent view, which is what actually
+    // has content. seedMessages() is idempotent - re-running the rig won't
+    // pile up duplicates.
+    await seedMessages(page);
+    await page.getByRole("tab", { name: "Sent", exact: true }).click();
+    await page.waitForTimeout(1000);
     await shoot(page, "messages");
   });
 
