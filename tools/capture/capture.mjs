@@ -167,6 +167,45 @@ async function seedMessages(page) {
 }
 
 // ---------------------------------------------------------------------------
+// Quartermaster storage-location seeding
+// ---------------------------------------------------------------------------
+
+const SEED_STORAGE_LOCATIONS = [
+  "Station 1 - Bay 2",
+  "Station 1 - SCBA Room",
+  "Engine 1 - Cab Compartment",
+  "Rescue 2 - Compartment 3",
+  "Station 1 - Turnout Gear Room",
+];
+
+/**
+ * Quartermaster's Asset Register has no create-asset UI in this build - confirmed
+ * by exhaustive exploration (no visible or icon-only button, no dialog anywhere
+ * creates an asset instance; the "Set up catalog" action on Storage Locations only
+ * seeds asset TYPES via an NFPA starter set, not actual asset records). Storage
+ * Locations is the one sub-entity the UI actually lets you create, so seed a
+ * handful of realistic ones there instead - the most populated, authentic view
+ * the module currently offers. Idempotent - mirrors seedMessages()'s
+ * check-before-create pattern so repeated rig runs don't pile up duplicates.
+ */
+async function seedQuartermasterLocations(page) {
+  for (const name of SEED_STORAGE_LOCATIONS) {
+    const alreadyExists = await page.getByText(name, { exact: true }).count();
+    if (alreadyExists > 0) {
+      log(`Storage location already seeded: "${name}" - skipping`);
+      continue;
+    }
+    log(`Seeding storage location: "${name}"`);
+    await page.getByRole("button", { name: "New location" }).first().click();
+    await page.waitForTimeout(800);
+    const dialog = page.locator('[role="dialog"], [role="alertdialog"]').first();
+    await dialog.locator('input[placeholder="e.g. Bay 2 / Shelf A"]').fill(name);
+    await dialog.getByRole("button", { name: "Create" }).click();
+    await page.waitForTimeout(1500);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Water-supply map: zoom the marker cluster in and recenter it
 // ---------------------------------------------------------------------------
 
@@ -234,6 +273,69 @@ async function zoomAndRecenterOnce(page, viewport, wheelDelta) {
   const dy = viewport.height / 2 - (after.minY + after.maxY) / 2;
   await panBy(page, viewport, dx, dy);
   await page.waitForTimeout(1500);
+}
+
+/** Returns { text, box } for every MapLibre marker currently in the DOM. */
+async function allMarkers(page) {
+  const markerCount = await page.locator(".maplibregl-marker").count();
+  const markers = [];
+  for (let i = 0; i < markerCount; i++) {
+    const el = page.locator(".maplibregl-marker").nth(i);
+    const box = await el.boundingBox();
+    const text = (await el.innerText().catch(() => "")).trim();
+    if (box) markers.push({ text, box });
+  }
+  return markers;
+}
+
+/** The marker with the highest numeric cluster-count label (e.g. "17"), or null if none remain. */
+function largestNumberedMarker(markers) {
+  let best = null;
+  for (const m of markers) {
+    const n = parseInt(m.text, 10);
+    if (!Number.isFinite(n)) continue;
+    if (!best || n > best.n) best = { n, box: m.box };
+  }
+  return best;
+}
+
+/**
+ * Zooms in via mouse wheel centered on a specific page-pixel point, then
+ * recenters on whichever marker ends up closest to that same point.
+ *
+ * Deliberately NOT clusterBounds() (which the water-supply capture above uses
+ * fine, because it only ever has one dominant cluster on screen): when two
+ * unrelated clusters share the viewport - as the inspections map does, a
+ * small "3" bubble near Fennimore plus a big "17" bubble near Mineral Point -
+ * clusterBounds()'s single averaged centroid lands the pan between the two
+ * clusters instead of on either one. Recentering on "whichever marker is now
+ * closest to the pre-zoom target point" instead tracks one specific cluster
+ * through repeated zoom passes as it progressively splits into smaller
+ * sub-clusters and finally into individually distinguishable pins.
+ */
+async function zoomAndRecenterOnPoint(page, viewport, cx, cy, wheelDelta) {
+  await page.mouse.move(cx, cy);
+  await page.mouse.wheel(0, wheelDelta);
+  await page.waitForTimeout(2500);
+
+  const markers = await allMarkers(page);
+  let closest = null;
+  let closestDist = Infinity;
+  for (const m of markers) {
+    const mx = m.box.x + m.box.width / 2;
+    const my = m.box.y + m.box.height / 2;
+    const d = Math.hypot(mx - cx, my - cy);
+    if (d < closestDist) {
+      closestDist = d;
+      closest = { x: mx, y: my };
+    }
+  }
+  if (closest) {
+    const dx = viewport.width / 2 - closest.x;
+    const dy = viewport.height / 2 - closest.y;
+    await panBy(page, viewport, dx, dy);
+    await page.waitForTimeout(1500);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -379,7 +481,58 @@ async function captureDesktop(browser) {
     await page.getByRole("button", { name: "Map", exact: true }).click();
     await page.waitForSelector("canvas", { timeout: 15000 });
     await page.waitForTimeout(2500);
+
+    // Default view has TWO separate cluster bubbles: a small "3" near
+    // Fennimore (west) and a big "17" near Mineral Point (east) - a single
+    // collapsed "17" bubble isn't useful for marketing ("schedule against
+    // individual occupancies"). Bias the first zoom pass at the "17" bubble
+    // specifically (a naive clusterBounds() centroid over both bubbles would
+    // land between them, on neither), then keep tracking whichever
+    // sub-cluster remains largest each subsequent pass via
+    // zoomAndRecenterOnPoint. Two passes was enough in testing to fully
+    // separate all ~17 markers into individually distinguishable, named
+    // occupancy pins; cap at 4 as a safety margin.
+    let markers = await allMarkers(page);
+    let target = largestNumberedMarker(markers);
+    for (let pass = 0; pass < 4 && target; pass++) {
+      const cx = target.box.x + target.box.width / 2;
+      const cy = target.box.y + target.box.height / 2;
+      await zoomAndRecenterOnPoint(page, DESKTOP_VIEWPORT, cx, cy, -1800);
+      await page.mouse.move(20, 20);
+      await page.waitForTimeout(300);
+      markers = await allMarkers(page);
+      target = largestNumberedMarker(markers);
+    }
     await shoot(page, "inspections");
+  });
+
+  await safeStep("quartermaster", async () => {
+    // Quartermaster lives under the "Apparatus & Equipment" hub (/hub/assets)
+    // as its own card, at /quartermaster.
+    await page.goto(BASE_URL + "/quartermaster/storage-locations", { waitUntil: "domcontentloaded" });
+    await page.getByText("Storage Locations", { exact: true }).first().waitFor({ timeout: 15000 });
+    await page.waitForTimeout(800);
+    await seedQuartermasterLocations(page);
+    // Reload for a clean shot without a lingering "Storage location created" toast.
+    await page.goto(BASE_URL + "/quartermaster/storage-locations", { waitUntil: "domcontentloaded" });
+    await waitForRows(page, "table tbody tr", 1);
+    await page.waitForTimeout(500);
+    await shoot(page, "quartermaster");
+  });
+
+  await safeStep("controlled-substances", async () => {
+    // Controlled Substances lives under the "Personnel" hub (/hub/personnel)
+    // as its own card, at /controlled-substances. Every sub-page (Narcotics
+    // locker, Reconciliation, Reports) is genuinely read-only in this build -
+    // no create/register UI anywhere for containers or catalog entries, so
+    // there's nothing to seed. The module landing page is the most
+    // informative authentic view available: real feature cards with
+    // descriptive copy (Reconciliation, Narcotics locker, Reports including
+    // DEA 222/41 references, plus a "Coming Soon" Field actions card).
+    await page.goto(BASE_URL + "/controlled-substances", { waitUntil: "domcontentloaded" });
+    await page.getByText("EMS narcotics chain of custody", { exact: true }).waitFor({ timeout: 15000 });
+    await page.waitForTimeout(800);
+    await shoot(page, "controlled-substances");
   });
 
   await safeStep("billing", async () => {
