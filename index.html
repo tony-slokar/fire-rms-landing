@@ -553,18 +553,17 @@
         .addon-card p { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--gray-500, #6b7280); }
         .addon-price { font-weight: 700; font-size: 0.9rem; color: var(--red); }
         .starting-at { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; margin-bottom: -0.2rem; }
-        .phone-strip { display: flex; gap: 1rem; justify-content: center; align-items: center; }
+        .phone-strip { display: flex; gap: 1rem; justify-content: center; align-items: flex-start; }
         .phone-strip .phone-shot {
-            width: 31%;
-            max-width: 220px;
+            height: 430px;
+            width: auto;
             border-radius: 18px;
             border: 1px solid var(--gray-200, #e5e7eb);
             box-shadow: 0 18px 40px rgba(26, 35, 50, 0.22);
         }
-        .phone-strip .phone-shot-mid { transform: translateY(-14px) scale(1.04); z-index: 2; }
         @media (max-width: 768px) {
             .phone-strip { gap: 0.6rem; }
-            .phone-strip .phone-shot-mid { transform: none; }
+            .phone-strip .phone-shot { height: 300px; }
         }
         .faq-list { max-width: 760px; margin: 0 auto; }
         .faq-item { border-bottom: 1px solid var(--gray-200, #e5e7eb); padding: 1.1rem 0; }
@@ -694,8 +693,8 @@
                 <div class="showcase-image">
                     <div class="phone-strip">
                         <img src="screenshots-v2/rally/rally-dispatch-lockscreen.png" alt="Rally dispatch alert for a structure fire on an iPhone lock screen" class="phone-shot" loading="lazy">
-                        <img src="screenshots-v2/rally/rally-responding.png" alt="Rally incident screen with one-tap I'm Responding button and incident map" class="phone-shot phone-shot-mid" loading="lazy">
-                        <img src="screenshots-v2/rally/rally-responders.png" alt="Rally showing six members responding to an active incident" class="phone-shot" loading="lazy">
+                        <img src="screenshots-v2/rally/rally-responding.png" alt="Rally incident screen with one-tap I'm Responding button and incident map" class="phone-shot" loading="lazy">
+                        <img src="screenshots-v2/rally/rally-messages.png" alt="Rally department messages with broadcast announcements" class="phone-shot" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -812,6 +811,7 @@
                 <div class="pricing-card">
                     <div class="pricing-header">
                         <h3>Rally</h3>
+                        <span class="starting-at" style="visibility: hidden;">&nbsp;</span>
                         <span class="amount entry">$15</span>
                         <span class="period">per member / year</span>
                     </div>
@@ -857,12 +857,12 @@
             <div class="addon-row">
                 <div class="addon-card">
                     <h4>Quartermaster</h4>
-                    <p>Full asset lifecycle: issue and return, composite assets, maintenance history.</p>
+                    <p>Know where every pack, radio, and saw lives. Check gear out to members and get it back, build composite kits, track service history and due-back dates, and see replacement costs before budget season.</p>
                     <span class="addon-price">$500 / department / year</span>
                 </div>
                 <div class="addon-card">
                     <h4>Controlled Substances</h4>
-                    <p>EMS narcotics chain of custody with dual-witness verification.</p>
+                    <p>Audit-ready narcotics tracking for EMS: sealed-container custody, dual-witness sign-offs on every handoff, administration and waste logs, and a complete chain of custody the state can inspect any day.</p>
                     <span class="addon-price">$500 / department / year</span>
                 </div>
             </div>
