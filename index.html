@@ -553,6 +553,19 @@
         .addon-card p { margin: 0 0 0.6rem; font-size: 0.9rem; color: var(--gray-500, #6b7280); }
         .addon-price { font-weight: 700; font-size: 0.9rem; color: var(--red); }
         .starting-at { display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; margin-bottom: -0.2rem; }
+        .phone-strip { display: flex; gap: 1rem; justify-content: center; align-items: center; }
+        .phone-strip .phone-shot {
+            width: 31%;
+            max-width: 220px;
+            border-radius: 18px;
+            border: 1px solid var(--gray-200, #e5e7eb);
+            box-shadow: 0 18px 40px rgba(26, 35, 50, 0.22);
+        }
+        .phone-strip .phone-shot-mid { transform: translateY(-14px) scale(1.04); z-index: 2; }
+        @media (max-width: 768px) {
+            .phone-strip { gap: 0.6rem; }
+            .phone-strip .phone-shot-mid { transform: none; }
+        }
         .faq-list { max-width: 760px; margin: 0 auto; }
         .faq-item { border-bottom: 1px solid var(--gray-200, #e5e7eb); padding: 1.1rem 0; }
         .faq-item h3 { font-size: 1.08rem; margin: 0 0 0.4rem; }
@@ -679,7 +692,11 @@
                     <a href="https://apps.apple.com/us/app/rally-fire-ems-response/id6789730069" class="appstore-link" target="_blank" rel="noopener"><img src="images/app-store-badge.svg" alt="Download Rally on the App Store" class="appstore-badge appstore-badge-inline" width="120" height="40"></a>
                 </div>
                 <div class="showcase-image">
-                    <img src="screenshots-v2/status-board.png" alt="Live status board showing real-time personnel and unit response status" loading="lazy">
+                    <div class="phone-strip">
+                        <img src="screenshots-v2/rally/rally-dispatch-lockscreen.png" alt="Rally dispatch alert for a structure fire on an iPhone lock screen" class="phone-shot" loading="lazy">
+                        <img src="screenshots-v2/rally/rally-responding.png" alt="Rally incident screen with one-tap I'm Responding button and incident map" class="phone-shot phone-shot-mid" loading="lazy">
+                        <img src="screenshots-v2/rally/rally-responders.png" alt="Rally showing six members responding to an active incident" class="phone-shot" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
