@@ -12,17 +12,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NFIRS to NERIS Migration Checklist for Fire Departments | LadderOps</title>
+    <title>Switching to NERIS: The Checklist (No, You Don't Migrate From NFIRS) | LadderOps</title>
 
-    <meta name="description" content="A practical, step-by-step checklist for fire chiefs moving their department's incident reporting from NFIRS to NERIS: registration, software, historical data, training, and validation.">
-    <meta name="keywords" content="NFIRS to NERIS checklist, NERIS migration, fire department NERIS registration, NERIS entity ID, NFIRS data export, NERIS compliance checklist">
+    <meta name="description" content="There's no NFIRS to NERIS migration, NFIRS closed for good in February 2026. Here's the real checklist for starting fresh with NERIS: registration, reporting path, training, and validation.">
+    <meta name="keywords" content="switching to NERIS, NFIRS to NERIS, NERIS checklist for fire departments, NERIS registration, NERIS entity ID, start NERIS reporting, NERIS compliance checklist">
     <meta name="author" content="LadderOps">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://ladderops.tech/neris/nfirs-to-neris-migration-checklist.html">
-    <meta property="og:title" content="NFIRS to NERIS Migration Checklist for Fire Departments">
-    <meta property="og:description" content="Nine concrete steps to get your department's incident reporting fully moved from NFIRS to NERIS, in order.">
+    <meta property="og:title" content="Switching to NERIS: The Checklist (No, You Don't Migrate From NFIRS)">
+    <meta property="og:description" content="Nine steps for getting your department's NERIS reporting up and running from scratch. There's no NFIRS data to migrate, so this is the easy part.">
     <meta property="og:image" content="https://ladderops.tech/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -31,16 +31,16 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://ladderops.tech/neris/nfirs-to-neris-migration-checklist.html">
-    <meta name="twitter:title" content="NFIRS to NERIS Migration Checklist for Fire Departments">
-    <meta name="twitter:description" content="Nine concrete steps to get your department's incident reporting fully moved from NFIRS to NERIS, in order.">
+    <meta name="twitter:title" content="Switching to NERIS: The Checklist (No, You Don't Migrate From NFIRS)">
+    <meta name="twitter:description" content="Nine steps for getting your department's NERIS reporting up and running from scratch. There's no NFIRS data to migrate, so this is the easy part.">
     <meta name="twitter:image" content="https://ladderops.tech/og-image.jpg">
 
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "The NFIRS to NERIS Migration Checklist",
-        "description": "A practical, step-by-step checklist for fire chiefs moving their department's incident reporting from NFIRS to NERIS.",
+        "headline": "Switching to NERIS: The Checklist (No, You Don't Migrate From NFIRS)",
+        "description": "There's no NFIRS to NERIS migration. NFIRS is closed for good. This is the real checklist for starting fresh with NERIS: registration, reporting path, training, and validation.",
         "author": {"@type": "Organization", "name": "LadderOps", "url": "https://ladderops.tech"},
         "publisher": {
             "@type": "Organization",
@@ -60,7 +60,7 @@
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ladderops.tech/"},
             {"@type": "ListItem", "position": 2, "name": "NERIS 2026 Guide", "item": "https://ladderops.tech/neris/"},
-            {"@type": "ListItem", "position": 3, "name": "Migration Checklist", "item": "https://ladderops.tech/neris/nfirs-to-neris-migration-checklist.html"}
+            {"@type": "ListItem", "position": 3, "name": "The Checklist", "item": "https://ladderops.tech/neris/nfirs-to-neris-migration-checklist.html"}
         ]
     }
     </script>
@@ -70,10 +70,10 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {"@type": "Question", "name": "Do we have to switch right now if we haven't already?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. NFIRS closed to all users in February 2026. There's no fallback system left to report through. If your department hasn't finished moving to NERIS, the migration is already overdue, not upcoming."}},
+            {"@type": "Question", "name": "Do we have to switch right now if we haven't already?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. NFIRS closed to all users in February 2026. There's no fallback system left to report through. If your department hasn't set up NERIS reporting yet, you're already overdue, not early."}},
             {"@type": "Question", "name": "What if our current software isn't connected to NERIS?", "acceptedAnswer": {"@type": "Answer", "text": "Ask your vendor directly whether they submit to NERIS through its API. If they don't, and don't have a near-term plan to, you're looking at manual double entry into NERIS on top of your existing system, or switching to software that does connect."}},
             {"@type": "Question", "name": "Is there a cost to register for NERIS or submit incident data?", "acceptedAnswer": {"@type": "Answer", "text": "No. NERIS is free for fire departments, EMS agencies, and other emergency service agencies. Registration and submission carry no fee from USFA or FSRI. Any cost comes from the software or entry tool you use to get data into it."}},
-            {"@type": "Question", "name": "Will we lose our old incident history?", "acceptedAnswer": {"@type": "Answer", "text": "Not if it lives in your own records system. If you relied on eNFIRS without a separate RMS, you needed to export before the February 2026 shutdown. If you missed that window, contact your state NFIRS program manager: some data is preserved in the NFIRS Public Data Release, but individual department exports are no longer available from USFA directly."}}
+            {"@type": "Question", "name": "What happens to our old NFIRS incident history?", "acceptedAnswer": {"@type": "Answer", "text": "It doesn't move anywhere automatically, and NERIS doesn't need it to start working. If your department kept its own records system, that history already lives with you. If you relied on eNFIRS alone and didn't export before the February 2026 shutdown, contact your state NFIRS program manager: some historical data is preserved in the NFIRS Public Data Release, but individual department exports are no longer available from USFA directly."}}
         ]
     }
     </script>
@@ -314,18 +314,18 @@
         <div class="container">
             <div class="page-hero-content">
                 <div class="breadcrumb">
-                    <a href="/">Home</a><span class="sep">/</span><a href="/neris/">NERIS 2026 Guide</a><span class="sep">/</span><span>Migration Checklist</span>
+                    <a href="/">Home</a><span class="sep">/</span><a href="/neris/">NERIS 2026 Guide</a><span class="sep">/</span><span>The Checklist</span>
                 </div>
-                <div class="hero-badge">Migration Checklist</div>
-                <h1>The NFIRS to NERIS Migration Checklist</h1>
-                <p class="page-lede">Nine concrete steps to get your department's incident reporting fully moved from NFIRS to NERIS, in the order that actually makes sense to do them.</p>
+                <div class="hero-badge">The Checklist</div>
+                <h1>Switching to NERIS: The Checklist (No, You Don't Migrate From NFIRS)</h1>
+                <p class="page-lede">Nine steps for getting your department's NERIS reporting up and running, in the order that actually makes sense to do them. None of them involve moving data out of NFIRS, because there's nothing left to move.</p>
                 <div class="page-meta">
                     <span>Updated July 2026</span>
                     <span>7 min read</span>
                 </div>
                 <div class="hub-tabs">
                     <a href="/neris/">Guide</a>
-                    <a href="/neris/nfirs-to-neris-migration-checklist.html" class="active">Migration Checklist</a>
+                    <a href="/neris/nfirs-to-neris-migration-checklist.html" class="active">The Checklist</a>
                     <a href="/neris/neris-reporting-software.html">NERIS Software</a>
                 </div>
             </div>
@@ -337,10 +337,14 @@
 
             <div class="tldr">
                 <span class="label">Before you start</span>
-                <p>NFIRS closed for good in February 2026. This checklist assumes you're either finishing a migration you already started, or catching up because you haven't started at all. Either way, work through it in order: registration and reporting path first, historical data second, training and validation last.</p>
+                <p>There's no migration to run. NFIRS closed for good in February 2026, and there's no hand-off between it and NERIS, no export button, no data pipe. Setting up NERIS means starting a new incident reporting system, not moving one over. Work through this checklist in order: registration and reporting path first, then training and validation once entry is actually set up.</p>
             </div>
 
-            <p>Background on what NERIS is and why it exists is in our <a href="/neris/">NERIS 2026 guide</a>. This page is just the steps.</p>
+            <p>If you landed here searching for how to migrate from NFIRS to NERIS, here's the short version: there isn't a migration. NFIRS was a closed federal system, and whatever incident history your department has stays with USFA or whichever vendor ran your old records software. NERIS doesn't pull that history in, and it doesn't need to. What it needs is your department reporting new incidents going forward.</p>
+
+            <p>Starting fresh is the easy part, especially with the right software behind it. LadderOps, for example, sets a department up on NERIS by starting with a photo of the current roster and apparatus list, running AI-assisted setup from there, then entering each incident once with guided validation before it goes straight to NERIS. No parallel spreadsheet, no re-keying the same report twice.</p>
+
+            <p>Background on what NERIS is and why NFIRS went away is in our <a href="/neris/">NERIS 2026 guide</a>. This page is just the steps to get your department reporting.</p>
 
             <h2>The checklist</h2>
             <ol class="checklist">
@@ -348,56 +352,56 @@
                     <span class="num">1</span>
                     <div class="body">
                         <h3>Confirm your department's NERIS registration and entity ID</h3>
-                        <p>Every department needs to be registered with NERIS to get its 10-digit entity ID, which replaces the old 5-digit FDID. If you're not sure whether your department is registered, your state fire marshal's office or state NFIRS/NERIS program manager can confirm your status and walk you through registration if needed.</p>
+                        <p>Every department needs to be registered with NERIS to get its 10-digit entity ID, which replaces the old 5-digit FDID departments used under NFIRS. If you're not sure whether your department is registered, your state fire marshal's office or state NFIRS/NERIS program manager can confirm your status and walk you through registration if needed.</p>
                     </div>
                 </li>
                 <li>
                     <span class="num">2</span>
                     <div class="body">
                         <h3>Pick a reporting path: direct entry or a connected RMS</h3>
-                        <p>Decide whether officers will enter incidents by hand directly into NERIS, or whether your records management software submits on your behalf. If you already run RMS software, ask the vendor point-blank whether they submit to NERIS through its API. If they don't, you're looking at manual double entry until that changes.</p>
+                        <p>Decide whether officers will enter incidents by hand directly into NERIS, or whether records management software submits on your behalf. If you're evaluating RMS options, ask the vendor point-blank whether they submit to NERIS through its API. If they don't, you're looking at manual double entry until that changes.</p>
                     </div>
                 </li>
                 <li>
                     <span class="num">3</span>
-                    <div class="body">
-                        <h3>Export your historical NFIRS data if you haven't already</h3>
-                        <p>If your department used eNFIRS without a separate records system, you needed to export your historical data before NFIRS closed in February 2026. If you missed that window, contact your state NFIRS program manager. Some data survives in the NFIRS Public Data Release, but individual department exports are no longer available directly from USFA.</p>
-                    </div>
-                </li>
-                <li>
-                    <span class="num">4</span>
                     <div class="body">
                         <h3>Set up all-hazards categories, not just fire codes</h3>
                         <p>NERIS expects EMS, hazmat, rescue, and public-assist calls logged the same way structure fires are. If your crews are used to only doing paperwork for fire calls, this is the habit that has to change first, before the software setup matters much.</p>
                     </div>
                 </li>
                 <li>
-                    <span class="num">5</span>
+                    <span class="num">4</span>
                     <div class="body">
                         <h3>Train officers and record-takers on the new entry workflow</h3>
                         <p>Whoever fills out incident reports, chief, secretary, or individual officers, needs a walkthrough of the new fields and categories before their first real call under the new system, not during it.</p>
                     </div>
                 </li>
                 <li>
-                    <span class="num">6</span>
+                    <span class="num">5</span>
                     <div class="body">
                         <h3>Turn on validation before you submit, not after</h3>
                         <p>Submissions missing required fields or with inconsistent data get bounced back. Catching that at entry time, with guided validation, saves the follow-up work of chasing a rejected report down two weeks later.</p>
                     </div>
                 </li>
                 <li>
-                    <span class="num">7</span>
+                    <span class="num">6</span>
                     <div class="body">
                         <h3>Submit a real incident and confirm it lands in NERIS</h3>
                         <p>Don't assume the connection works because setup went smoothly. Submit an actual report and check your NERIS dashboard to confirm it shows up before you trust the pipeline for real reporting.</p>
                     </div>
                 </li>
                 <li>
-                    <span class="num">8</span>
+                    <span class="num">7</span>
                     <div class="body">
                         <h3>Assign one person to own NERIS reporting</h3>
                         <p>Somebody, chief, secretary, or records officer, needs to be the person who checks that reports are actually going through, not just that they were filled out. Reporting gaps are easy to miss until a state audit asks about them.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="num">8</span>
+                    <div class="body">
+                        <h3>Archive your old NFIRS records for your own files</h3>
+                        <p>This is the one step that touches your old data, and it's about your own archive, not NERIS. NERIS doesn't import NFIRS history and doesn't need it. If your department kept records in its own RMS, that history is already yours. If you relied on eNFIRS alone and didn't export before the February 2026 shutdown, your state NFIRS program manager can tell you what's still recoverable through the NFIRS Public Data Release.</p>
                     </div>
                 </li>
                 <li>
@@ -410,14 +414,14 @@
             </ol>
 
             <div class="callout">
-                <p><strong>If you're starting from zero:</strong> steps 1 through 3 are the ones that block everything else. Get your entity ID confirmed and your reporting path picked before worrying about training or validation, those only matter once data actually has somewhere to go.</p>
+                <p><strong>If you're starting from zero:</strong> steps 1 and 2 are the ones that block everything else. Get your entity ID confirmed and your reporting path picked before worrying about training or validation, those only matter once data actually has somewhere to go.</p>
             </div>
 
             <h2>Frequently asked questions</h2>
             <div class="faq-list">
                 <div class="faq-item">
                     <h3>Do we have to switch right now if we haven't already?</h3>
-                    <p>Yes. NFIRS closed to all users in February 2026. There's no fallback system left to report through. If your department hasn't finished moving to NERIS, the migration is already overdue, not upcoming.</p>
+                    <p>Yes. NFIRS closed to all users in February 2026. There's no fallback system left to report through. If your department hasn't set up NERIS reporting yet, you're already overdue, not early.</p>
                 </div>
                 <div class="faq-item">
                     <h3>What if our current software isn't connected to NERIS?</h3>
@@ -428,8 +432,8 @@
                     <p>No. NERIS is free for fire departments, EMS agencies, and other emergency service agencies. Registration and submission carry no fee from USFA or FSRI. Any cost comes from the software or entry tool you use to get data into it.</p>
                 </div>
                 <div class="faq-item">
-                    <h3>Will we lose our old incident history?</h3>
-                    <p>Not if it lives in your own records system. If you relied on eNFIRS without a separate RMS, you needed to export before the February 2026 shutdown. If you missed that window, contact your state NFIRS program manager: some data is preserved in the NFIRS Public Data Release, but individual department exports are no longer available from USFA directly.</p>
+                    <h3>What happens to our old NFIRS incident history?</h3>
+                    <p>It doesn't move anywhere automatically, and NERIS doesn't need it to start working. If your department kept its own records system, that history already lives with you. If you relied on eNFIRS alone and didn't export before the February 2026 shutdown, contact your state NFIRS program manager: some historical data is preserved in the NFIRS Public Data Release, but individual department exports are no longer available from USFA directly.</p>
                 </div>
             </div>
 
@@ -440,7 +444,7 @@
         <div class="article-container">
             <div class="cta-box">
                 <h2>Skip the double entry</h2>
-                <p>LadderOps handles steps 2, 6, and 7 for you: one entry, guided validation, direct submission to NERIS. Founding pricing locks the whole platform at $25 per member per year, for life.</p>
+                <p>LadderOps handles steps 2, 5, and 6 for you: one entry, guided validation, direct submission to NERIS. Founding pricing locks the whole platform at $25 per member per year, for life.</p>
                 <div class="cta-buttons">
                     <a href="https://ladderops.tech/#waitlist" class="btn btn-primary btn-large">Start Free Trial</a>
                     <a href="/neris/neris-reporting-software.html" class="btn btn-outline btn-large">See NERIS Software</a>
