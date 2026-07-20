@@ -11,5 +11,25 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
+  <!-- NERIS 2026 content hub -->
+  <url>
+    <loc>https://ladderops.tech/neris/</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ladderops.tech/neris/nfirs-to-neris-migration-checklist.html</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ladderops.tech/neris/neris-reporting-software.html</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
