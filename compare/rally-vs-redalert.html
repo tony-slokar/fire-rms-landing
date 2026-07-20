@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSS1G92R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5MRSS1G92R');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rally vs RedAlert: Response App vs Bundled Fire RMS | LadderOps</title>
+
+    <meta name="description" content="RedAlert (formerly RedNMX) from Alpine Software bundles dispatch alerting with a full RMS. See how it compares to Rally's standalone response app.">
+    <meta name="keywords" content="Rally vs RedAlert, RedNMX alternative, Alpine Software RedAlert, fire department dispatch app, response coordination app comparison">
+    <meta name="author" content="LadderOps">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ladderops.tech/compare/rally-vs-redalert.html">
+    <meta property="og:title" content="Rally vs RedAlert: Response App vs Bundled Fire RMS">
+    <meta property="og:description" content="RedAlert (formerly RedNMX) from Alpine Software bundles dispatch alerting with a full RMS. See how it compares to Rally's standalone response app.">
+    <meta property="og:image" content="https://ladderops.tech/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LadderOps">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ladderops.tech/compare/rally-vs-redalert.html">
+    <meta name="twitter:title" content="Rally vs RedAlert: Response App vs Bundled Fire RMS">
+    <meta name="twitter:description" content="RedAlert (formerly RedNMX) from Alpine Software bundles dispatch alerting with a full RMS. See how it compares to Rally's standalone response app.">
+    <meta name="twitter:image" content="https://ladderops.tech/og-image.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Rally vs RedAlert: Response App vs Bundled Fire RMS",
+        "description": "RedAlert (formerly RedNMX) from Alpine Software bundles dispatch alerting with a full RMS. See how it compares to Rally's standalone response app.",
+        "author": {"@type": "Organization", "name": "LadderOps", "url": "https://ladderops.tech"},
+        "publisher": {
+            "@type": "Organization",
+            "name": "LadderOps",
+            "logo": {"@type": "ImageObject", "url": "https://ladderops.tech/images/logo.png"}
+        },
+        "datePublished": "2026-07-20",
+        "dateModified": "2026-07-20",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ladderops.tech/compare/rally-vs-redalert.html"}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ladderops.tech/"},
+            {"@type": "ListItem", "position": 2, "name": "Compare", "item": "https://ladderops.tech/compare/"},
+            {"@type": "ListItem", "position": 3, "name": "Rally vs RedAlert", "item": "https://ladderops.tech/compare/rally-vs-redalert.html"}
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "Is RedAlert the same product as RedNMX?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. RedAlert is the current name for the platform from Alpine Software Corporation. It was previously marketed as RedNMX, and you may still see that name on older review sites or in legacy documentation."}},
+            {"@type": "Question", "name": "Is RedAlert a standalone alerting app like Rally?", "acceptedAnswer": {"@type": "Answer", "text": "No, and this is the main structural difference. RedAlert is a full department management platform, RedAlert Desktop, RedAlert Mobile, Inspections, Kiosk, MDT, and Bulletin, with dispatch alerting bundled in as one piece of a larger suite. Rally is a standalone response coordination app that plugs into whatever RMS or CAD you already run."}},
+            {"@type": "Question", "name": "How much does RedAlert cost?", "acceptedAnswer": {"@type": "Answer", "text": "Alpine Software does not publish pricing. It's a quote-based, contact-for-pricing sales process. Rally publishes its price on our site: $15 per member per year, flat."}},
+            {"@type": "Question", "name": "Is RedAlert NERIS compliant?", "acceptedAnswer": {"@type": "Answer", "text": "Alpine Software states RedAlert is NERIS V1 certified with built-in validation and smart automation for incident reporting. NERIS reporting on the LadderOps side lives in the full Platform, not in Rally itself, Rally is the response coordination layer."}},
+            {"@type": "Question", "name": "Can I use Rally alongside my existing RMS instead of switching everything?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Rally connects to your existing CAD for dispatch alerts and doesn't require replacing your RMS. That's the core difference from a bundled platform like RedAlert, which pairs its own alerting with its own RMS."}},
+            {"@type": "Question", "name": "What CAD systems does each integrate with?", "acceptedAnswer": {"@type": "Answer", "text": "Alpine Software states RedAlert integrates with major CAD and dispatch systems including Intergraph, Tyler Technologies, CentralSquare, and Motorola. Rally works with your existing CAD as well, without requiring you to replace it."}}
+        ]
+    }
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://ladderops.tech/compare/rally-vs-redalert.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://formspree.io">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --navy-deep: #1a2332;
+            --navy: #1a2f4a;
+            --navy-mid: #2a4a6a;
+            --navy-light: #3a6a8a;
+            --red: #b83a2e;
+            --red-dark: #9a2f24;
+            --red-light: #d4513b;
+            --teal: #2a8a7a;
+            --amber: #c4922a;
+            --cream: #f8f6f3;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); line-height: 1.6; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        h1, h2, h3 { line-height: 1.15; }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+        }
+        .btn-primary { background: var(--red); color: white; }
+        .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(184,58,46,0.3); }
+        .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+        .btn-large { padding: 1rem 2.25rem; font-size: 1.05rem; }
+
+        .chevron-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+        .chevron-mark { width: 36px; height: 40px; }
+        .logo-text { font-size: 1.35rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+
+        .navbar { padding: 1.25rem 0; position: relative; z-index: 100; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 0.25rem; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+        .nav-links .btn { color: white; }
+
+        .page-hero { background: var(--navy-deep); color: white; padding-bottom: 3.5rem; position: relative; overflow: hidden; }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(184,58,46,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-content { max-width: 780px; margin: 0 auto; padding-top: 1rem; position: relative; z-index: 5; }
+        .breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+        .breadcrumb a:hover { color: white; text-decoration: underline; }
+        .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.5; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(184,58,46,0.12);
+            border: 1px solid rgba(184,58,46,0.25);
+            color: var(--red-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.03em;
+        }
+        .page-hero h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.1rem; }
+        .page-lede { font-size: 1.15rem; color: rgba(255,255,255,0.75); max-width: 700px; line-height: 1.7; }
+        .page-meta { margin-top: 1.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+        .hub-tabs { display: flex; gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap; }
+        .hub-tabs a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .hub-tabs a.active { background: var(--red); border-color: var(--red); color: white; }
+        .hub-tabs a:hover:not(.active) { background: rgba(255,255,255,0.15); color: white; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.75rem; }
+
+        .article { padding: 4rem 0 1rem; background: white; }
+        .article-container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        .article-container h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; color: var(--navy); margin: 2.75rem 0 1rem; }
+        .article-container h3 { font-size: 1.15rem; font-weight: 600; color: var(--navy); margin: 1.5rem 0 0.5rem; }
+        .article-container p { font-size: 1.05rem; color: var(--gray-800); margin-bottom: 1.15rem; line-height: 1.75; }
+        .article-container ul, .article-container ol { margin: 0 0 1.35rem 1.25rem; }
+        .article-container li { margin-bottom: 0.55rem; font-size: 1.02rem; color: var(--gray-800); line-height: 1.65; }
+        .article-container a { color: var(--red); text-decoration: underline; text-decoration-color: rgba(184,58,46,0.35); }
+        .article-container a:hover { text-decoration-color: var(--red); }
+        .article-container a.btn { text-decoration: none; }
+        .article-container a.btn-primary, .article-container a.btn-primary:hover { color: white; }
+        .article-container a.btn-outline, .article-container a.btn-outline:hover { color: white; }
+        .article-container a.appstore-link { text-decoration: none; }
+        .article-container strong { color: var(--gray-900); }
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 1.75rem 0 2.75rem; }
+        .how-card { padding: 1.5rem; border-radius: 10px; border: 1px solid var(--gray-200); background: var(--white); }
+        .how-card .step { font-family: var(--mono); font-size: 0.78rem; font-weight: 700; color: var(--red); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+        .how-card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; color: var(--navy); }
+        .how-card p { margin: 0; font-size: 0.93rem; color: var(--gray-600); line-height: 1.6; }
+
+        .proof-list { list-style: none; margin: 1.5rem 0 2.5rem; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+        .proof-list li { display: flex; gap: 0.85rem; padding: 1.1rem 1.35rem; border: 1px solid var(--gray-200); border-radius: 10px; background: var(--gray-50); align-items: flex-start; }
+        .proof-list .icon-wrap { flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px; background: rgba(184,58,46,0.1); color: var(--red); display: flex; align-items: center; justify-content: center; }
+        .proof-list .icon-wrap svg { width: 17px; height: 17px; }
+        .proof-list .body strong { display: block; color: var(--gray-900); font-size: 0.98rem; margin-bottom: 0.2rem; }
+        .proof-list .body span { color: var(--gray-600); font-size: 0.93rem; line-height: 1.55; }
+
+        .founding-banner {
+            background: var(--navy);
+            color: #fff;
+            border-radius: 14px;
+            padding: 1.75rem 2rem;
+            text-align: center;
+            margin: 1rem 0 2.5rem;
+        }
+        .founding-banner .founding-tag {
+            display: inline-block;
+            background: var(--red-light);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 0.75rem;
+        }
+        .founding-banner p { color: rgba(255,255,255,0.92); margin: 0 0 1.1rem; font-size: 1.05rem; }
+        .founding-banner p strong { color: #fff; font-size: 1.15rem; }
+
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--gray-200); padding: 1.1rem 0; }
+        .faq-item h3 { font-size: 1.08rem; margin: 0 0 0.4rem; color: var(--navy); }
+        .faq-item p { margin: 0; color: var(--gray-500); font-size: 0.97rem; }
+
+        .cta-box { background: var(--navy); color: white; border-radius: 14px; padding: 2.5rem; text-align: center; margin: 3rem 0 4rem; }
+        .cta-box h2 { color: white; margin-bottom: 0.75rem; font-size: 1.6rem; }
+        .cta-box p { color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto 1.5rem; }
+        .cta-box .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; }
+        .appstore-link { display: inline-flex; align-items: center; line-height: 0; }
+        .appstore-link:hover { opacity: 0.85; }
+        .appstore-badge { height: 44px; width: auto; }
+
+        .related { background: var(--gray-50); padding: 4rem 0; margin-top: 1rem; }
+        .related .section-head { text-align: center; margin-bottom: 2.5rem; }
+        .related .section-head h2 { font-size: 1.9rem; color: var(--navy); margin-bottom: 0.5rem; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .related-card { background: white; border: 1px solid var(--gray-200); border-radius: 10px; padding: 1.5rem; text-decoration: none; display: block; transition: all 0.2s; }
+        .related-card:hover { border-color: var(--navy-mid); box-shadow: 0 8px 24px rgba(26,35,50,0.06); transform: translateY(-2px); }
+        .related-card .tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); display: block; margin-bottom: 0.6rem; }
+        .related-card h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .related-card p { color: var(--gray-500); font-size: 0.9rem; margin: 0; line-height: 1.55; }
+
+        .footer { padding: 3.5rem 0; background: var(--navy-deep); color: rgba(255,255,255,0.6); text-align: center; }
+        .footer-logo { margin-bottom: 0.75rem; }
+        .footer-logo .logo-text { font-size: 1.1rem; }
+        .footer p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .footer-links { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 10px; font-size: 0.85rem; }
+        .footer-links a:hover { color: white; }
+        .footer-fineprint { font-size: 0.78rem; opacity: 0.55; margin-top: 0.75rem; }
+
+        /* Comparison table */
+        .compare-table-wrap { overflow-x: auto; margin: 1.75rem 0 2.75rem; border: 1px solid var(--gray-200); border-radius: 10px; }
+        table.compare-table { width: 100%; border-collapse: collapse; min-width: 520px; font-size: 0.95rem; }
+        table.compare-table caption { text-align: left; padding: 0.9rem 1.1rem; font-size: 0.85rem; color: var(--gray-600); background: var(--gray-50); border-bottom: 1px solid var(--gray-200); caption-side: top; }
+        table.compare-table th, table.compare-table td { padding: 0.85rem 1.1rem; text-align: left; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        table.compare-table thead th { background: var(--navy); color: white; font-weight: 600; font-size: 0.88rem; }
+        table.compare-table thead th:first-child { border-top-left-radius: 0; }
+        table.compare-table tbody th { font-weight: 600; color: var(--gray-900); font-size: 0.92rem; background: var(--white); white-space: nowrap; }
+        table.compare-table tbody tr:nth-child(even) td, table.compare-table tbody tr:nth-child(even) th { background: var(--gray-50); }
+        table.compare-table tbody tr:last-child th, table.compare-table tbody tr:last-child td { border-bottom: none; }
+        table.compare-table td, table.compare-table td.rally-col { color: var(--gray-800); }
+        table.compare-table .rally-col { font-weight: 500; }
+        table.compare-table .icon-yes { color: var(--red); display: inline-flex; align-items: center; gap: 0.4rem; }
+        table.compare-table .icon-yes svg { width: 16px; height: 16px; }
+        table.compare-table .icon-no { color: var(--gray-400); display: inline-flex; align-items: center; gap: 0.4rem; }
+        table.compare-table .icon-no svg { width: 16px; height: 16px; }
+
+        .choose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.75rem 0 2.75rem; }
+        .choose-card { padding: 1.5rem; border-radius: 10px; border: 1px solid var(--gray-200); background: var(--gray-50); }
+        .choose-card h3 { margin: 0 0 0.75rem; font-size: 1.05rem; color: var(--navy); }
+        .choose-card ul { margin: 0 0 0 1.1rem; }
+        .choose-card li { font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-hero h1 { font-size: 1.9rem; }
+            .article-container h2 { font-size: 1.4rem; }
+            .how-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .choose-grid { grid-template-columns: 1fr; }
+            .cta-box { padding: 2rem 1.5rem; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            table.compare-table { min-width: 460px; font-size: 0.88rem; }
+            table.compare-table th, table.compare-table td { padding: 0.65rem 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-hero">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="chevron-logo">
+                    <svg class="chevron-mark" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/">ladderops.tech</a></li>
+                    <li><a href="https://ladderops.tech/#waitlist" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Partner with Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="page-hero-content">
+                <div class="breadcrumb">
+                    <a href="/">Home</a><span class="sep">/</span><a href="/compare/">Compare</a><span class="sep">/</span><span>Rally vs RedAlert</span>
+                </div>
+                <div class="hero-badge">Response App Comparison</div>
+                <h1>Rally vs RedAlert: Response App vs Bundled Fire RMS</h1>
+                <p class="page-lede">RedAlert isn't really a competitor to Rally alone, it's a full department management platform with dispatch alerting built in. Here's what that bundling means if you're weighing the two.</p>
+                <div class="hero-buttons">
+                    <a href="https://ladderops.tech/#waitlist" class="btn btn-primary btn-large">Start Free Trial</a>
+                    <a href="https://apps.apple.com/us/app/rally-fire-ems-response/id6789730069" class="appstore-link" target="_blank" rel="noopener"><img src="/images/app-store-badge.svg" alt="Download Rally on the App Store" class="appstore-badge" width="120" height="40"></a>
+                </div>
+                <div class="hub-tabs">
+                    <a href="/compare/rally-vs-iamresponding.html">vs IamResponding</a>
+                    <a href="/compare/rally-vs-active911.html">vs Active911</a>
+                    <a href="/compare/rally-vs-redalert.html" class="active">vs RedAlert</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="article">
+        <div class="article-container">
+
+            <p>RedAlert, from Alpine Software Corporation, is a name you'll see under two labels: the current "RedAlert" branding, and the older "RedNMX" (sometimes "RedAlert NMX") name it carried previously. Whichever name you know it by, it's not a standalone alerting app the way Rally is. RedAlert is a full department management platform built around a desktop-rooted command center, RedAlert Desktop, with mobile alerting, inspections, kiosk check-ins, MDT mapping, and a firehouse dashboard sold as pieces of the same suite. Rally is the opposite shape: a standalone, modern response coordination app that plugs into whatever CAD and RMS you already run, with the option to add the full LadderOps RMS later if you want everything under one vendor.</p>
+
+            <h2>Feature and pricing comparison</h2>
+            <div class="compare-table-wrap">
+                <table class="compare-table">
+                    <caption>Rally vs RedAlert (Alpine Software), as of July 2026</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">&nbsp;</th>
+                            <th scope="col">Rally</th>
+                            <th scope="col">RedAlert</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Product shape</th>
+                            <td class="rally-col">Standalone response coordination app</td>
+                            <td>Full department management platform (Desktop, Mobile, Inspections, Kiosk, MDT, Bulletin)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pricing</th>
+                            <td class="rally-col">Published: $15/member/year, flat</td>
+                            <td>Not published, quote-based sales process</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">CAD dispatch alerts</th>
+                            <td class="rally-col"><span class="icon-yes"><i data-feather="check"></i>Works with your existing CAD</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>Alpine states integration with Intergraph, Tyler, CentralSquare, Motorola</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">One-tap response status</th>
+                            <td class="rally-col"><span class="icon-yes"><i data-feather="check"></i>Yes</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>Live call alerts via RedAlert Mobile</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Live status board</th>
+                            <td class="rally-col"><span class="icon-yes"><i data-feather="check"></i>Yes, for chiefs</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>RedAlert Bulletin, a live firehouse dashboard</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Custom status vocabularies</th>
+                            <td class="rally-col"><span class="icon-yes"><i data-feather="check"></i>Departments define their own labels</span></td>
+                            <td><span class="icon-no"><i data-feather="minus"></i>Not called out in Alpine's public materials</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Full RMS included</th>
+                            <td class="rally-col"><span class="icon-no"><i data-feather="minus"></i>Not in Rally; add LadderOps Platform from $50/member/year</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>Bundled by design, RedAlert is the RMS</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fire inspections</th>
+                            <td class="rally-col"><span class="icon-no"><i data-feather="minus"></i>Not in Rally; inspections module is in the LadderOps Platform</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>RedAlert Inspections, custom mobile forms</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Duty-hour check-ins</th>
+                            <td class="rally-col"><span class="icon-no"><i data-feather="minus"></i>Not part of Rally</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>RedAlert Kiosk, biometric/RFID</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">NERIS reporting</th>
+                            <td class="rally-col"><span class="icon-no"><i data-feather="minus"></i>Not in Rally; NERIS lives in the LadderOps Platform, live in production today</span></td>
+                            <td><span class="icon-yes"><i data-feather="check"></i>Alpine states RedAlert is NERIS V1 certified</span></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mobile platforms</th>
+                            <td class="rally-col">iOS live today, Android coming, web app included</td>
+                            <td>iOS and Android (AVL and Responder apps)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Sales process</th>
+                            <td class="rally-col">Self-serve, price published, free trial available</td>
+                            <td>Enterprise, quote-based</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>A standalone app vs a bundled platform</h2>
+            <p>The comparison here isn't really apples to apples on scope, and that's the point worth understanding before you dig further. Rally is one layer: dispatch alerts, response status, a live board, and messaging. RedAlert is a whole platform where alerting is one module among several, RedAlert Desktop for command and reporting, RedAlert Mobile for the field, plus Inspections, Kiosk, MDT, and Bulletin as additional pieces of the same suite. If you're shopping for "an alerting app," RedAlert isn't sold that way, you're evaluating whether to bring in the whole platform.</p>
+
+            <h2>Published pricing vs a quote-based process</h2>
+            <p>Rally's price is on our site: $15 per member per year, flat. Alpine Software doesn't publish RedAlert pricing anywhere we could find, it's a quote-based sales process, which is typical for enterprise-style RMS platforms sold with a full sales cycle. If a transparent, self-serve number matters to you when you're first narrowing options, that's a real difference. If you're already planning a full RFP-style evaluation of a records platform, a quote-based process isn't unusual and lets a vendor price around your specific configuration.</p>
+
+            <h2>Where NERIS and RMS scope fit in</h2>
+            <p>Alpine Software states that RedAlert is NERIS V1 certified with built-in validation and smart automation, that's their claim about their own product, not something we've independently verified. On the LadderOps side, NERIS incident reporting is live in production today, real submissions from two Wisconsin fire departments, but it lives in the full LadderOps Platform, not in Rally itself. Rally is deliberately the coordination layer. If NERIS reporting, inspections, and the rest of an RMS are what you're actually shopping for, the fairer comparison is RedAlert against the full LadderOps Platform, not against Rally alone.</p>
+
+            <h2>Choose Rally if&hellip;</h2>
+            <div class="choose-grid">
+                <div class="choose-card">
+                    <h3>Choose Rally if&hellip;</h3>
+                    <ul>
+                        <li>You want a modern, transparently-priced standalone coordination app, not a platform sale</li>
+                        <li>You already have an RMS and just need better dispatch alerting, status tracking, and messaging on top of it</li>
+                        <li>You'd rather see a price on the website than go through a quote process to find out what something costs</li>
+                        <li>You want the option to add the full LadderOps RMS later, at $50/member/year, without switching vendors for alerting</li>
+                    </ul>
+                </div>
+                <div class="choose-card">
+                    <h3>Choose RedAlert if&hellip;</h3>
+                    <ul>
+                        <li>You want dispatch alerting bundled into one full RMS platform from a single vendor</li>
+                        <li>You need duty-hour kiosk check-ins or MDT tablet mapping for apparatus today</li>
+                        <li>You're comfortable with an enterprise, quote-based sales process to get a full platform priced around your department</li>
+                        <li>You want a desktop-rooted command center as the hub of your records system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Frequently asked questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Is RedAlert the same product as RedNMX?</h3>
+                    <p>Yes. RedAlert is the current name for the platform from Alpine Software Corporation. It was previously marketed as RedNMX, and you may still see that name on older review sites or in legacy documentation.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is RedAlert a standalone alerting app like Rally?</h3>
+                    <p>No, and this is the main structural difference. RedAlert is a full department management platform, RedAlert Desktop, RedAlert Mobile, Inspections, Kiosk, MDT, and Bulletin, with dispatch alerting bundled in as one piece of a larger suite. Rally is a standalone response coordination app that plugs into whatever RMS or CAD you already run.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How much does RedAlert cost?</h3>
+                    <p>Alpine Software does not publish pricing. It's a quote-based, contact-for-pricing sales process. Rally publishes its price on our site: $15 per member per year, flat.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is RedAlert NERIS compliant?</h3>
+                    <p>Alpine Software states RedAlert is NERIS V1 certified with built-in validation and smart automation for incident reporting. NERIS reporting on the LadderOps side lives in the full Platform, not in Rally itself, Rally is the response coordination layer.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I use Rally alongside my existing RMS instead of switching everything?</h3>
+                    <p>Yes. Rally connects to your existing CAD for dispatch alerts and doesn't require replacing your RMS. That's the core difference from a bundled platform like RedAlert, which pairs its own alerting with its own RMS.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What CAD systems does each integrate with?</h3>
+                    <p>Alpine Software states RedAlert integrates with major CAD and dispatch systems including Intergraph, Tyler Technologies, CentralSquare, and Motorola. Rally works with your existing CAD as well, without requiring you to replace it.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="article">
+        <div class="article-container">
+            <div class="cta-box">
+                <h2>Start Your Free Trial</h2>
+                <p>Free 2 to 4 week sandbox tenants for volunteer and small combination departments, pre-loaded with demo data. No credit card, no commitment.</p>
+                <div class="cta-buttons">
+                    <a href="https://ladderops.tech/#waitlist" class="btn btn-primary btn-large">Start Free Trial</a>
+                    <a href="https://apps.apple.com/us/app/rally-fire-ems-response/id6789730069" class="appstore-link" target="_blank" rel="noopener"><img src="/images/app-store-badge.svg" alt="Download Rally on the App Store" class="appstore-badge" width="120" height="40"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related">
+        <div class="container">
+            <div class="section-head">
+                <h2>Keep reading</h2>
+            </div>
+            <div class="related-grid">
+                <a href="/compare/rally-vs-iamresponding.html" class="related-card">
+                    <span class="tag">Compare</span>
+                    <h3>Rally vs IamResponding</h3>
+                    <p>Response coordination app comparison: dispatch alerts, status tracking, and messaging.</p>
+                </a>
+                <a href="/compare/rally-vs-active911.html" class="related-card">
+                    <span class="tag">Compare</span>
+                    <h3>Rally vs Active911</h3>
+                    <p>Device pricing vs per-member pricing, and what's bundled with each.</p>
+                </a>
+                <a href="/compare/" class="related-card">
+                    <span class="tag">Compare</span>
+                    <h3>See all comparisons</h3>
+                    <p>Rally against other response apps, and LadderOps against other full RMS platforms.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <a href="/" class="chevron-logo" style="justify-content: center;">
+                    <svg width="24" height="28" viewBox="0 0 36 40" fill="none">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
+            </div>
+            <p>Modern Tools for Modern Heroes.</p>
+            <div class="footer-links">
+                <a href="mailto:info@ladderops.tech">info@ladderops.tech</a>
+                <span>&bull;</span>
+                <a href="tel:+14132487233">Main: (413) 248-7233</a>
+                <span>&bull;</span>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2026 LadderOps. All rights reserved.</p>
+            <p class="footer-fineprint">Comparison based on publicly available information as of July 2026. Product details change; we'll gladly correct anything outdated.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+</html>
