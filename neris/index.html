@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSS1G92R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5MRSS1G92R');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NERIS 2026: What Every Volunteer Fire Department Needs to Know | LadderOps</title>
+
+    <meta name="description" content="NFIRS is retired and NERIS is now the only national incident reporting system for fire and EMS. A plain-language guide to what changed, the real timeline, and what volunteer and combination departments need to do now.">
+    <meta name="keywords" content="NERIS 2026, NERIS fire department, NFIRS retirement, NFIRS to NERIS, NERIS timeline, national emergency response information system, USFA NERIS, FSRI NERIS, fire incident reporting">
+    <meta name="author" content="LadderOps">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ladderops.tech/neris/">
+    <meta property="og:title" content="NERIS 2026: What Every Volunteer Fire Department Needs to Know">
+    <meta property="og:description" content="NFIRS is retired. NERIS is now the only national incident reporting system for fire and EMS. What changed, the real timeline, and what to do now.">
+    <meta property="og:image" content="https://ladderops.tech/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="LadderOps">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ladderops.tech/neris/">
+    <meta name="twitter:title" content="NERIS 2026: What Every Volunteer Fire Department Needs to Know">
+    <meta name="twitter:description" content="NFIRS is retired. NERIS is now the only national incident reporting system for fire and EMS. What changed, the real timeline, and what to do now.">
+    <meta name="twitter:image" content="https://ladderops.tech/og-image.jpg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "NERIS 2026: What Every Volunteer Fire Department Needs to Know",
+        "description": "NFIRS is retired and NERIS is now the only national incident reporting system for fire and EMS. What changed, the real timeline, and what volunteer and combination departments need to do now.",
+        "author": {"@type": "Organization", "name": "LadderOps", "url": "https://ladderops.tech"},
+        "publisher": {
+            "@type": "Organization",
+            "name": "LadderOps",
+            "logo": {"@type": "ImageObject", "url": "https://ladderops.tech/images/logo.png"}
+        },
+        "datePublished": "2026-07-20",
+        "dateModified": "2026-07-20",
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://ladderops.tech/neris/"}
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ladderops.tech/"},
+            {"@type": "ListItem", "position": 2, "name": "NERIS 2026 Guide", "item": "https://ladderops.tech/neris/"}
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "Is NERIS mandatory?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in practice. NFIRS stopped accepting new incident data on January 1, 2026 and shut down entirely for all users in February 2026. NERIS is now the only national system for fire and EMS incident data. There is no fallback option left."}},
+            {"@type": "Question", "name": "Does NERIS cost anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. NERIS itself is free for fire departments, EMS agencies, state fire marshal offices, and other emergency service agencies. USFA and FSRI built it that way so no department is excluded for cost reasons. You may still pay for the records management software or entry tool that gets your data into NERIS."}},
+            {"@type": "Question", "name": "Do we need new software to use NERIS?", "acceptedAnswer": {"@type": "Answer", "text": "You need some way to get data into NERIS: either direct entry through the platform itself, or a records management system that submits on your behalf through NERIS's API. Most departments already running an RMS should check whether their vendor has passed NERIS's compatibility testing rather than rebuilding their workflow from scratch."}},
+            {"@type": "Question", "name": "What happened to our old NFIRS data?", "acceptedAnswer": {"@type": "Answer", "text": "If your department kept records in its own RMS, nothing changes: that data is still yours. If you relied on eNFIRS (the free federal entry tool) without a separate system, you needed to export your historical data before NFIRS closed in February 2026. Some data lives on in the NFIRS Public Data Release, but department-level exports are no longer available directly from USFA. Contact your state NFIRS program manager if you're not sure where your history stands."}},
+            {"@type": "Question", "name": "Does NERIS replace our records management system?", "acceptedAnswer": {"@type": "Answer", "text": "No. NERIS is the national data platform incident reports flow into, not a full RMS. You still need a system for entering incidents, managing rosters, tracking apparatus, and running your department day to day. That system either submits to NERIS directly or you enter data into NERIS separately, which most departments want to avoid."}},
+            {"@type": "Question", "name": "Where do I go to register or get help?", "acceptedAnswer": {"@type": "Answer", "text": "Start with your state fire marshal's office or state NFIRS/NERIS program manager. Most states have a designated contact for registration and entity ID questions. For platform-level issues, NERIS support is run through FSRI."}}
+        ]
+    }
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://ladderops.tech/neris/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --navy-deep: #1a2332;
+            --navy: #1a2f4a;
+            --navy-mid: #2a4a6a;
+            --navy-light: #3a6a8a;
+            --red: #b83a2e;
+            --red-dark: #9a2f24;
+            --red-light: #d4513b;
+            --teal: #2a8a7a;
+            --amber: #c4922a;
+            --cream: #f8f6f3;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --font: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font); line-height: 1.6; color: var(--gray-900); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+        .container { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+        h1, h2, h3 { line-height: 1.15; }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            font-family: inherit;
+            text-align: center;
+        }
+        .btn-primary { background: var(--red); color: white; }
+        .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(184,58,46,0.3); }
+        .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); }
+        .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
+        .btn-large { padding: 1rem 2.25rem; font-size: 1.05rem; }
+
+        .chevron-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+        .chevron-mark { width: 36px; height: 40px; }
+        .logo-text { font-size: 1.35rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+
+        .navbar { padding: 1.25rem 0; position: relative; z-index: 100; }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 0.25rem; }
+        .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-weight: 500; font-size: 0.9rem; padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.2s; }
+        .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
+        .nav-links .btn { color: white; }
+
+        /* Page hero */
+        .page-hero {
+            background: var(--navy-deep);
+            color: white;
+            padding-bottom: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(184,58,46,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero-content { max-width: 780px; margin: 0 auto; padding-top: 1rem; position: relative; z-index: 5; }
+        .breadcrumb { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+        .breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
+        .breadcrumb a:hover { color: white; text-decoration: underline; }
+        .breadcrumb .sep { margin: 0 0.4rem; opacity: 0.5; }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(184,58,46,0.12);
+            border: 1px solid rgba(184,58,46,0.25);
+            color: var(--red-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.03em;
+        }
+        .page-hero h1 { font-size: 2.65rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.1rem; }
+        .page-lede { font-size: 1.15rem; color: rgba(255,255,255,0.75); max-width: 700px; line-height: 1.7; }
+        .page-meta { margin-top: 1.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+        .hub-tabs { display: flex; gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap; }
+        .hub-tabs a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .hub-tabs a.active { background: var(--red); border-color: var(--red); color: white; }
+        .hub-tabs a:hover:not(.active) { background: rgba(255,255,255,0.15); color: white; }
+
+        /* Article */
+        .article { padding: 4rem 0 1rem; background: white; }
+        .article-container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+        .article-container h2 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; color: var(--navy); margin: 2.75rem 0 1rem; }
+        .article-container > .article-container h2:first-child { margin-top: 0; }
+        .article-container h3 { font-size: 1.15rem; font-weight: 600; color: var(--navy); margin: 1.75rem 0 0.6rem; }
+        .article-container p { font-size: 1.05rem; color: var(--gray-800); margin-bottom: 1.15rem; line-height: 1.75; }
+        .article-container ul, .article-container ol { margin: 0 0 1.35rem 1.25rem; }
+        .article-container li { margin-bottom: 0.55rem; font-size: 1.02rem; color: var(--gray-800); line-height: 1.65; }
+        .article-container a { color: var(--red); text-decoration: underline; text-decoration-color: rgba(184,58,46,0.35); }
+        .article-container a:hover { text-decoration-color: var(--red); }
+        .article-container a.btn { text-decoration: none; }
+        .article-container a.btn-primary, .article-container a.btn-primary:hover { color: white; }
+        .article-container a.btn-outline, .article-container a.btn-outline:hover { color: white; }
+        .article-container strong { color: var(--gray-900); }
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .tldr { background: var(--gray-50); border-left: 4px solid var(--red); border-radius: 8px; padding: 1.35rem 1.6rem; margin: 0 0 2.75rem; }
+        .tldr .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; display: block; }
+        .tldr p { margin: 0 0 0.6rem; font-size: 1.02rem; color: var(--gray-800); }
+        .tldr p:last-child { margin-bottom: 0; }
+
+        .timeline { list-style: none; margin: 1.5rem 0 2.5rem; padding: 0 0 0 1.75rem; border-left: 2px solid var(--gray-200); }
+        .timeline li { position: relative; padding: 0 0 1.6rem 1.5rem; }
+        .timeline li:last-child { padding-bottom: 0; }
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 4px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--red);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--gray-200);
+        }
+        .timeline .date { display: block; font-family: var(--mono); font-size: 0.82rem; font-weight: 600; color: var(--red); margin-bottom: 0.3rem; letter-spacing: 0.01em; }
+        .timeline .desc { color: var(--gray-800); font-size: 0.98rem; line-height: 1.6; }
+        .timeline .desc strong { color: var(--gray-900); }
+
+        .callout { background: var(--navy); color: white; border-radius: 10px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+        .callout p { color: rgba(255,255,255,0.92); margin: 0; font-size: 1.02rem; }
+        .callout strong { color: white; }
+
+        .related { background: var(--gray-50); padding: 4rem 0; margin-top: 1rem; }
+        .related .section-head { text-align: center; margin-bottom: 2.5rem; }
+        .related .section-head h2 { font-size: 1.9rem; color: var(--navy); margin-bottom: 0.5rem; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .related-card { background: white; border: 1px solid var(--gray-200); border-radius: 10px; padding: 1.5rem; text-decoration: none; display: block; transition: all 0.2s; }
+        .related-card:hover { border-color: var(--navy-mid); box-shadow: 0 8px 24px rgba(26,35,50,0.06); transform: translateY(-2px); }
+        .related-card .tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--red); display: block; margin-bottom: 0.6rem; }
+        .related-card h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 0.5rem; }
+        .related-card p { color: var(--gray-500); font-size: 0.9rem; margin: 0; line-height: 1.55; }
+
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--gray-200); padding: 1.1rem 0; }
+        .faq-item h3 { font-size: 1.08rem; margin: 0 0 0.4rem; color: var(--navy); }
+        .faq-item p { margin: 0; color: var(--gray-500); font-size: 0.97rem; }
+
+        .cta-box { background: var(--navy); color: white; border-radius: 14px; padding: 2.5rem; text-align: center; margin: 3rem 0 4rem; }
+        .cta-box h2 { color: white; margin-bottom: 0.75rem; font-size: 1.6rem; }
+        .cta-box p { color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto 1.5rem; }
+        .cta-box .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        .footer { padding: 3.5rem 0; background: var(--navy-deep); color: rgba(255,255,255,0.6); text-align: center; }
+        .footer-logo { margin-bottom: 0.75rem; }
+        .footer-logo .logo-text { font-size: 1.1rem; }
+        .footer p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .footer-links { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 10px; font-size: 0.85rem; }
+        .footer-links a:hover { color: white; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-hero h1 { font-size: 2rem; }
+            .article-container h2 { font-size: 1.45rem; }
+            .related-grid { grid-template-columns: 1fr; }
+            .cta-box { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-hero">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="chevron-logo">
+                    <svg class="chevron-mark" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/#features">Features</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/">ladderops.tech</a></li>
+                    <li><a href="/#waitlist" class="btn btn-primary" style="padding: 0.5rem 1.25rem;">Partner with Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="page-hero-content">
+                <div class="breadcrumb">
+                    <a href="/">Home</a><span class="sep">/</span><span>NERIS 2026 Guide</span>
+                </div>
+                <div class="hero-badge">NERIS 2026 Guide</div>
+                <h1>NERIS 2026: What Every Volunteer Fire Department Needs to Know</h1>
+                <p class="page-lede">NFIRS is closed. NERIS is now the only national system for fire and EMS incident data. Here's what it actually is, why NFIRS went away, what changes for a small department, the real timeline, and what to do next.</p>
+                <div class="page-meta">
+                    <span>Updated July 2026</span>
+                    <span>9 min read</span>
+                </div>
+                <div class="hub-tabs">
+                    <a href="/neris/" class="active">Guide</a>
+                    <a href="/neris/nfirs-to-neris-migration-checklist.html">The Checklist</a>
+                    <a href="/neris/neris-reporting-software.html">NERIS Software</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="article">
+        <div class="article-container">
+
+            <div class="tldr">
+                <span class="label">The short version</span>
+                <p>NFIRS stopped taking new incident data on January 1, 2026, and shut down completely for all users in February 2026. NERIS (the National Emergency Response Information System), built by FSRI and the U.S. Fire Administration, is now the only national reporting system for fire and EMS. It's free to use. If your department isn't reporting through it yet, you're not early to this, you're overdue.</p>
+            </div>
+
+            <h2>What NERIS actually is</h2>
+            <p>NERIS stands for National Emergency Response Information System. It's the replacement for NFIRS (the National Fire Incident Reporting System), which the U.S. Fire Administration has run since the 1970s. NERIS was built by FSRI (the Fire Safety Research Institute, part of UL Research Institutes) working with USFA and the Department of Homeland Security's Science and Technology directorate.</p>
+            <p>A few things separate it from the system it replaces:</p>
+            <ul>
+                <li><strong>It's all-hazards, not fire-only.</strong> NERIS captures EMS calls, hazmat responses, rescues, and public assists alongside fire incidents. For most volunteer and combination departments, that's a more honest picture of what the department actually does all year.</li>
+                <li><strong>It's cloud-based and mobile-first.</strong> Data can be entered and reviewed from a phone or tablet, not just a desktop form.</li>
+                <li><strong>It's built to connect to other data.</strong> CAD systems, records management software, weather data, and wildland fire systems can feed into it through vendor APIs, instead of every department retyping the same information into a separate federal portal.</li>
+                <li><strong>It's free.</strong> There's no fee from USFA or FSRI to register or submit data. That was a deliberate choice so cost doesn't keep any department out of national reporting.</li>
+            </ul>
+
+            <h2>Why NFIRS had to go</h2>
+            <p>NFIRS was designed for a different era of fire service. It was fire-coded first, which meant EMS calls, the majority of call volume for a lot of departments, never really fit the data model. Entry went through a federal portal (eNFIRS) that was slow to use and slower to fix once you hit a rejected record. And because the underlying data structure predated modern data-sharing standards, it was hard to connect NFIRS data to anything else: no easy link to CAD, no link to weather or wildfire data, no real-time view of what was happening nationally.</p>
+            <p>NERIS was built to fix all three problems at once: broaden the scope past fire-only incidents, modernize the entry experience, and make the data usable by the systems departments already run on.</p>
+
+            <h2>What actually changes for a small volunteer department</h2>
+            <p>If you run a volunteer or combination department, here's what's different in practice, not in theory:</p>
+            <ul>
+                <li><strong>New department ID.</strong> Your old 5-digit FDID is replaced by a 10-digit alphanumeric NERIS identifier: two digits for entity type, five for geographic location, three random digits for uniqueness. If you haven't been issued one, that's the first thing to chase down.</li>
+                <li><strong>You still need an entry point.</strong> NERIS is a data platform, not a full records management system. Somebody, or something, has to actually put incident data into it: either direct entry through NERIS itself, or a records system that submits through NERIS's API on your behalf.</li>
+                <li><strong>All-hazards reporting is the norm now.</strong> If your crews have only ever filled out paperwork for fire calls, expect to log EMS and other non-fire responses the same way.</li>
+                <li><strong>Reports move faster.</strong> NERIS is designed for near-real-time data, not a batch upload once a month.</li>
+            </ul>
+
+            <h2>The real timeline</h2>
+            <p>A lot of departments still think of NERIS as something happening "eventually." It isn't. Here's what actually happened, and when, based on USFA's published NFIRS sunset schedule:</p>
+            <ul class="timeline">
+                <li>
+                    <span class="date">May 2023</span>
+                    <span class="desc">FSRI begins development of NERIS in partnership with USFA and DHS Science and Technology.</span>
+                </li>
+                <li>
+                    <span class="date">November 2024</span>
+                    <span class="desc">NERIS Version 1 launches with about 100 early-adopter departments.</span>
+                </li>
+                <li>
+                    <span class="date">January 2025</span>
+                    <span class="desc">Those early departments begin entering live incident data into NERIS.</span>
+                </li>
+                <li>
+                    <span class="date">Through 2025</span>
+                    <span class="desc">A dual-reporting window: departments can report to either NFIRS or NERIS. Once a department switches to NERIS, USFA guidance is to stop submitting to NFIRS.</span>
+                </li>
+                <li>
+                    <span class="date">January 1, 2026</span>
+                    <span class="desc">All calendar-year 2026 incident data has to go to NERIS. No CY2026 incidents go into NFIRS, period.</span>
+                </li>
+                <li>
+                    <span class="date">January 31, 2026</span>
+                    <span class="desc">Last day for edits or corrections to CY2025 records still sitting in NFIRS.</span>
+                </li>
+                <li>
+                    <span class="date">February 2026</span>
+                    <span class="desc"><strong>NFIRS shuts down for all users.</strong> NERIS becomes the nation's only fire and all-hazards incident data system.</span>
+                </li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Where that leaves us now:</strong> the transition already happened. There's no "getting ready" phase left, no grace period, no fallback system. If your department is still figuring out its NERIS reporting, the honest framing is that you're behind schedule, not ahead of a deadline.</p>
+            </div>
+
+            <h2>What to do now</h2>
+            <p>The short list: confirm your department's NERIS registration and ID, decide whether you're entering data directly or through RMS software with an API connection, get your historical NFIRS data squared away if you were relying on eNFIRS alone, and get whoever fills out incident reports trained on the new categories before they need it on a real call.</p>
+            <p>We wrote a full walkthrough of each of those steps, in order, with what to check and who to call if something's stuck.</p>
+            <p><a href="/neris/nfirs-to-neris-migration-checklist.html">Read the full switching-to-NERIS checklist &rarr;</a></p>
+
+            <h2>Where LadderOps fits</h2>
+            <p>LadderOps is a records management platform built for volunteer and combination departments, with NERIS reporting handled inside the same system your officers already use to document a call. Incidents get entered once, guided validation catches missing or inconsistent fields before submission, and reports go to NERIS directly instead of through a separate export step.</p>
+            <p><a href="/neris/neris-reporting-software.html">See how LadderOps handles NERIS reporting &rarr;</a></p>
+
+            <h2>Frequently asked questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Is NERIS mandatory?</h3>
+                    <p>Yes, in practice. NFIRS stopped accepting new incident data on January 1, 2026, and shut down entirely for all users in February 2026. NERIS is now the only national system for fire and EMS incident data. There is no fallback option left.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does NERIS cost anything?</h3>
+                    <p>No. NERIS itself is free for fire departments, EMS agencies, state fire marshal offices, and other emergency service agencies. USFA and FSRI built it that way so no department is excluded for cost reasons. You may still pay for the records management software or entry tool that gets your data into NERIS.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do we need new software to use NERIS?</h3>
+                    <p>You need some way to get data into NERIS: either direct entry through the platform itself, or a records management system that submits on your behalf through NERIS's API. Most departments already running an RMS should check whether their vendor connects to NERIS rather than rebuilding their workflow from scratch.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What happened to our old NFIRS data?</h3>
+                    <p>If your department kept records in its own RMS, nothing changes: that data is still yours. If you relied on eNFIRS without a separate system, you needed to export your historical data before NFIRS closed in February 2026. Some data lives on in the NFIRS Public Data Release, but department-level exports are no longer available directly from USFA. Contact your state NFIRS program manager if you're not sure where your history stands.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does NERIS replace our records management system?</h3>
+                    <p>No. NERIS is the national data platform incident reports flow into, not a full RMS. You still need a system for entering incidents, managing rosters, tracking apparatus, and running your department day to day. That system either submits to NERIS directly or you enter data into NERIS separately, which most departments want to avoid.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Where do I go to register or get help?</h3>
+                    <p>Start with your state fire marshal's office or state NFIRS/NERIS program manager. Most states have a designated contact for registration and entity ID questions. For platform-level issues, NERIS support is run through FSRI.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="article">
+        <div class="article-container">
+            <div class="cta-box">
+                <h2>See NERIS reporting done right</h2>
+                <p>Two Wisconsin departments are already submitting live incident data to NERIS through LadderOps. Founding pricing locks the whole platform at $25 per member per year, for life.</p>
+                <div class="cta-buttons">
+                    <a href="https://ladderops.tech/#waitlist" class="btn btn-primary btn-large">Start Free Trial</a>
+                    <a href="/neris/neris-reporting-software.html" class="btn btn-outline btn-large">See NERIS Software</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="related">
+        <div class="container">
+            <div class="section-head">
+                <h2>Keep reading</h2>
+            </div>
+            <div class="related-grid">
+                <a href="/neris/nfirs-to-neris-migration-checklist.html" class="related-card">
+                    <span class="tag">Checklist</span>
+                    <h3>Switching to NERIS: The Checklist</h3>
+                    <p>The step-by-step list for chiefs: registration, reporting path, training, and validation, in order. No NFIRS migration required.</p>
+                </a>
+                <a href="/neris/neris-reporting-software.html" class="related-card">
+                    <span class="tag">Software</span>
+                    <h3>NERIS Reporting Software</h3>
+                    <p>How LadderOps handles entry, validation, and direct submission to NERIS.</p>
+                </a>
+                <a href="/" class="related-card">
+                    <span class="tag">LadderOps</span>
+                    <h3>See the full platform</h3>
+                    <p>Rally response coordination, personnel, apparatus, water supply, and more, all in one place.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <a href="/" class="chevron-logo" style="justify-content: center;">
+                    <svg width="24" height="28" viewBox="0 0 36 40" fill="none">
+                        <polyline points="4,32 18,18 32,32" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.2"/>
+                        <polyline points="4,24 18,10 32,24" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+                        <polyline points="4,16 18,2 32,16" stroke="#d4513b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="2" y="36" width="32" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="logo-text">LadderOps</span>
+                </a>
+            </div>
+            <p>Modern Tools for Modern Heroes.</p>
+            <div class="footer-links">
+                <a href="mailto:info@ladderops.tech">info@ladderops.tech</a>
+                <span>&bull;</span>
+                <a href="tel:+14132487233">Main: (413) 248-7233</a>
+                <span>&bull;</span>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+            </div>
+            <p>&copy; 2026 LadderOps. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+        });
+    </script>
+</body>
+</html>
