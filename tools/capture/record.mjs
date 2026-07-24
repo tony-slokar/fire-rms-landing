@@ -3,7 +3,7 @@
 // step mechanics. Produces two 1920x1080 .webm product clips with an
 // injected on-screen caption bar, read-only against LadderOps staging.
 //
-// Usage: node record.mjs [clip-a|clip-b|all]
+// Usage: node record.mjs [clip-a|clip-b|all|qm-assets|qm-qr-labels|qm-all]
 
 import { chromium } from "playwright";
 import { fileURLToPath } from "node:url";
@@ -503,6 +503,184 @@ async function recordClipB(browser) {
 }
 
 // ---------------------------------------------------------------------------
+// Clip C: Quartermaster asset register + detail (read-only)
+// ---------------------------------------------------------------------------
+
+async function recordClipQmAssets(browser) {
+  const videoDir = path.join(VIDEO_TMP_DIR, "clip-qm-assets");
+  fs.rmSync(videoDir, { recursive: true, force: true });
+  fs.mkdirSync(videoDir, { recursive: true });
+
+  const context = await browser.newContext({
+    viewport: VIEWPORT,
+    storageState: STORAGE_STATE_PATH,
+    recordVideo: { dir: videoDir, size: VIEWPORT },
+  });
+  const page = await context.newPage();
+  await installCaptionBar(page);
+
+  const t0 = Date.now();
+  log("Clip QM-assets: navigating to /quartermaster/assets...");
+  await page.goto(BASE_URL + "/quartermaster/assets", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(
+    () => document.querySelectorAll("table tbody tr").length >= 8,
+    undefined,
+    { timeout: 20000 }
+  );
+  await page.waitForTimeout(600);
+  // Same cold-cache-spinner reasoning as clips A/B - mark real content, trim later.
+  const readyMarkMs = Date.now() - t0;
+
+  await setCaption(page, "Every SCBA, every saw, every radio. One register.", 0);
+  await page.waitForTimeout(6000);
+
+  // Slow hover-scroll down the table body (mouse wheel over the table, not
+  // window.scrollBy - the table sits in its own inner overflow-auto div) so
+  // the full mixed-gear register is visibly on screen for the camera, then
+  // settle back near the top before clicking in.
+  const tableBody = page.locator("table tbody").first();
+  const tableBox = await tableBody.boundingBox();
+  if (tableBox) {
+    await page.mouse.move(tableBox.x + tableBox.width / 2, tableBox.y + tableBox.height / 2);
+  }
+  await page.mouse.wheel(0, 220);
+  await page.waitForTimeout(1600);
+  await page.mouse.wheel(0, 220);
+  await page.waitForTimeout(1600);
+  await page.mouse.wheel(0, -440);
+  await page.waitForTimeout(1400);
+  await page.waitForTimeout(4500);
+
+  // SCBA-12 carries a real custody assignment (issued to Engine 1) so the
+  // detail view's Custodian field shows actual data, not "None".
+  const row = page.locator("table tbody tr", { hasText: "SCBA-12" }).first();
+  const rowCell = row.locator("td").first();
+  await clickWithMotion(page, rowCell);
+  await page
+    .getByText("Loading asset")
+    .waitFor({ state: "hidden", timeout: 15000 })
+    .catch(() => {});
+  await page.getByText("SCBA-12", { exact: true }).first().waitFor({ timeout: 15000 });
+  await page.waitForTimeout(2000);
+
+  await setCaption(page, "Status, assignment, and service history on every asset.", 400);
+  // Scroll slowly through Status/Condition/Custodian, then the Compliance
+  // (service/inspection due-state) and Custody history sections below the
+  // fold - read-only, no field focus.
+  await wheelScroll(page, 1000, { steps: 8, pause: 900 });
+  await page.waitForTimeout(7000);
+
+  // NOTE: this build's Asset model has a parent_asset_id column, but there is
+  // no composite/parent-child UI anywhere in the frontend (no way to set or
+  // view it) - confirmed by reading lib/types/quartermaster.ts and every
+  // quartermaster page/component. Per the shoot brief, the "truck knows
+  // what's on the truck" composite-asset caption is skipped entirely rather
+  // than staged against a feature that doesn't exist in the UI.
+
+  await setCaption(
+    page,
+    "LadderOps Quartermaster.\nPart of the platform.\nladderops.tech",
+    500
+  );
+  await page.waitForTimeout(12000);
+
+  const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+  log(`Clip QM-assets: scripted duration ~${elapsed}s`);
+
+  await context.close();
+  const video = page.video();
+  const recordedPath = video ? await video.path() : null;
+  return { recordedPath, readyMarkMs };
+}
+
+// ---------------------------------------------------------------------------
+// Clip D: Quartermaster QR label sheet (read-only, scope-filter click only)
+// ---------------------------------------------------------------------------
+
+async function recordClipQmQrLabels(browser) {
+  const videoDir = path.join(VIDEO_TMP_DIR, "clip-qm-qr-labels");
+  fs.rmSync(videoDir, { recursive: true, force: true });
+  fs.mkdirSync(videoDir, { recursive: true });
+
+  const context = await browser.newContext({
+    viewport: VIEWPORT,
+    storageState: STORAGE_STATE_PATH,
+    recordVideo: { dir: videoDir, size: VIEWPORT },
+  });
+  const page = await context.newPage();
+  await installCaptionBar(page);
+
+  const t0 = Date.now();
+  // Enter through the Quartermaster hub (card launcher) rather than deep-
+  // linking straight to /quartermaster/assets or /quartermaster/print: every
+  // subsequent hop below is a HubCard click (components/layout/hub-card.tsx
+  // uses next/navigation's router.push, a client-side transition) or a
+  // page.goBack() through that same client-side history, so only THIS one
+  // page.goto ever triggers a full document reload/loading spinner. An
+  // earlier version of this clip did a second page.goto (assets -> print)
+  // mid-recording, which produced a real multi-second blank "Loading..."
+  // screen inside the finished clip - the postProcess trim only removes the
+  // cold-load prefix at the very front, not a loading flash in the middle.
+  log("Clip QM-qr-labels: navigating to /quartermaster (hub)...");
+  await page.goto(BASE_URL + "/quartermaster", { waitUntil: "domcontentloaded" });
+  const assetRegisterCard = page.getByRole("button", { name: "Asset Register" });
+  const printLabelsCard = page.getByRole("button", { name: "Print labels" });
+  await assetRegisterCard.waitFor({ timeout: 20000 });
+  await printLabelsCard.waitFor({ timeout: 20000 });
+  await page.waitForTimeout(600);
+  // Same cold-cache-spinner reasoning as clips A/B - mark real content, trim later.
+  const readyMarkMs = Date.now() - t0;
+
+  await clickWithMotion(page, assetRegisterCard);
+  await page.waitForFunction(
+    () => document.querySelectorAll("table tbody tr").length >= 8,
+    undefined,
+    { timeout: 20000 }
+  );
+  await page.waitForTimeout(2600);
+
+  log("Clip QM-qr-labels: back to hub, then into Print labels...");
+  await page.goBack({ waitUntil: "domcontentloaded" });
+  await printLabelsCard.waitFor({ timeout: 15000 });
+  await page.waitForTimeout(500);
+  await clickWithMotion(page, printLabelsCard);
+  const assetsScopeButton = page.getByRole("button", { name: "Assets", exact: true });
+  await assetsScopeButton.waitFor({ timeout: 15000 });
+  await page.waitForTimeout(1200);
+
+  await setCaption(page, "Pick the gear. One click.", 400);
+  // Default scope is "All" (assets + storage locations); one click on
+  // "Assets" narrows the sheet to just gear labels.
+  await clickWithMotion(page, assetsScopeButton);
+  await page.waitForTimeout(3600);
+
+  await setCaption(page, "A printable QR label sheet, straight from the browser.", 500);
+  await wheelScroll(page, 700, { steps: 6, pause: 800 });
+  await page.waitForTimeout(3000);
+
+  await setCaption(page, "Every label points at the asset's live record.", 500);
+  // Each label card's "Asset" kind tag is a leaf <span> with that exact text;
+  // its parent is the label card div. More precise than a class-substring
+  // selector, since every card/child element's CSS-module class contains
+  // the literal string "label" (labelKind, labelTag, labelQr, labelGrid...).
+  const firstLabelKind = page.getByText("Asset", { exact: true }).first();
+  const firstLabel = firstLabelKind.locator("xpath=..");
+  await moveMouseToLocator(page, firstLabel, { steps: 20, settleMs: 300 });
+  await page.waitForTimeout(6200);
+
+  await setCaption(page, "LadderOps Quartermaster.\nladderops.tech", 500);
+  await page.waitForTimeout(6300);
+
+  const elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+  log(`Clip QM-qr-labels: scripted duration ~${elapsed}s`);
+
+  await context.close();
+  const video = page.video();
+  const recordedPath = video ? await video.path() : null;
+  return { recordedPath, readyMarkMs };
+}
+
+// ---------------------------------------------------------------------------
 // Post-processing: trim cold-load prefix, encode h264 mp4, extract 6 stills
 // ---------------------------------------------------------------------------
 
@@ -595,6 +773,16 @@ async function main() {
       const { recordedPath, readyMarkMs } = await recordClipB(browser);
       log(`Clip B raw video: ${recordedPath} (readyMark ${readyMarkMs}ms)`);
       outputs.clipB = postProcess(recordedPath, readyMarkMs, "clip-5-water-supply");
+    }
+    if (which === "qm-assets" || which === "qm-all") {
+      const { recordedPath, readyMarkMs } = await recordClipQmAssets(browser);
+      log(`Clip QM-assets raw video: ${recordedPath} (readyMark ${readyMarkMs}ms)`);
+      outputs.clipQmAssets = postProcess(recordedPath, readyMarkMs, "clip-qm-assets");
+    }
+    if (which === "qm-qr-labels" || which === "qm-all") {
+      const { recordedPath, readyMarkMs } = await recordClipQmQrLabels(browser);
+      log(`Clip QM-qr-labels raw video: ${recordedPath} (readyMark ${readyMarkMs}ms)`);
+      outputs.clipQmQrLabels = postProcess(recordedPath, readyMarkMs, "clip-qm-qr-labels");
     }
   } finally {
     await browser.close();
